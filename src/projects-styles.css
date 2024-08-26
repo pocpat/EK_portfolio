@@ -70,6 +70,17 @@ body {
   line-height: inherit;
 }
 
+@media (max-width: 767px) {
+  .banner .image-container {
+    display: flex;
+    justify-content: center;
+  }
+  .banner p {
+    width: 100%;
+    text-align: justify; 
+    padding: 1rem;
+  }
+}
 
 
 @media (min-width: 640px) {

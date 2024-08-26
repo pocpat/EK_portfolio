@@ -266,6 +266,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   width: 96%;
 }
+
 .banner button {
   color: #fff;
   font-weight: 700;
@@ -288,6 +289,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   animation: updown 6s linear infinite;
   height: 700px;
   width: auto;
+  padding: 0;
+  margin: 0;
 }
 button[type="submit"] {
   background: linear-gradient(90.21deg, rgba(41, 22, 68, 1) -5.91%, rgba(82, 240, 225, 1) 100%) !important;
