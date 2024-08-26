@@ -1,9 +1,16 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { MailChimpForm } from "./MailChimpForm";
 import logo from "../assets/img/logo.svg";
 
 export const Footer = () => {
+  useEffect(() => {
+    const yearElement = document.querySelector('#currentYear');
+    if (yearElement) {
+      yearElement.innerHTML = new Date().getFullYear();
+    }
+  }, []);
+
   return (
     <footer className="footer">
     <div className="blob-left"></div>
@@ -16,7 +23,7 @@ export const Footer = () => {
           </Col>
           <Col sm={6} className="text-center text-sm-end">
 
-            <p> CopyRight 2024. All Rights Reserved.</p>
+            <p> CopyRight : <span id='currentYear'></span> ©</p>
           </Col>
         </Row>
       </Container>
