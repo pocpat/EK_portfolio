@@ -1,9 +1,10 @@
 import projImg1 from "../assets/img/project-img1.png";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
-import ghicon from "../assets/img/github.svg";
-import buttons45 from "../assets/img/45buttons.jpg";
+import ghicon from "../assets/img/ghref.png";
+import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
+import girlref from "../assets/img/girlref.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import bgImg1 from "../assets/img/banner-bg1.jpg";
 import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
@@ -67,20 +68,11 @@ export const Projects = () => {
       imgUrl: projref,
     },
     {
-      title: "Project 40",
+      title: "Text-to-img Generation",
       description: "This is a description of project 4",
-      imgUrl: projImg1,
+      imgUrl: girlref,
     },
-    {
-      title: "Project 50",
-      description: "This is a description of project 5",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Project 60",
-      description: "This is a description of project 6",
-      imgUrl: projImg1,
-    },
+   
   ];
   const [activeTab, setActiveTab] = useState("first");
   const [selectedPdf, setSelectedPdf] = useState(
@@ -195,9 +187,12 @@ export const Projects = () => {
                             projects I used as a reference to build my projects
                           </p>
                           <br/>
+                          <br/>
+                          <Row>
                           {refs.map((ref, index) => {
                             return <ProjectCard key={index} {...ref} />; 
                           })}
+                          </Row>
                         </Row>
                       </Tab.Pane>
                     </Tab.Content>

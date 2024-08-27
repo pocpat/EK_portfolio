@@ -505,6 +505,9 @@ button[type="submit"]:hover {
 	font-weight: 700;
   margin-bottom: 30px;
 }
+.projects-color-invert{
+  filter:invert(1);
+}
 .contact form input, .contact form textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.1);

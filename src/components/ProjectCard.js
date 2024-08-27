@@ -4,8 +4,8 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
   return (
     <Col sm={6} md={4} lg={4}>
       <div className="proj-imgbx">
-        <img src={imgUrl} alt="img" />
-        <div className="proj-txtx">
+        <img src={imgUrl} alt="img"  />
+        <div className="proj-txtx ">
           <h4>{title}</h4>
           <span>{description}</span>
           {title === "GitHub icon" && (
@@ -75,6 +75,20 @@ Vincent Van Goggles
               Yossijaki
                
               </a>
+            </div>
+          )}
+          {title === "Text-to-img Generation" && (
+            <div>
+              <a
+                href="https://www.adobe.com/nz/products/firefly/features/text-to-image.html"
+                className="text-underline font-size-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+            
+              AI Image Generator: Create images from text.
+              </a>
+          
             </div>
           )}
         </div>
