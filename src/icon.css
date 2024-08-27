@@ -5,7 +5,7 @@
   border: 2px solid white;
   border-radius: 50%;
   background-color: transparent;
-  background-image: url('../../my-portfolio/src/assets/img/gh-icon.png'); /* Path to your white icon PNG */
+  background-image: url('../../my-portfolio/src/assets/img/github.svg'); /* Path to your white icon PNG */
   background-size: cover;
   transition: all 0.3s ease;
 }
@@ -13,5 +13,5 @@
 /* Hover state: white background and black icon */
 .nav-icon2:hover {
   background-color: white;
-  background-image: url('../../my-portfolio/src/assets/img/gh-icon.png'); /* Path to your black icon PNG */
+  background-image: url('../../my-portfolio/src/assets/img/github.svg'); /* Path to your black icon PNG */
 }
