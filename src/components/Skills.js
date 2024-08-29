@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
- import Carousel from "react-multi-carousel";
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import meter1 from "../assets/img/meter1.svg";
 import meter2 from "../assets/img/meter2.svg";
 import meter3 from "../assets/img/meter3.svg";
@@ -35,10 +35,9 @@ export const Skills = () => {
             <div className="skill-bx">
               <h2> Skills</h2>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+              This is my current skillset, but it's always evolving. While I may be new to the industry, I'm driven to excel and become a top-tier full stack developer . 
               </p>
-             <Carousel
+              <Carousel
                 responsive={responsive}
                 infinite={true}
                 className="skill-slider"
@@ -49,25 +48,93 @@ export const Skills = () => {
                 </div>
                 <div className="item">
                   <img src={meter2} alt="img" />
-                  <h5>Brand Identity </h5>
+                  <h5>Java Script </h5>
                 </div>
                 <div className="item">
                   <img src={meter3} alt="img" />
-                  <h5>Logo Design </h5>
+                  <h5>React </h5>
                 </div>
                 <div className="item">
                   <img src={meter1} alt="img" />
 
-                  <h5>Web Development </h5>
+                  <h5>MUI </h5>
                 </div>
-              </Carousel> 
-            
+                <div className="item">
+                  <img src={meter2} alt="img" />
+                  <h5>NodeJs </h5>
+                </div>
+                <div className="item">
+                  <img src={meter3} alt="img" />
+                  <h5>MongoDB </h5>
+                </div>
+                <div className="item">
+                  <img src={meter1} alt="img" />
+
+                  <h5>Git </h5>
+                </div>
+                <div className="item">
+                  <img src={meter1} alt="img" />
+
+                  <h5>REST APIs </h5>
+                </div>
+                <div className="item">
+                  <img src={meter2} alt="img" />
+                  <h5>Docker </h5>
+                </div>
+                <div className="item">
+                  <img src={meter3} alt="img" />
+                  <h5>AWS Certified Cloud Practitioner</h5>
+                </div>
+                <div className="item">
+                  <img src={meter1} alt="img" />
+
+                  <h5>Bootstrap5 </h5>
+                </div>
+
+
+
+                <div className="item">
+                <img src={meter1} alt="img" />
+
+                <h5>MySQL </h5>
+              </div>
+              <div className="item">
+                <img src={meter2} alt="img" />
+                <h5>JSON </h5>
+              </div>
+              <div className="item">
+                <img src={meter3} alt="img" />
+                <h5>TypeScript</h5>
+              </div>
+              <div className="item">
+                <img src={meter1} alt="img" />
+
+                <h5>HTML DOM</h5>
+              </div>
+
+
+
+
+              <div className="item">
+              <img src={meter2} alt="img" />
+              <h5>Tailwind </h5>
+            </div>
+            <div className="item">
+              <img src={meter3} alt="img" />
+              <h5>Sass</h5>
+            </div>
+            <div className="item">
+              <img src={meter1} alt="img" />
+
+              <h5>CSS</h5>
+            </div>
+              </Carousel>
             </div>
           </Col>
         </Row>
-      </Container> 
+      </Container>
       <div className="blob-left"></div>
-   
+
       <img className="background-image-left" src={colorSharp} alt="img" />
     </section>
   );
