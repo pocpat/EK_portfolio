@@ -1,4 +1,4 @@
-import './App.css';
+import "../src/css/App.css";
 import { NavBar } from './components/NavBar';
 import { Banner } from './components/Banner';
 import  {Projects}  from './components/Projects';

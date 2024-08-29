@@ -2,6 +2,7 @@ import React , {useEffect} from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { MailChimpForm } from "./MailChimpForm";
 import logo from "../assets/img/logo.svg";
+import "../css/App.css";
 
 export const Footer = () => {
   useEffect(() => {

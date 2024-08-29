@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/img/logo.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/github.svg";
+import "../css/NavBar.css";
+import "../css/App.css";
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -26,6 +28,7 @@ export const NavBar = () => {
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
+
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>

@@ -1,5 +1,6 @@
 import { Alert, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import "../css/App.css";
 export const Newslatter = ({ onValidated, status, message }) => {
   const [email, setEmail] = useState("");
 

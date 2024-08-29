@@ -10,10 +10,11 @@ import bgImg1 from "../assets/img/banner-bg1.jpg";
 import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import "animate.css";
+import "../css/App.css";
 import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
-import "../projects-styles.css";
+import "../css/projects-styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
