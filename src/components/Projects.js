@@ -1,11 +1,10 @@
-import projImg1 from "../assets/img/project-img1.png";
-import projImg2 from "../assets/img/project-img2.png";
-import projImg3 from "../assets/img/project-img3.png";
+import projImg1 from "../assets/img/cookitup.jpg";
+import projImg2 from "../assets/img/metroje.jpg";
+import projImg3 from "../assets/img/sunsip.PNG";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
 import girlref from "../assets/img/girlref.png";
-import colorSharp2 from "../assets/img/color-sharp2.png";
 import bgImg1 from "../assets/img/banner-bg1.jpg";
 import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
@@ -15,43 +14,43 @@ import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import ProjModal from "./projModal/ProjModal";
 
-export const Projects = () => {
+export const Projects = ({ title, description }) => {
+  const [modalData, setModalData] = useState({ title: "", description: "" });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = (title, description) => {
+    console.log("Modal opening for:", title);
+    setModalData({ title, description });
+
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const projects = [
     {
-      title: "Project 1",
-      description: "This is a description of project 1",
+      title: "Cook It Up",
+      description:
+        "React-based food managing app using state management, hooks, API integration, and local storage. Built to practice core React concepts.",
       imgUrl: projImg1,
     },
     {
-      title: "Project 2",
-      description: "This is a description of project 2",
+      title: "MetroGE",
+      description:
+        "A home rent app that lets users filter properties by location, price, and type, built with a MongoDB database and modern web tools.",
       imgUrl: projImg2,
     },
     {
-      title: "Project 3",
-      description: "This is a description of project 3",
+      title: "SunSip",
+      description: "TBS",
       imgUrl: projImg3,
     },
-    {
-      title: "Project 4",
-      description: "This is a description of project 4",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Project 5",
-      description: "This is a description of project 5",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Project 6",
-      description: "This is a description of project 6",
-      imgUrl: projImg1,
-    },
   ];
+
   const refs = [
     {
       title: "GitHub icon",
@@ -73,17 +72,19 @@ export const Projects = () => {
       description: "This is a description of project 4",
       imgUrl: girlref,
     },
-   
   ];
+
   const [activeTab, setActiveTab] = useState("first");
   const [selectedPdf, setSelectedPdf] = useState(
     "/AmazonQuickSightProject.pdf"
   );
+
   const pdfFiles = [
     { name: "Amazon QuickSight Project", file: "/AmazonQuickSightProject.pdf" },
     { name: "Amazon ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
     { name: "Amazon ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
     { name: "Amazon IAM", file: "/awsIam.pdf" },
+    { name: "metroge", file: "/metroge_DOC.pdf" },
   ];
 
   return (
@@ -99,13 +100,11 @@ export const Projects = () => {
                   }
                 >
                   <h2>Projects</h2>
-
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s, when an unknown
                   </p>
-
                   <Tab.Container id="projects-tabs" activeKey={activeTab}>
                     <Nav
                       variant="pills"
@@ -123,7 +122,6 @@ export const Projects = () => {
                         <Nav.Link eventKey="third">Appreciation</Nav.Link>
                       </Nav.Item>
                     </Nav>
-
                     <Tab.Content
                       id="slideInUp"
                       className={
@@ -134,7 +132,13 @@ export const Projects = () => {
                       <Tab.Pane eventKey="first">
                         <Row>
                           {projects.map((project, index) => {
-                            return <ProjectCard key={index} {...project} />;
+                            return (
+                              <ProjectCard
+                                key={index}
+                                {...project}
+                                handleModalOpen={handleModalOpen}
+                              />
+                            );
                           })}
                         </Row>
                       </Tab.Pane>
@@ -179,20 +183,18 @@ export const Projects = () => {
                           <PdfViewer file={selectedPdf} />
                         </div>
                       </Tab.Pane>
-
                       {/* ======  3rd tab ======  */}
-
                       <Tab.Pane eventKey="third">
                         <Row>
                           <p>
                             projects I used as a reference to build my projects
                           </p>
-                          <br/>
-                          <br/>
+                          <br />
+                          <br />
                           <Row>
-                          {refs.map((ref, index) => {
-                            return <ProjectCard key={index} {...ref} />; 
-                          })}
+                            {refs.map((ref, index) => {
+                              return <ProjectCard key={index} {...ref} />;
+                            })}
                           </Row>
                         </Row>
                       </Tab.Pane>
@@ -204,10 +206,16 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-
       <div className="blob-right"></div>
       <div className="blob-right-bottom"></div>
       <img className="project-background-image" src={bgImg1} alt="img" />
+      {isModalOpen && (
+        <ProjModal
+          title={modalData.title}
+          description={modalData.description}
+          onClose={handleModalClose}
+        />
+      )}
     </section>
   );
 };
