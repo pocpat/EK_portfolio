@@ -15,9 +15,6 @@ import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
 export const Projects = ({ title, description }) => {
-
-
-
   const projects = [
     {
       title: "Cook It Up",
@@ -87,24 +84,25 @@ export const Projects = ({ title, description }) => {
                   }
                 >
                   <h2>Projects</h2>
-                
-                
+
                   <p>Here’s a snapshot of my journey:</p>
                   <div className="projects-container">
-                  <div className="about-tab">
-                    <h4>Web Dev</h4>
-                    <p>Static sites with APIs to dynamic Docker apps.</p>
-                  </div>
-                  
-                  <div className="about-tab">
-                    <h4>AWS</h4>
-                    <p>Exploring AWS and cloud projects.</p>
-                  </div>
-                  
-                  <div className="about-tab">
-                    <h4>Credits</h4>
-                    <p>Thanks to all the tools and resources that’ve helped me!</p>
-                  </div>
+                    <div className="about-tab">
+                      <h4>Web Dev</h4>
+                      <p>Static sites with APIs to dynamic Docker apps.</p>
+                    </div>
+
+                    <div className="about-tab">
+                      <h4>AWS</h4>
+                      <p>Exploring AWS and cloud projects.</p>
+                    </div>
+
+                    <div className="about-tab">
+                      <h4>Credits</h4>
+                      <p>
+                        Thanks to all the tools and resources that’ve helped me!
+                      </p>
+                    </div>
                   </div>
                   <Tab.Container id="projects-tabs" activeKey={activeTab}>
                     <Nav
@@ -120,7 +118,7 @@ export const Projects = ({ title, description }) => {
                         <Nav.Link eventKey="second">AWS</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="third">Appreciation</Nav.Link>
+                        <Nav.Link eventKey="third">CREDITS</Nav.Link>
                       </Nav.Item>
                     </Nav>
                     <Tab.Content
@@ -133,13 +131,7 @@ export const Projects = ({ title, description }) => {
                       <Tab.Pane eventKey="first">
                         <Row>
                           {projects.map((project, index) => {
-                            return (
-                              <ProjectCard
-                                key={index}
-                                {...project}
-                               
-                              />
-                            );
+                            return <ProjectCard key={index} {...project} />;
                           })}
                         </Row>
                       </Tab.Pane>
@@ -187,9 +179,6 @@ export const Projects = ({ title, description }) => {
                       {/* ======  3rd tab ======  */}
                       <Tab.Pane eventKey="third">
                         <Row>
-                          <p>
-                            projects I used as a reference to build my projects
-                          </p>
                           <br />
                           <br />
                           <Row>
@@ -210,7 +199,6 @@ export const Projects = ({ title, description }) => {
       <div className="blob-right"></div>
       <div className="blob-right-bottom"></div>
       <img className="project-background-image" src={bgImg1} alt="img" />
-    
     </section>
   );
 };
