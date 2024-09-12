@@ -240,6 +240,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+
 }
 .banner .tagline {
   font-weight: 700;
@@ -250,6 +251,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-size: 20px;
   margin-bottom: 16px;
   display: inline-block;
+
 }
 .banner h1 {
   font-size: 65px;
@@ -275,6 +277,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
+  
 }
 .banner button svg {
   font-size: 25px;
@@ -287,11 +290,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .banner img {
   animation: updown 6s linear infinite;
-  height: 700px;
+  height: 76vh;
   width: auto;
   padding: 0;
-  margin: 0;
+  margin:0vh -20vh;
+ 
 }
+
 button[type="submit"] {
   background: linear-gradient(90.21deg, rgba(41, 22, 68, 1) -5.91%, rgba(82, 240, 225, 1) 100%) !important;
   cursor: pointer;
@@ -678,6 +683,8 @@ button[type="submit"]:hover {
   margin-top: 20px;
 }
 
-
+.title-container {
+  min-height: 26vh; /* Adjust the height as needed */
+}
 
 
