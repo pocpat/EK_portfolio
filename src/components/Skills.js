@@ -6,7 +6,7 @@ import "../css/App.css";
 import "../css/skills.css";
 import ProgressBar from "./progressBar/ProgressBar";
 
-export const Skills = () => {
+export const Skills = (progressBarRef) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -67,7 +67,7 @@ export const Skills = () => {
                 {skills.map((skill, index) => (
                   <div key={index} className="skill-card">
                    
-                      <ProgressBar />
+                      <ProgressBar ref={progressBarRef} /> {/* Pass the ref to ProgressBar */}
                      
                     
                     <h5 >{skill}</h5>
