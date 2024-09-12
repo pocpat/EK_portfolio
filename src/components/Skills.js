@@ -1,16 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import meter1 from "../assets/img/meter1.svg";
-import meter2 from "../assets/img/meter2.svg";
-import meter3 from "../assets/img/meter3.svg";
 import colorSharp from "../assets/img/color-sharp.png";
 import "../css/App.css";
+import "../css/skills.css";
+import ProgressBar from "./progressBar/ProgressBar";
 
 export const Skills = () => {
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -27,114 +25,60 @@ export const Skills = () => {
       items: 1,
     },
   };
+
+  // Array of skill items
+  const skills = [
+    "Web Development",
+    "JavaScript",
+    "React",
+    "MUI",
+    "NodeJs",
+    "MongoDB",
+    "Git",
+    "REST APIs",
+    "Docker",
+    "AWS Certified Cloud Practitioner",
+    "Bootstrap5",
+    "MySQL",
+    "JSON",
+    "TypeScript",
+    "HTML DOM",
+    "Tailwind",
+    "Sass",
+    "CSS"
+  ];
+
   return (
     <section className="skill" id="skills">
       <Container>
         <Row>
           <Col>
             <div className="skill-bx">
-              <h2> Skills</h2>
+              <h2>Skills</h2>
               <p>
-              This is my current skillset, but it's always evolving. While I may be new to the industry, I'm driven to excel and become a top-tier full stack developer . 
+                This is my current skillset, but it's always evolving. While I may be new to the industry, I'm driven to excel and become a top-tier full stack developer.
               </p>
               <Carousel
                 responsive={responsive}
                 infinite={true}
-                className="skill-slider"
+                className="skill-slider-Skills"
               >
-                <div className="item">
-                  <img src={meter1} alt="img" />
-                  <h5>Web Development </h5>
-                </div>
-                <div className="item">
-                  <img src={meter2} alt="img" />
-                  <h5>Java Script </h5>
-                </div>
-                <div className="item">
-                  <img src={meter3} alt="img" />
-                  <h5>React </h5>
-                </div>
-                <div className="item">
-                  <img src={meter1} alt="img" />
-
-                  <h5>MUI </h5>
-                </div>
-                <div className="item">
-                  <img src={meter2} alt="img" />
-                  <h5>NodeJs </h5>
-                </div>
-                <div className="item">
-                  <img src={meter3} alt="img" />
-                  <h5>MongoDB </h5>
-                </div>
-                <div className="item">
-                  <img src={meter1} alt="img" />
-
-                  <h5>Git </h5>
-                </div>
-                <div className="item">
-                  <img src={meter1} alt="img" />
-
-                  <h5>REST APIs </h5>
-                </div>
-                <div className="item">
-                  <img src={meter2} alt="img" />
-                  <h5>Docker </h5>
-                </div>
-                <div className="item">
-                  <img src={meter3} alt="img" />
-                  <h5>AWS Certified Cloud Practitioner</h5>
-                </div>
-                <div className="item">
-                  <img src={meter1} alt="img" />
-
-                  <h5>Bootstrap5 </h5>
-                </div>
-
-
-
-                <div className="item">
-                <img src={meter1} alt="img" />
-
-                <h5>MySQL </h5>
-              </div>
-              <div className="item">
-                <img src={meter2} alt="img" />
-                <h5>JSON </h5>
-              </div>
-              <div className="item">
-                <img src={meter3} alt="img" />
-                <h5>TypeScript</h5>
-              </div>
-              <div className="item">
-                <img src={meter1} alt="img" />
-
-                <h5>HTML DOM</h5>
-              </div>
-
-
-
-
-              <div className="item">
-              <img src={meter2} alt="img" />
-              <h5>Tailwind </h5>
-            </div>
-            <div className="item">
-              <img src={meter3} alt="img" />
-              <h5>Sass</h5>
-            </div>
-            <div className="item">
-              <img src={meter1} alt="img" />
-
-              <h5>CSS</h5>
-            </div>
+                {/* Mapping over skills array and rendering ProgressBar */}
+                {skills.map((skill, index) => (
+                  <div key={index} className="skill-card">
+                   
+                      <ProgressBar />
+                     
+                    
+                    <h5 >{skill}</h5>
+                  </div>
+                ))}
               </Carousel>
             </div>
           </Col>
         </Row>
       </Container>
       <div className="blob-left"></div>
-
       <img className="background-image-left" src={colorSharp} alt="img" />
     </section>
   );

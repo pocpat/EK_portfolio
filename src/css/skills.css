@@ -1,0 +1,42 @@
+/* Container for the Carousel */
+.skill-slider-Skills {
+    /* Set the height of the carousel container */
+    height: 40vh; /* Adjust this value to your needs */
+   /* display: flex;*/
+   /* align-items: center;  Center items vertically */
+  
+}
+
+/* Style for each item in the Carousel */
+.skill-slider-Skills .skill-card {
+ 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically and horizontally */
+     /* Optional: Add padding for better spacing */
+
+}
+
+/* Style for ProgressBar and Skill text */
+.skill-slider-Skills .progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto; /* Adjust height based on content */
+}
+
+/* Adjust height of ProgressBar if needed */
+.skill-slider-Skills .progress-bar-container .progress-bar {
+    height: 60%; /* Adjust as needed, or use a specific value */
+}
+
+/* Adjust the styling of the skill text */
+.skill-slider-Skills .progress-bar-container h5 {
+    margin-top: 10px; /* Space between ProgressBar and skill text */
+    text-align: center; /* Center text horizontally */
+}

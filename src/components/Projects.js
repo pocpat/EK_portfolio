@@ -14,22 +14,9 @@ import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
-import ProjModal from "./projModal/ProjModal";
-
 export const Projects = ({ title, description }) => {
-  const [modalData, setModalData] = useState({ title: "", description: "" });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModalOpen = (title, description) => {
-    console.log("Modal opening for:", title);
-    setModalData({ title, description });
 
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
 
   const projects = [
     {
@@ -46,7 +33,7 @@ export const Projects = ({ title, description }) => {
     },
     {
       title: "SunSip",
-      description: "TBS",
+      description: "WIP",
       imgUrl: projImg3,
     },
   ];
@@ -136,7 +123,7 @@ export const Projects = ({ title, description }) => {
                               <ProjectCard
                                 key={index}
                                 {...project}
-                                handleModalOpen={handleModalOpen}
+                               
                               />
                             );
                           })}
@@ -209,13 +196,7 @@ export const Projects = ({ title, description }) => {
       <div className="blob-right"></div>
       <div className="blob-right-bottom"></div>
       <img className="project-background-image" src={bgImg1} alt="img" />
-      {isModalOpen && (
-        <ProjModal
-          title={modalData.title}
-          description={modalData.description}
-          onClose={handleModalClose}
-        />
-      )}
+    
     </section>
   );
 };

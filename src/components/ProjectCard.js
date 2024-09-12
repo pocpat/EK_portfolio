@@ -1,13 +1,14 @@
 import { Col } from "react-bootstrap";
 import React from "react";
 import "../css/App.css";
-import "./projModal/projModal.css";
-import ProjModal from "./projModal/ProjModal";
 
-export const ProjectCard = ({ title, description, imgUrl, handleModalOpen }) => {
-  const handleClick = () => {
-    handleModalOpen(title, description); // Pass project data to Projects.js
-  };
+export const ProjectCard = ({
+  title,
+  description,
+  imgUrl,
+
+}) => {
+
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -106,18 +107,11 @@ export const ProjectCard = ({ title, description, imgUrl, handleModalOpen }) => 
           )}
           {title === "MetroGE" && (
             <div>
-           <p>Proccess of the project</p> 
-            <button className="modal-button" onClick={handleClick} >
-            OPEN PDF INFO from GPT
-          </button>
-          <ProjModal title={title} description={description} />
-             
-             
+               title={title} description={description} 
             </div>
           )}
         </div>
       </div>
-
     </Col>
   );
 };
