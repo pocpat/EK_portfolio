@@ -45,7 +45,7 @@ export const Skills = (progressBarRef) => {
     "HTML DOM",
     "Tailwind",
     "Sass",
-    "CSS"
+    "CSS",
   ];
 
   return (
@@ -56,7 +56,15 @@ export const Skills = (progressBarRef) => {
             <div className="skill-bx">
               <h2>Skills</h2>
               <p>
-                This is my current skillset, but it's always evolving. While I may be new to the industry, I'm driven to excel and become a top-tier full stack developer.
+                This is my current skillset, but it's always evolving. While I
+                may be new to the industry, I'm driven to excel and become a
+                top-tier full stack developer.</p>
+                
+               <p> Oh, and just a heads-up—the
+                percentages you see on those progress bars? They're completely
+                random! Think of them as a fun way to illustrate my enthusiasm
+                and potential rather than precise measurements. After all, who
+                doesn’t love a bit of flair with their data? 
               </p>
               <Carousel
                 responsive={responsive}
@@ -66,11 +74,9 @@ export const Skills = (progressBarRef) => {
                 {/* Mapping over skills array and rendering ProgressBar */}
                 {skills.map((skill, index) => (
                   <div key={index} className="skill-card">
-                   
-                      <ProgressBar ref={progressBarRef} /> {/* Pass the ref to ProgressBar */}
-                     
-                    
-                    <h5 >{skill}</h5>
+                    <ProgressBar ref={progressBarRef} />{" "}
+                    {/* Pass the ref to ProgressBar */}
+                    <h5>{skill}</h5>
                   </div>
                 ))}
               </Carousel>
