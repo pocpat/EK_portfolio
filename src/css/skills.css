@@ -40,3 +40,11 @@
     margin-top: 10px; /* Space between ProgressBar and skill text */
     text-align: center; /* Center text horizontally */
 }
+
+.skill-slider-Skills .p {
+    color: #B8B8B8;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    line-height: 1.5em;
+    width: 96%;
+}

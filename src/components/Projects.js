@@ -87,11 +87,25 @@ export const Projects = ({ title, description }) => {
                   }
                 >
                   <h2>Projects</h2>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                  </p>
+                
+                
+                  <p>Here’s a snapshot of my journey:</p>
+                  <div className="projects-container">
+                  <div className="about-tab">
+                    <h4>Web Dev</h4>
+                    <p>Static sites with APIs to dynamic Docker apps.</p>
+                  </div>
+                  
+                  <div className="about-tab">
+                    <h4>AWS</h4>
+                    <p>Exploring AWS and cloud projects.</p>
+                  </div>
+                  
+                  <div className="about-tab">
+                    <h4>Credits</h4>
+                    <p>Thanks to all the tools and resources that’ve helped me!</p>
+                  </div>
+                  </div>
                   <Tab.Container id="projects-tabs" activeKey={activeTab}>
                     <Nav
                       variant="pills"
