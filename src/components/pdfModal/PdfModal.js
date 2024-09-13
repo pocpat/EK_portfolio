@@ -10,9 +10,7 @@ const PdfModal = ({ show, onHide, file }) => {
       </Modal.Header>
       <Modal.Body>
         <PdfViewer
-          document={{
-            url: file,
-          }}
+        file={file}
           scale={1.5} // Adjust the scale as needed
         />
       </Modal.Body>

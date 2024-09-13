@@ -1,9 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 import "../css/App.css";
+
 const PdfViewer = ({ file }) => {
     const pageNavigationPluginInstance = pageNavigationPlugin();
     const { GoToNextPage, GoToPreviousPage } = pageNavigationPluginInstance;

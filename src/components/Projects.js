@@ -6,7 +6,7 @@ import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
 import girlref from "../assets/img/girlref.png";
 import bgImg1 from "../assets/img/banner-bg1.jpg";
-import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
+import { Col, Button, Container, Row, Nav, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import "animate.css";
 import "../css/App.css";
@@ -18,6 +18,12 @@ import "../css/projects-styles.css";
 
 
 export const Projects = ({ title, description }) => {
+ 
+
+  const [activeTab, setActiveTab] = useState("first");
+  const [selectedPdf, setSelectedPdf] = useState(
+    "/AmazonQuickSightProject.pdf"
+  );
   const projects = [
     {
       title: "Cook It Up",
@@ -60,11 +66,6 @@ export const Projects = ({ title, description }) => {
       imgUrl: girlref,
     },
   ];
-
-  const [activeTab, setActiveTab] = useState("first");
-  const [selectedPdf, setSelectedPdf] = useState(
-    "/AmazonQuickSightProject.pdf"
-  );
 
   const pdfFiles = [
     { name: "Amazon QuickSight Project", file: "/AmazonQuickSightProject.pdf" },
@@ -134,7 +135,7 @@ export const Projects = ({ title, description }) => {
                       <Tab.Pane eventKey="first">
                         <Row>
                           {projects.map((project, index) => {
-                            return <ProjectCard key={index} {...project} />;
+                            return <ProjectCard key={index} {...project} selectedPdf={selectedPdf}  onPdfSelect={(pdfUrl) => setSelectedPdf(pdfUrl)}/>;
                           })}
                         </Row>
                       </Tab.Pane>

@@ -1,7 +1,7 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
-import { Col, Button} from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 
 
 export const ProjectCard = ({
@@ -11,13 +11,12 @@ export const ProjectCard = ({
 
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [pdfFile, setPdfFile] = useState("");
 
-  const handleOpenPdfModal = (file) => {
-    console.log("Modal opened");
-    setPdfFile(file);
+  const handleOpenPdfModal = () => {
     setShowModal(true);
   };
+
+  const hardcodedPdfUrl = "/metroge_vert.pdf"; 
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -116,9 +115,22 @@ export const ProjectCard = ({
           )}
           {title === "MetroGE" && (
             <div>
-            <Button onClick={() => handleOpenPdfModal("/metroge_DOC.pdf")}>
-            Open PDF File
-          </Button>
+            <a
+            href="https://github.com/pocpat/metroje"
+            className="text-underline font-size-sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github repo
+          </a><br></br>
+              <Button onClick={handleOpenPdfModal}>Open PDF File</Button>
+              {showModal && (
+                <PdfModal
+                  show={showModal}
+                  onHide={() => setShowModal(false)}
+                  file={hardcodedPdfUrl}
+                />
+              )}
             </div>
           )}
         </div>
