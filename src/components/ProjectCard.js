@@ -103,27 +103,27 @@ export const ProjectCard = ({
           )}
           {title === "Cook It Up" && (
             <div>
-              <a
+              <Button
                 href="https://cook-it-up-ek.web.app/"
-                className="text-underline font-size-sm"
+                className="project-card-button"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Deploied Link
-              </a>
+                Open App
+              </Button>
             </div>
           )}
           {title === "MetroGE" && (
-            <div>
-            <a
+            <div className="matroje-container">
+            <Button
             href="https://github.com/pocpat/metroje"
-            className="text-underline font-size-sm"
+            className=" project-card-button"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Github repo
-          </a><br></br>
-              <Button onClick={handleOpenPdfModal}>Open PDF File</Button>
+            Github 
+          </Button><br></br>
+              <Button onClick={handleOpenPdfModal} className="project-card-button">Open PDF </Button>
               {showModal && (
                 <PdfModal
                   show={showModal}

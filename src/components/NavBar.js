@@ -3,16 +3,22 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useEffect } from "react";
-import logo from "../assets/img/logo.svg";
+import logo from "../assets/img/mylogo2.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/github.svg";
+import PdfModal from "./pdfModal/PdfModal";
+import { Col, Button } from "react-bootstrap";
 import "../css/NavBar.css";
 import "../css/App.css";
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleOpenPdfModal = () => {
+    setShowModal(true);
+  };
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 50) {
@@ -28,12 +34,12 @@ export const NavBar = () => {
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
-
+  const hardcodedCV = "/Resume_07_2024.pdf";
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
         <Navbar.Brand href="/">
-          <img src={logo} alt="Logo" />
+          <img className= "navbar-logo" src={logo} alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
@@ -67,17 +73,7 @@ export const NavBar = () => {
             >
               Projects
             </Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
@@ -96,9 +92,18 @@ export const NavBar = () => {
                 <img src={navIcon2} alt="Yelp" />
               </a>
             </div>
-            <button className="vvd" onClick={() => console.log("connect")}>
-              <span>Let's Connect</span>
+            <button className="vvd" onClick={handleOpenPdfModal}>
+           
+          
+              <span>My RESUME</span>
             </button>
+            {showModal && (
+              <PdfModal
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                file={hardcodedCV}
+              />
+            )}
           </span>
         </Navbar.Collapse>
       </Container>

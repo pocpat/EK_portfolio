@@ -230,7 +230,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
+.navbar-logo{
+  width: 10vh;
+  height: auto;
 
+  overflow: hidden;
+  
+}
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
@@ -570,6 +576,32 @@ button[type="submit"]:hover {
 }
 .contact form button:hover::before {
   width: 100%;
+}
+
+.project-card-button {
+  font-weight: 700;
+  color: #fff;
+  background-color: #121212;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
+  margin-top: 2vh;
+  text-align: center;
+  border: none;
+  border-radius: 5px; 
+ 
+ 
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+.matroje-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2vh;
 }
 
 /************ Footer Css ************/
