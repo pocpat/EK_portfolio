@@ -74,7 +74,7 @@ export const Skills = (progressBarRef) => {
                 {/* Mapping over skills array and rendering ProgressBar */}
                 {skills.map((skill, index) => (
                   <div key={index} className="skill-card">
-                    <ProgressBar ref={progressBarRef} />{" "}
+                    <ProgressBar ref={progressBarRef} />
                     {/* Pass the ref to ProgressBar */}
                     <h5>{skill}</h5>
                   </div>

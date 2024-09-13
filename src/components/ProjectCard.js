@@ -1,6 +1,8 @@
-import { Col } from "react-bootstrap";
-import React from "react";
+import React , {useState} from "react";
 import "../css/App.css";
+import PdfModal from "./pdfModal/PdfModal";
+import { Col, Button} from "react-bootstrap";
+
 
 export const ProjectCard = ({
   title,
@@ -8,7 +10,14 @@ export const ProjectCard = ({
   imgUrl,
 
 }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [pdfFile, setPdfFile] = useState("");
 
+  const handleOpenPdfModal = (file) => {
+    console.log("Modal opened");
+    setPdfFile(file);
+    setShowModal(true);
+  };
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -107,7 +116,9 @@ export const ProjectCard = ({
           )}
           {title === "MetroGE" && (
             <div>
-               title={title} description={description} 
+            <Button onClick={() => handleOpenPdfModal("/metroge_DOC.pdf")}>
+            Open PDF File
+          </Button>
             </div>
           )}
         </div>

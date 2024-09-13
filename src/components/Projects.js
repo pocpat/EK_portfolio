@@ -14,6 +14,9 @@ import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
+
+
+
 export const Projects = ({ title, description }) => {
   const projects = [
     {
@@ -89,12 +92,12 @@ export const Projects = ({ title, description }) => {
                   <div className="projects-container">
                     <div className="about-tab">
                       <h4>Web Dev</h4>
-                      <p>Static sites with APIs to dynamic Docker apps.</p>
+                      <p>Explore my collection of static and dynamic web apps, featuring API integrations and AI projects, with some still in progress.</p>
                     </div>
 
                     <div className="about-tab">
                       <h4>AWS</h4>
-                      <p>Exploring AWS and cloud projects.</p>
+                      <p>Discover my AWS projects and delve into the world of cloud computing.</p>
                     </div>
 
                     <div className="about-tab">
