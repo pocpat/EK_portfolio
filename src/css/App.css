@@ -231,9 +231,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
 .navbar-logo{
-  width: 10vh;
+  width: 30vh;
   height: auto;
-
+margin-top: 0;
   overflow: hidden;
   
 }

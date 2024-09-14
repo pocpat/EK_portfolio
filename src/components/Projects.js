@@ -72,7 +72,7 @@ export const Projects = ({ title, description }) => {
     { name: "Amazon ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
     { name: "Amazon ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
     { name: "Amazon IAM", file: "/awsIam.pdf" },
-    { name: "metroge", file: "/metroge_DOC.pdf" },
+    
   ];
 
   return (

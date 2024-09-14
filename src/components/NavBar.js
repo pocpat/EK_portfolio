@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useEffect } from "react";
-import logo from "../assets/img/mylogo2.svg";
+import logo from "../assets/img/logo3.png";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
