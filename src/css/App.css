@@ -73,6 +73,12 @@ input:focus, textarea:focus, select:focus {
 		padding: 0 150px;
 	}
 }
+@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+  .my-logo {
+    width: 100px; /* Smaller width for smaller screens */
+    height: auto; /* Smaller height for smaller screens */
+  }
+}
 
 p.success {
 	color: green;
@@ -230,12 +236,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
-.navbar-logo{
-  width: 30vh;
+.my-logo {
+  max-width: 500px; 
   height: auto;
-margin-top: 0;
-  overflow: hidden;
-  
+  object-fit: contain;
 }
 /************ Banner Css ************/
 .banner {
