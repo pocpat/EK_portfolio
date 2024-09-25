@@ -627,6 +627,7 @@ button[type="submit"]:hover {
   height: 200px;
   background: radial-gradient(circle at top left, rgba(82, 240, 225, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(50px); /* Adjust blur radius as needed */
+  opacity: 0.6;
 }
 
 .blob-right {
@@ -637,6 +638,7 @@ button[type="submit"]:hover {
   height: 200px;
   background: radial-gradient(circle at bottom right, rgba(82, 240, 225, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(50px); /* Adjust blur radius as needed */
+  opacity: 0.6;
 }
 
 .blob-right-bottom {
@@ -758,4 +760,43 @@ button[type="submit"]:hover {
   .border-container {
     height: auto; /* Allow the container to grow based on content */
   }
+}
+
+.vvd {
+  background-color: #000000;
+  color: white;
+  border: 2px solid white;
+  padding: 20px ;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vvd::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.vvd:hover::before {
+  left: 0;
+}
+
+.vvd span {
+  position: relative;
+  z-index: 1;
+}
+
+.vvd:hover {
+  background-color: white;
+  color: #000000;
 }
