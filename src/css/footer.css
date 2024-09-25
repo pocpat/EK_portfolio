@@ -1,13 +1,13 @@
-.f-col{
+.f-col {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     align-content: space-between;
-
     margin: 0 10px;
 }
-.f-row{
+
+.f-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -16,7 +16,8 @@
     align-content: center;
     margin: 0 10px;
 }
-.thanks{
+
+.thanks {
     font-size: 1.5em;
     font-weight: bold;
     color: #000000;
@@ -24,13 +25,14 @@
     margin: 0 10px;
 }
 
-.my-logo {
-    width: 100px; /* Set a fixed width */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  @media (max-width: 768px) {
-    .my-logo {
-      width: 80px; /* Adjust width for smaller screens if needed */
+
+.f-my-logo {
+    width: 150px !important; /* Set a fixed width */
+    height: auto !important; /* Maintain aspect ratio */
+}
+
+@media (max-width: 768px) {
+    .f-my-logo {
+        width: 150px !important; /* Adjust width for smaller screens if needed */
     }
-  }
+}

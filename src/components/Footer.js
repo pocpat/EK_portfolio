@@ -46,7 +46,7 @@ export const Footer = () => {
         <Row className="f-row">
           <Col width={4} className="f-col">
             <Navbar.Brand href="/">
-              <img className="my-logo" src={logo} alt="Logo" />
+              <img className="f-my-logo" src={logo} alt="Logo" />
             </Navbar.Brand>
 
          
