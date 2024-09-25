@@ -10,7 +10,7 @@ const PdfViewer = ({ file }) => {
     const { GoToNextPage, GoToPreviousPage } = pageNavigationPluginInstance;
 
     return (
-        <div style={{ height: '750px', position: 'relative' }}>
+        <div style={{ height: '64vh',width: '100%', position: 'relative' }}>
             <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js`}>
                 <Viewer fileUrl={file} plugins={[pageNavigationPluginInstance]} />
             </Worker>

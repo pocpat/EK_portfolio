@@ -114,7 +114,7 @@ export const ProjectCard = ({
             </div>
           )}
           {title === "MetroGE" && (
-            <div className="matroje-container">
+            <div className="metroje-container">
             <Button
             href="https://github.com/pocpat/metroje"
             className=" project-card-button"

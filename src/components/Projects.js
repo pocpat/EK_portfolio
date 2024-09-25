@@ -15,11 +15,7 @@ import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
 
-
-
 export const Projects = ({ title, description }) => {
- 
-
   const [activeTab, setActiveTab] = useState("first");
   const [selectedPdf, setSelectedPdf] = useState(
     "/AmazonQuickSightProject.pdf"
@@ -68,11 +64,10 @@ export const Projects = ({ title, description }) => {
   ];
 
   const pdfFiles = [
-    { name: "Amazon QuickSight Project", file: "/AmazonQuickSightProject.pdf" },
-    { name: "Amazon ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
-    { name: "Amazon ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
+    { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
+    { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
+    { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
     { name: "Amazon IAM", file: "/awsIam.pdf" },
-    
   ];
 
   return (
@@ -93,12 +88,19 @@ export const Projects = ({ title, description }) => {
                   <div className="projects-container">
                     <div className="about-tab">
                       <h4>Web Dev</h4>
-                      <p>Explore my collection of static and dynamic web apps, featuring API integrations and AI projects, with some still in progress.</p>
+                      <p>
+                        Explore my collection of static and dynamic web apps,
+                        featuring API integrations and AI projects, with some
+                        still in progress.
+                      </p>
                     </div>
 
                     <div className="about-tab">
                       <h4>AWS</h4>
-                      <p>Discover my AWS projects and delve into the world of cloud computing.</p>
+                      <p>
+                        Discover my AWS projects and delve into the world of
+                        cloud computing.
+                      </p>
                     </div>
 
                     <div className="about-tab">
@@ -135,14 +137,21 @@ export const Projects = ({ title, description }) => {
                       <Tab.Pane eventKey="first">
                         <Row>
                           {projects.map((project, index) => {
-                            return <ProjectCard key={index} {...project} selectedPdf={selectedPdf}  onPdfSelect={(pdfUrl) => setSelectedPdf(pdfUrl)}/>;
+                            return (
+                              <ProjectCard
+                                key={index}
+                                {...project}
+                                selectedPdf={selectedPdf}
+                                onPdfSelect={(pdfUrl) => setSelectedPdf(pdfUrl)}
+                              />
+                            );
                           })}
                         </Row>
                       </Tab.Pane>
                       {/* ======  2nd tab ======  */}
                       <Tab.Pane eventKey="second">
-                        <div className="pdf-container">
-                          <div className="border-container">
+                        <div className="pdf-container flex-container">
+                          <div className="border-container ">
                             <div className="pdf-buttons-container">
                               {pdfFiles.map((pdf, index) => (
                                 <a
@@ -177,7 +186,10 @@ export const Projects = ({ title, description }) => {
                               ))}
                             </div>
                           </div>
-                          <PdfViewer file={selectedPdf} />
+
+                          <div className="pdf-viewer-container">
+                            <PdfViewer file={selectedPdf} />
+                          </div>
                         </div>
                       </Tab.Pane>
                       {/* ======  3rd tab ======  */}

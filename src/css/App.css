@@ -600,7 +600,7 @@ button[type="submit"]:hover {
   position: relative;
   transition: 0.3s ease-in-out;
 }
-.matroje-container {
+.metroje-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -724,3 +724,38 @@ button[type="submit"]:hover {
 }
 
 
+/* Flex container to hold buttons and PdfViewer */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Ensure responsiveness */
+  gap: 20px; /* Optional: Add space between columns */
+  align-items: flex-start; /* Align items to the start */
+}
+
+/* Buttons container */
+.pdf-buttons-container {
+  flex: 1; /* Take up equal space */
+  min-width: 200px; /*  for responsiveness */
+  max-width: 300px; /* Optional: Set a maximum width */
+}
+
+/* PdfViewer container */
+.pdf-viewer-container {
+  flex: 2; /* Take up more space */
+  min-width: 300px; /*  minimum width for responsiveness */
+  width: 100%; /* Ensure it takes up available space */
+  height: auto;
+  width: 100%;
+}
+
+
+.border-container{
+  min-height: auto;
+  height: 64vh;
+}
+@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+  .border-container {
+    height: auto; /* Allow the container to grow based on content */
+  }
+}
