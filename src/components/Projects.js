@@ -1,6 +1,6 @@
 import projImg1 from "../assets/img/cookitup.jpg";
 import projImg2 from "../assets/img/metroje.jpg";
-import projImg3 from "../assets/img/sunsip.PNG";
+import projImg3 from "../assets/img/sunsip2.png";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
