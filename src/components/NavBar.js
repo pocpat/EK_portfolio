@@ -33,7 +33,8 @@ export const NavBar = () => {
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
-  const hardcodedCV = "/Resume_07_2024.pdf";
+  // ========= CV =========
+  const hardcodedCV = "/EKResume102024.pdf";
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
