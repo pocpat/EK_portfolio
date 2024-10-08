@@ -19,7 +19,7 @@ import "../css/projects-styles.css";
 export const Projects = ({ title, description }) => {
   const [activeTab, setActiveTab] = useState("first");
   const [selectedPdf, setSelectedPdf] = useState(
-    "/AmazonQuickSightProject.pdf"
+  "/ekawstechdoc.pdf"
   );
   const projects = [
     {
