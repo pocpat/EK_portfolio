@@ -17,6 +17,7 @@ export const ProjectCard = ({
   };
 
   const hardcodedPdfUrl = "/metroge_vert.pdf"; 
+  const hardcodedPdfUrl2 = "/SimilarCarsFinder.pdf"; 
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -129,6 +130,26 @@ export const ProjectCard = ({
                   show={showModal}
                   onHide={() => setShowModal(false)}
                   file={hardcodedPdfUrl}
+                />
+              )}
+            </div>
+          )}
+          {title === "Similar Car Finder" && (
+            <div className="metroje-container">
+            <Button
+            href="https://github.com/pocpat/similar-cars/"
+            className=" project-card-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github 
+          </Button><br></br>
+              <Button onClick={handleOpenPdfModal} className="project-card-button">Open PDF </Button>
+              {showModal && (
+                <PdfModal
+                  show={showModal}
+                  onHide={() => setShowModal(false)}
+                  file={hardcodedPdfUrl2}
                 />
               )}
             </div>

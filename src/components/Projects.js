@@ -1,6 +1,7 @@
 import projImg1 from "../assets/img/cookitup.jpg";
 import projImg2 from "../assets/img/metroje.jpg";
 import projImg3 from "../assets/img/sunsip2.png";
+import projImg4 from "../assets/img/similarCars.png";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
@@ -34,6 +35,11 @@ export const Projects = ({ title, description }) => {
       imgUrl: projImg2,
     },
     {
+title: "Similar Car Finder",
+description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
+imgUrl: projImg4,
+    },
+    {
       title: "SunSip",
       description: "WIP",
       imgUrl: projImg3,
@@ -64,10 +70,12 @@ export const Projects = ({ title, description }) => {
   ];
 
   const pdfFiles = [
+    { name: "Migration to AWS", file: "/ekawstechdoc.pdf" },
     { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
     { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
     { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
     { name: "Amazon IAM", file: "/awsIam.pdf" },
+   
   ];
 
   return (
