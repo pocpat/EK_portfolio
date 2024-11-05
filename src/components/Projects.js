@@ -2,6 +2,7 @@ import projImg1 from "../assets/img/cookitup.jpg";
 import projImg2 from "../assets/img/metroje.jpg";
 import projImg3 from "../assets/img/sunsip2.png";
 import projImg4 from "../assets/img/similarCars.png";
+import projImg5 from "../assets/img/summize.png";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
@@ -38,6 +39,12 @@ export const Projects = ({ title, description }) => {
 title: "Similar Car Finder",
 description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
 imgUrl: projImg4,
+    },
+    {
+      title: "EK-Summize",
+      description:
+        "React-based portfolio . An open-source article summarization tool powered by GPT-4.",
+      imgUrl: projImg5,
     },
     {
       title: "SunSip",

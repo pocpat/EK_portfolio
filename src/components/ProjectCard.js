@@ -153,6 +153,32 @@ export const ProjectCard = ({
                 />
               )}
             </div>
+          )} {title === "EK-Summize" && (
+            <div className="metroje-container">
+            <Button
+            href="https://curious-kelpie-5a8405.netlify.app/"
+            className="project-card-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open App
+          </Button>
+          <br></br>
+            <Button
+            href="https://github.com/pocpat/EK-Summize"
+            className=" project-card-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github 
+          </Button>
+          
+         
+          <div>
+
+        </div>
+             
+            </div>
           )}
         </div>
       </div>
