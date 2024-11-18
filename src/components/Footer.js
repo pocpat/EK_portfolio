@@ -5,7 +5,6 @@ import logo from "../assets/img/Asset 1.png";
 import Navbar from "react-bootstrap/Navbar";
 import { ContactForm } from "./ContactForm";
 import "../css/App.css";
-import "../css/NavBar.css"; 
 import "../css/footer.css";
 import ContactModal from "./contactModal/ContactModal"; // Corrected import
 

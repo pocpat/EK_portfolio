@@ -7,7 +7,6 @@ import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
-import "../css/NavBar.css";
 import "../css/App.css";
 
 export const NavBar = () => {
@@ -33,17 +32,16 @@ export const NavBar = () => {
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
-  // ========= CV =========
+  // ========= CV link =========
   const hardcodedCV = "/EKResume102024.pdf";
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
-      <Navbar.Brand href="/">
-      <img className="my-logo" src={logo} alt="Logo"  />
-    </Navbar.Brand>
-
+        <Navbar.Brand href="/">
+          <img className="my-logo" src={logo} alt="Logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-
           <Nav className="me-auto">
             <Nav.Link
               href="#home"
@@ -72,7 +70,6 @@ export const NavBar = () => {
             >
               Projects
             </Nav.Link>
-            
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
@@ -81,19 +78,18 @@ export const NavBar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={navIcon1} alt="Yelp" />
-              </a>{" "}
+                <img src={navIcon1} alt="LinkedIn" />
+              </a>
               <a
                 href="https://github.com/pocpat"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={navIcon2} alt="Yelp" />
+                <img src={navIcon2} alt="Github" />
               </a>
             </div>
-            <button className="vvd" onClick={handleOpenPdfModal}>
-           
-          
+            <button className="vvd" onClick={handleOpenPdfModal}
+            >
               <span>My RESUME</span>
             </button>
             {showModal && (

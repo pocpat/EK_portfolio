@@ -191,6 +191,27 @@ span.navbar-text {
 	height: 100%;
 	position: absolute;
 }
+// =========================
+.navbar-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  gap: 10px;
+  width: 100%; /* Ensure it takes the full width */
+}
+
+.navbar-text .social-icon {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-text .vvd {
+  display: block;
+  width: 100%; /* Ensure it takes the full width */
+  text-align: left; /* Align text to the left */
+}
+// =========================
+
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
 	outline: none;
