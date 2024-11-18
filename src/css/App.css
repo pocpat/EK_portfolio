@@ -73,10 +73,10 @@ input:focus, textarea:focus, select:focus {
 		padding: 0 150px;
 	}
 }
-@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+@media (max-width: 768px) { 
   .my-logo {
-    width: 100px; /* Smaller width for smaller screens */
-    height: auto; /* Smaller height for smaller screens */
+    width: 100px; 
+    height: auto; 
   }
 }
 
@@ -191,13 +191,13 @@ span.navbar-text {
 	height: 100%;
 	position: absolute;
 }
-// =========================
+
 .navbar-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start; 
   gap: 10px;
-  width: 100%; /* Ensure it takes the full width */
+  width: 100%; 
 }
 
 .navbar-text .social-icon {
@@ -207,10 +207,10 @@ span.navbar-text {
 
 .navbar-text .vvd {
   display: block;
-  width: 100%; /* Ensure it takes the full width */
-  text-align: left; /* Align text to the left */
+  width: 100%; 
+  text-align: left; 
 }
-// =========================
+
 
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
@@ -463,7 +463,7 @@ button[type="submit"]:hover {
 .project .nav.nav-pills .nav-link.active {
     border: 1px solid rgba(255, 255, 255, 1);
 }
-// ?
+
 .project .nav.nav-pills .nav-item {
   flex: 1;
 }
@@ -507,15 +507,15 @@ button[type="submit"]:hover {
   transform: translate(-50%, -50%);
   transition: 0.5s ease-in-out;
   opacity: 0;
-  width: 100%; /* Set width to 100% of parent */
-  height: 100%; /* Set height to 100% of parent */
-  padding: 10px; /* Add padding */
+  width: 100%; 
+  height: 100%; 
+  padding: 10px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
-  overflow: hidden; /* Ensure content does not overflow */
+  box-sizing: border-box; 
+  overflow: hidden; 
 }
 .proj-imgbx:hover .proj-txtx {
   top: 50%;
@@ -620,7 +620,7 @@ button[type="submit"]:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 10px; /* Add gap between buttons */
+  gap: 10px; 
 }
 
 .project-card-button {
@@ -663,7 +663,7 @@ button[type="submit"]:hover {
   width: 300px;
   height: 200px;
   background: radial-gradient(circle at top left, rgba(82, 240, 225, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
-  filter: blur(50px); /* Adjust blur radius as needed */
+  filter: blur(50px); 
   opacity: 0.6;
 }
 
@@ -674,7 +674,7 @@ button[type="submit"]:hover {
   width: 300px;
   height: 200px;
   background: radial-gradient(circle at bottom right, rgba(82, 240, 225, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
-  filter: blur(50px); /* Adjust blur radius as needed */
+  filter: blur(50px); 
   opacity: 0.6;
 }
 
@@ -685,7 +685,7 @@ button[type="submit"]:hover {
   width: 300px;
   height: 200px;
   background: radial-gradient(circle at center, rgba(41, 22, 68, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-  filter: blur(50px); /* Adjust blur radius as needed */
+  filter: blur(50px); 
 }
 .newsletter-bx {
   background: #FFFFFF;
@@ -759,7 +759,7 @@ button[type="submit"]:hover {
 }
 
 .title-container {
-  min-height: 26vh; /* Adjust the height as needed */
+  min-height: 26vh; 
 }
 
 
@@ -767,23 +767,22 @@ button[type="submit"]:hover {
 .flex-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* Ensure responsiveness */
-  gap: 20px; /* Optional: Add space between columns */
-  align-items: flex-start; /* Align items to the start */
+  flex-wrap: wrap; 
+  gap: 20px; 
+  align-items: flex-start; 
 }
 
-/* Buttons container */
 .pdf-buttons-container {
-  flex: 1; /* Take up equal space */
-  min-width: 200px; /*  for responsiveness */
-  max-width: 300px; /* Optional: Set a maximum width */
+  flex: 1; 
+  min-width: 200px; 
+  max-width: 300px; 
 }
 
-/* PdfViewer container */
+
 .pdf-viewer-container {
-  flex: 2; /* Take up more space */
-  min-width: 300px; /*  minimum width for responsiveness */
-  width: 100%; /* Ensure it takes up available space */
+  flex: 2; 
+  min-width: 300px; 
+  width: 100%; 
   height: auto;
   width: 100%;
 }
@@ -793,9 +792,9 @@ button[type="submit"]:hover {
   min-height: auto;
   height: 64vh;
 }
-@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+@media (max-width: 768px) { 
   .border-container {
-    height: auto; /* Allow the container to grow based on content */
+    height: auto; 
   }
 }
 
@@ -841,21 +840,21 @@ button[type="submit"]:hover {
 @media (max-width: 1020px) {
   .proj-txtx {
     padding: 10px;
-    width:  100%; /* Further adjust width for smaller screens */
+    width:  100%; 
     flex-direction: column;
     box-sizing: border-box;
   }
   .proj-txtx h4 {
-    font-size: 20px; /* Adjust font size for smaller screens */
+    font-size: 20px; 
   }
 
   .proj-txtx span {
-    font-size: 12px; /* Adjust font size for smaller screens */
+    font-size: 12px; 
    
   }
   .project-card-button {
-    padding: 8px 16px; /* Adjust padding for smaller screens */
-    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 16px; 
+    font-size: 12px; 
   }
 }
 
@@ -863,42 +862,42 @@ button[type="submit"]:hover {
 
 @media (max-width: 770px) {
   .proj-txtx {
-    padding: 10px; /* Further adjust padding for smaller screens */
-    width: 100%; /* Further adjust width for smaller screens */
+    padding: 10px; 
+    width: 100%; 
     flex-direction: column;
 
   }
   .proj-txtx h4 {
-    font-size: 20px; /* Further adjust font size for smaller screens */
+    font-size: 20px; 
   }
 
   .proj-txtx span {
-    font-size: 10px; /* Further adjust font size for smaller screens */
+    font-size: 10px; 
   }
 
 
   .project-card-button {
-    padding: 6px 12px; /* Further adjust padding for smaller screens */
-    font-size: 12px; /* Further adjust font size for smaller screens */
+    padding: 6px 12px; 
+    font-size: 12px; 
   }
 }
 
 
 @media (max-width: 480px) {
   .proj-txtx {
-    padding: 10px; /* Further adjust padding for smaller screens */
-    width: 100%; /* Further adjust width for smaller screens */
+    padding: 10px; 
+    width: 100%; 
   }
   .proj-txtx h4 {
-    font-size: 24px; /* Further adjust font size for smaller screens */
+    font-size: 24px; 
   }
 
   .proj-txtx span {
-    font-size: 14px; /* Further adjust font size for smaller screens */
+    font-size: 14px; 
   }
 
   .project-card-button {
-    padding: 6px 6px; /* Further adjust padding for smaller screens */
-    font-size: 12px; /* Further adjust font size for smaller screens */
+    padding: 6px 6px; 
+    font-size: 12px; 
   }
 }

@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { ContactForm } from "./ContactForm";
 import "../css/App.css";
 import "../css/footer.css";
-import ContactModal from "./contactModal/ContactModal"; // Corrected import
+import ContactModal from "./contactModal/ContactModal"; 
 
 export const Footer = () => {
   const [activeLink, setActiveLink] = useState("home");
