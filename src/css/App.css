@@ -35,6 +35,11 @@ body {
   color: #fff !important;
   font-family: 'Centra', sans-serif !important;
 }
+.project {
+  position: relative;
+  overflow: hidden; /* Ensure content does not overflow */
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -686,6 +691,7 @@ button[type="submit"]:hover {
   height: 200px;
   background: radial-gradient(circle at center, rgba(41, 22, 68, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(50px); 
+  z-index: -1;
 }
 .newsletter-bx {
   background: #FFFFFF;
@@ -899,5 +905,12 @@ button[type="submit"]:hover {
   .project-card-button {
     padding: 6px 6px; 
     font-size: 12px; 
+  }
+}
+
+@media (max-width: 576px) {
+  .blob-right-bottom {
+    width: 80px; /* Adjust size for smaller screens */
+    height: 80px; /* Adjust size for smaller screens */
   }
 }
