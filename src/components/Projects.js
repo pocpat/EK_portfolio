@@ -102,7 +102,7 @@ imgUrl: projImg4,
                   <p>Here’s a snapshot of my journey:</p>
                   <div className="projects-container">
                     <div className="about-tab">
-                      <h4>Web Dev</h4>
+                      <h4>APP</h4>
                       <p>
                         Explore my collection of static and dynamic web apps,
                         featuring API integrations and AI projects, with some
@@ -125,20 +125,21 @@ imgUrl: projImg4,
                       </p>
                     </div>
                   </div>
-                  <Tab.Container id="projects-tabs" activeKey={activeTab}>
+                  <Tab.Container id="projects-tabs"  activeKey={activeTab}>
                     <Nav
                       variant="pills"
-                      className="nav-pills mb-5 justify-center align-items-center"
+                      className="nav-pills mb-5  justify-center align-items-center 
+                       "
                       id="pills-tab"
                       onSelect={(selectedKey) => setActiveTab(selectedKey)}
                     >
-                      <Nav.Item>
-                        <Nav.Link eventKey="first">WEB DEV</Nav.Link>
+                      <Nav.Item className="flex-1 text-sm md:text-base xs:text-xs ">
+                        <Nav.Link eventKey="first">APP</Nav.Link>
                       </Nav.Item>
-                      <Nav.Item>
+                      <Nav.Item className="flex-1 text-sm md:text-base xs:text-xs ">
                         <Nav.Link eventKey="second">AWS</Nav.Link>
                       </Nav.Item>
-                      <Nav.Item>
+                      <Nav.Item className="flex-1 text-sm md:text-base xs:text-xs">
                         <Nav.Link eventKey="third">CREDITS</Nav.Link>
                       </Nav.Item>
                     </Nav>

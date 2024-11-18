@@ -3,21 +3,15 @@ import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
 
-
-export const ProjectCard = ({
-  title,
-  description,
-  imgUrl,
-
-}) => {
+export const ProjectCard = ({ title, description, imgUrl }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenPdfModal = () => {
     setShowModal(true);
   };
 
-  const hardcodedPdfUrl = "/metroge_vert.pdf"; 
-  const hardcodedPdfUrl2 = "/SimilarCarsFinder.pdf"; 
+  const hardcodedPdfUrl = "/metroge_vert.pdf";
+  const hardcodedPdfUrl2 = "/SimilarCarsFinder.pdf";
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -115,16 +109,21 @@ export const ProjectCard = ({
             </div>
           )}
           {title === "MetroGE" && (
-            <div className="metroje-container">
-            <Button
-            href="https://github.com/pocpat/metroje"
-            className=" project-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github 
-          </Button><br></br>
-              <Button onClick={handleOpenPdfModal} className="project-card-button">Open PDF </Button>
+            <div className="proj__buttons-container">
+              <Button
+                href="https://github.com/pocpat/metroje"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+              <Button
+                onClick={handleOpenPdfModal}
+                className="project-card-button"
+              >
+                Open PDF
+              </Button>
               {showModal && (
                 <PdfModal
                   show={showModal}
@@ -135,16 +134,21 @@ export const ProjectCard = ({
             </div>
           )}
           {title === "Similar Car Finder" && (
-            <div className="metroje-container">
-            <Button
-            href="https://github.com/pocpat/similar-cars/"
-            className=" project-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github 
-          </Button><br></br>
-              <Button onClick={handleOpenPdfModal} className="project-card-button">Open PDF </Button>
+            <div className="proj__buttons-container">
+              <Button
+                href="https://github.com/pocpat/similar-cars/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+              <Button
+                onClick={handleOpenPdfModal}
+                className="project-card-button"
+              >
+                Open PDF
+              </Button>
               {showModal && (
                 <PdfModal
                   show={showModal}
@@ -153,31 +157,25 @@ export const ProjectCard = ({
                 />
               )}
             </div>
-          )} {title === "EK-Summize" && (
-            <div className="metroje-container">
-            <Button
-            href="https://curious-kelpie-5a8405.netlify.app/"
-            className="project-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open App
-          </Button>
-          <br></br>
-            <Button
-            href="https://github.com/pocpat/EK-Summize"
-            className=" project-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github 
-          </Button>
-          
-         
-          <div>
-
-        </div>
-             
+          )}
+          {title === "EK-Summize" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://curious-kelpie-5a8405.netlify.app/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open App
+              </Button>
+              <Button
+                href="https://github.com/pocpat/EK-Summize"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
             </div>
           )}
         </div>

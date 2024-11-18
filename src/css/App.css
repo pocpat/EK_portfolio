@@ -442,6 +442,11 @@ button[type="submit"]:hover {
 .project .nav.nav-pills .nav-link.active {
     border: 1px solid rgba(255, 255, 255, 1);
 }
+// ?
+.project .nav.nav-pills .nav-item {
+  flex: 1;
+}
+
 .nav-link#projects-tabs-tab-first {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 55px 0px 0px 55px;
@@ -472,15 +477,24 @@ button[type="submit"]:hover {
 .proj-imgbx:hover::before {
   height: 100%;
 }
+
 .proj-txtx {
   position: absolute;
   text-align: center;
-  top: 65%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.5s ease-in-out;
   opacity: 0;
-  width: 100%;
+  width: 100%; /* Set width to 100% of parent */
+  height: 100%; /* Set height to 100% of parent */
+  padding: 10px; /* Add padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+  overflow: hidden; /* Ensure content does not overflow */
 }
 .proj-imgbx:hover .proj-txtx {
   top: 50%;
@@ -581,6 +595,12 @@ button[type="submit"]:hover {
 .contact form button:hover::before {
   width: 100%;
 }
+.proj__buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px; /* Add gap between buttons */
+}
 
 .project-card-button {
   font-weight: 700;
@@ -590,13 +610,9 @@ button[type="submit"]:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2vh;
-  margin-top: 2vh;
   text-align: center;
   border: none;
-  border-radius: 5px; 
- 
- 
+  border-radius: 5px;
   position: relative;
   transition: 0.3s ease-in-out;
 }
@@ -799,4 +815,69 @@ button[type="submit"]:hover {
 .vvd:hover {
   background-color: white;
   color: #000000;
+}
+
+@media (max-width: 1020px) {
+  .proj-txtx {
+    padding: 10px;
+    width:  100%; /* Further adjust width for smaller screens */
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .proj-txtx h4 {
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .proj-txtx span {
+    font-size: 12px; /* Adjust font size for smaller screens */
+   
+  }
+  .project-card-button {
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+}
+
+
+
+@media (max-width: 770px) {
+  .proj-txtx {
+    padding: 10px; /* Further adjust padding for smaller screens */
+    width: 100%; /* Further adjust width for smaller screens */
+    flex-direction: column;
+
+  }
+  .proj-txtx h4 {
+    font-size: 20px; /* Further adjust font size for smaller screens */
+  }
+
+  .proj-txtx span {
+    font-size: 10px; /* Further adjust font size for smaller screens */
+  }
+
+
+  .project-card-button {
+    padding: 6px 12px; /* Further adjust padding for smaller screens */
+    font-size: 12px; /* Further adjust font size for smaller screens */
+  }
+}
+
+
+@media (max-width: 480px) {
+  .proj-txtx {
+    padding: 10px; /* Further adjust padding for smaller screens */
+    width: 100%; /* Further adjust width for smaller screens */
+  }
+  .proj-txtx h4 {
+    font-size: 24px; /* Further adjust font size for smaller screens */
+  }
+
+  .proj-txtx span {
+    font-size: 14px; /* Further adjust font size for smaller screens */
+  }
+
+  .project-card-button {
+    padding: 6px 6px; /* Further adjust padding for smaller screens */
+    font-size: 12px; /* Further adjust font size for smaller screens */
+  }
 }
