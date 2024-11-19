@@ -21,6 +21,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
           <h4>{title}</h4>
           <span>{description}</span>
           <br />
+          <div className="project-card-buttons">
           {title === "GitHub icon" && (
             <div>
               <a
@@ -104,7 +105,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open App
+                Open
               </Button>
             </div>
           )}
@@ -122,7 +123,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
                 onClick={handleOpenPdfModal}
                 className="project-card-button"
               >
-                Open PDF
+                PDF
               </Button>
               {showModal && (
                 <PdfModal
@@ -147,7 +148,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
                 onClick={handleOpenPdfModal}
                 className="project-card-button"
               >
-                Open PDF
+             PDF
               </Button>
               {showModal && (
                 <PdfModal
@@ -166,7 +167,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open App
+                Open
               </Button>
               <Button
                 href="https://github.com/pocpat/EK-Summize"
@@ -178,6 +179,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </Button>
             </div>
           )}
+        </div>
         </div>
       </div>
     </Col>
