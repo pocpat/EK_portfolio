@@ -133,6 +133,8 @@ nav.navbar .navbar-nav a.nav-link.navbar-link.active {
 span.navbar-text {
   display: flex;
   align-items: center;
+  flex-direction: row;
+ 
 }
 .social-icon {
   display: inline-block;
@@ -277,6 +279,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   height: auto;
   object-fit: contain;
 }
+.navbar__group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
@@ -302,6 +312,55 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-bottom: 16px;
   display: inline-block;
 }
+
+/* my resume button */
+.myresume-btn {
+  background:transparent !important;
+  color: #fff !important;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition:background-color 0.3s ease, color 0.3s ease;
+}
+
+.myresume-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90.21deg,
+    rgba(82, 240, 225, 1) -5.91%,
+    rgba(41, 22, 68, 1) 111.58%
+  ) !important;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.myresume-btn:hover::before {
+  left: 0 !important;
+  
+}
+
+.myresume-btn:hover {
+  background-color: transparent !important;
+  color: #fff !important;
+
+}
+
+.myresume-btn span {
+  position: relative;
+  z-index: 1;
+  
+}
+
+
+/* ************************  */
 .banner h1 {
   font-size: 65px;
   font-weight: 700;

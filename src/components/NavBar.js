@@ -9,6 +9,7 @@ import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
 import "../css/App.css";
 
+
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
@@ -35,12 +36,18 @@ export const NavBar = () => {
   // ========= CV link =========
   const hardcodedCV = "/EKResume102024.pdf";
   return (
-    <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
+   
+    <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
       <Container>
+
+   
         <Navbar.Brand href="/">
           <img className="my-logo" src={logo} alt="Logo" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <span className="navbar-toggler-icon"></span>
+          </Navbar.Toggle>
+          <div className="navbar__group">
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link
@@ -88,10 +95,10 @@ export const NavBar = () => {
                 <img src={navIcon2} alt="Github" />
               </a>
             </div>
-            <button className="vvd" onClick={handleOpenPdfModal}
+            <Button className=" myresume-btn" onClick={handleOpenPdfModal}
             >
-              <span>My RESUME</span>
-            </button>
+              <span >MY RESUME</span>
+            </Button>
             {showModal && (
               <PdfModal
                 show={showModal}
@@ -100,8 +107,11 @@ export const NavBar = () => {
               />
             )}
           </span>
+         
         </Navbar.Collapse>
+        </div>
       </Container>
     </Navbar>
+   
   );
 };
