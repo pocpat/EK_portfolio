@@ -134,7 +134,6 @@ span.navbar-text {
   display: flex;
   align-items: center;
   flex-direction: row;
- 
 }
 .social-icon {
   display: inline-block;
@@ -234,59 +233,93 @@ nav.navbar .navbar-toggler:focus {
   outline: none;
   box-shadow: none;
 }
+
 nav.navbar .navbar-toggler-icon {
-  width: 24px;
-  height: 17px;
-  background-image: none;
+  width: 1.5rem;
+  height: 1.2rem;
+  background: none;
   position: relative;
-  border-bottom: 2px solid #fff;
-  transition: all 300ms linear;
-  top: -2px;
+  /*border-bottom: 2px solid #fff;*/
+  /*transition: all 300ms linear;*/
+  /*top: -2px;*/
+  display: flex;
+ /* flex-direction: column;*/
+  justify-content: center;
+  cursor: pointer;
+
 }
+
 nav.navbar .navbar-toggler-icon:focus {
   border-bottom: 2px solid #fff;
 }
-nav.navbar .navbar-toggler-icon:after,
-nav.navbar .navbar-toggler-icon:before {
-  width: 24px;
+nav.navbar .navbar-toggler-icon::after,
+nav.navbar .navbar-toggler-icon::before {
+  width: 100%; /*1.5rem;*/
   position: absolute;
   height: 2px;
   background-color: #fff;
-  top: 0;
-  left: 0;
+  /*top: 0;*/
+  /*left: 0;*/
   content: "";
   z-index: 2;
-  transition: all 300ms linear;
+  transition:  all 0.3s ease;
 }
-nav.navbar .navbar-toggler-icon:after {
-  top: 8px;
+nav.navbar .navbar-toggler-icon::before {
+  top: 0;
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+nav.navbar .navbar-toggler-icon::after {
+  /*top: 8px;*/
+  bottom: 0;
+}
+
+
+/* Transform the lines into an "X" when expanded */
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
   transform: rotate(45deg);
+  top: 50%;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 50%;
+}
+
+/* Optional: Hide the middle line */
+.navbar-toggler-icon div {
+  width: 100%;
+  height: 2.2px;
   background-color: #fff;
-  height: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-  transform: translateY(8px) rotate(-45deg);
-  background-color: #fff;
-  height: 2px;
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon div {
+  opacity: 0; /* Hide the middle line */
 }
-nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-  border-color: transparent;
-}
-.my-logo {
-  max-width: 500px;
-  height: auto;
-  object-fit: contain;
-}
+
+
+
+/* ************ Navbar NEW Css ************ */
+/*
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: auto; 
+  background: none;
+}*/
 .navbar__group {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Space between logo and toggler */
   align-items: center;
-  flex-direction: row;
-  justify-content: flex-end;
-
+  width: 100%;
+  margin-left: auto;
 }
+
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
@@ -315,7 +348,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /* my resume button */
 .myresume-btn {
-  background:transparent !important;
+  background: transparent !important;
   color: #fff !important;
   font-weight: 700;
   padding: 10px 20px;
@@ -323,7 +356,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: 5px;
   position: relative;
   overflow: hidden;
-  transition:background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .myresume-btn::before {
@@ -344,21 +377,17 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 .myresume-btn:hover::before {
   left: 0 !important;
-  
 }
 
 .myresume-btn:hover {
   background-color: transparent !important;
   color: #fff !important;
-
 }
 
 .myresume-btn span {
   position: relative;
   z-index: 1;
-  
 }
-
 
 /* ************************  */
 .banner h1 {
@@ -639,7 +668,7 @@ button[type="submit"]:hover {
   display: flex;
   justify-content: space-between;
   margin-top: auto;
-  padding: 10px; 
+  padding: 10px;
   text-align: center;
   width: 100%;
 }
@@ -665,19 +694,12 @@ button[type="submit"]:hover {
 }
 
 .project-card-button:hover {
-  background-color: #2a1b99; 
+  background-color: #2a1b99;
 }
-
 
 .btn-custom:hover {
   background-color: #2a1b99; /* Darker shade for hover effect */
 }
-
-
-
-
-
-
 
 /************ Projects Css ************/
 .contact {
@@ -977,7 +999,7 @@ button[type="submit"]:hover {
 
 @media (max-width: 1020px) {
   .proj-imgbx {
-    height: auto; 
+    height: auto;
   }
   .proj-txtx {
     padding: 10px;
