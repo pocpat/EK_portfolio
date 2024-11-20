@@ -132,12 +132,70 @@ nav.navbar .navbar-nav a.nav-link.navbar-link.active {
 }
 span.navbar-text {
   display: flex;
-  align-items: center;
+ 
   flex-direction: row;
+  justify-content: flex-end;
 }
-.social-icon {
+/*.social-icon {
   display: inline-block;
   margin-left: 14px;
+}*/
+/* ======== to check styles ===*/
+.navbar-text {
+  display: flex;
+  align-items: flex-start; /* Align items vertically */
+  margin-top: 0;
+  margin-left: 16px; /* Add some margin for spacing if needed */
+}
+.navbar-nav {
+  display: flex; /* Ensure links are aligned in a row */
+  align-items: start; /* Align navbar links vertically */
+}
+.social-icon,
+.myresume-btn {
+  display: inline-block;
+  vertical-align: middle; /* Align the icons and button vertically */
+}
+
+/* Adjust the space between navbar items and the social icons */
+.navbar-nav .nav-link {
+  padding-right: 20px; /* You can adjust this if needed */
+}
+
+.navbar-text .social-icon,
+.navbar-text .myresume-btn {
+  margin-left: 15px; /* Add spacing if needed between icons and button */
+}
+
+/* For large screens, keep navbar items aligned */
+@media (min-width: 768px) {
+  .navbar-text {
+    margin-left: auto; /* Push it to the right side */
+  }
+}
+@media (max-width: 767px) {
+  .navbar-text {
+    margin-top: 10px; /* Adjust to ensure it doesn't push below */
+    margin-left: 0; /* Reset margin for smaller screens */
+  }
+
+  .navbar-nav {
+    display: block; /* Stack navbar links vertically in mobile */
+    align-items: flex-start;
+  }
+
+  .social-icon,
+  .myresume-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+/* ================================*/
+.social-icon {
+  display: inline-flex;
+  margin-left: 0; /* Align with the nav items */
+  margin-right: 10px;
 }
 .social-icon a {
   width: 42px;
@@ -208,26 +266,73 @@ span.navbar-text {
   height: 100%;
   position: absolute;
 }
-
+/* ======== to check styles for  " Home/Skills/Proj"   ===*/
 .navbar-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  width: 100%;
+  /*font-weight: 400;
+  color: #fff !important;
+  letter-spacing: 0.8px;
+  font-size: 18px;
+  opacity: 0.75;
+  margin-right: auto;
+  margin-top: 0;  
+  padding: 0 13px;
+  font-decoration: none;*/
+  display: flex; 
+  align-items: center;
+  justify-content: flex-start; /* Ensure it aligns to the left */
+  gap: 20px; /* Add space between the links */
+  font-weight: 400;
+  color: #fff !important;
+  letter-spacing: 0.8px;
+  font-size: 18px;
+  opacity: 0.75;
+  margin-right: auto;
+  margin-top: 0;
+  padding: 0;
+  font-decoration: none;
 }
 
 .navbar-text .social-icon {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
-.navbar-text .vvd {
-  display: block;
-  width: 100%;
-  text-align: left;
+.social-icon.visible {
+  display: flex; /* Show when visible */
+}
+.social-icon.hidden  {
+  display: none; /* Hide when collapsed */
 }
 
+.social-icon-toggle-opened {
+  display: none; /* Hidden by default */
+  flex-direction: column; /* Stack items in a column */
+  color: #fff !important; 
+  gap: 0px; 
+  /*margin-top: 10px;*/
+}
+.social-icon-toggle-opened.visible {
+  display: flex; /* Show when visible */
+}
+.social-icon-toggle-opened.hidden  {
+  display: none; /* Hide when collapsed */
+}
+
+.myresume-btn.visible {
+  display: flex; /* Show when visible */
+}
+.myresume-btn.hidden  {
+  display: none; /* Hide when collapsed */
+}
+.myresume-btn {
+  margin-left: 20px; /* Match the margin of navbar items */
+}
+.navbar-nav .nav-link.navbar-link,
+.social-icon-toggle-opened .navbar-link {
+  margin: 0;
+  padding: 0 20px; /* Ensure similar padding for alignment */
+}
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
   outline: none;
@@ -239,11 +344,7 @@ nav.navbar .navbar-toggler-icon {
   height: 1.2rem;
   background: none;
   position: relative;
-  /*border-bottom: 2px solid #fff;*/
-  /*transition: all 300ms linear;*/
-  /*top: -2px;*/
   display: flex;
- /* flex-direction: column;*/
   justify-content: center;
   cursor: pointer;
 
@@ -254,12 +355,10 @@ nav.navbar .navbar-toggler-icon:focus {
 }
 nav.navbar .navbar-toggler-icon::after,
 nav.navbar .navbar-toggler-icon::before {
-  width: 100%; /*1.5rem;*/
+  width: 100%;
   position: absolute;
   height: 2px;
   background-color: #fff;
-  /*top: 0;*/
-  /*left: 0;*/
   content: "";
   z-index: 2;
   transition:  all 0.3s ease;
@@ -268,7 +367,6 @@ nav.navbar .navbar-toggler-icon::before {
   top: 0;
 }
 nav.navbar .navbar-toggler-icon::after {
-  /*top: 8px;*/
   bottom: 0;
 }
 
@@ -301,17 +399,6 @@ nav.navbar .navbar-toggler-icon::after {
 
 
 
-/* ************ Navbar NEW Css ************ */
-/*
-.navbar-toggler {
-  border: none;
-  padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
-  margin-left: auto; 
-  background: none;
-}*/
 .navbar__group {
   display: flex;
   justify-content: space-between; /* Space between logo and toggler */
@@ -319,6 +406,7 @@ nav.navbar .navbar-toggler-icon::after {
   width: 100%;
   margin-left: auto;
 }
+
 
 /************ Banner Css ************/
 .banner {

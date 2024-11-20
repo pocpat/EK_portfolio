@@ -8,53 +8,61 @@ import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
 import "../css/App.css";
-
-
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-
+  const [scrolled, setScrolled] = useState(!1);
+  const [showModal, setShowModal] = useState(!1);
+  const [isExpanded, setIsExpanded] = useState(!1);
   const handleOpenPdfModal = () => {
-    setShowModal(true);
+    setShowModal(!0);
   };
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 50) {
-        setScrolled(true);
+        setScrolled(!0);
       } else {
-        setScrolled(false);
+        setScrolled(!1);
       }
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
-  // ========= CV link =========
   const hardcodedCV = "/EKResume102024.pdf";
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
-   
-    <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
+    <Navbar
+      expand="md"
+      className={scrolled ? "scrolled" : ""}
+      expanded={isExpanded}
+      onToggle={handleToggle}
+    >
       <Container>
-
-   
         <Navbar.Brand href="/">
           <img className="my-logo" src={logo} alt="Logo" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"  >
-            <span className="navbar-toggler-icon">
-            <div></div></span>
-          </Navbar.Toggle>
-          <div className="navbar__group">
+        <Navbar.Toggle aria-controls="basic-navbar-nav">
+          <span className="navbar-toggler-icon">
+            <div></div>
+          </span>
+        </Navbar.Toggle>
+       
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+{/* ******     ****** */}
+          <Nav  className={
+            isExpanded
+              ? "ms-auto d-flex align-items-flex-start"
+              : "navbar-text d-flex justify-content-flex-end"
+          }>
+          
             <Nav.Link
               href="#home"
               className={
-                activeLink === "home" ? "active navbar-link" : "navbar-link"
+                activeLink === "home" ? "active navbar-link" : "navbar-link "
               }
               onClick={() => onUpdateActiveLink("home")}
             >
@@ -64,7 +72,7 @@ export const NavBar = () => {
               href="#skills"
               className={
                 activeLink === "skills" ? "active navbar-link" : "navbar-link"
-              }
+              } 
               onClick={() => onUpdateActiveLink("skills")}
             >
               Skills
@@ -78,41 +86,60 @@ export const NavBar = () => {
             >
               Projects
             </Nav.Link>
-          </Nav>
-          <span className="navbar-text">
-            <div className="social-icon">
-              <a
-                href="https://www.linkedin.com/in/elenakroupkin/"
-                target="_blank"
-                rel="noopener noreferrer"
+           
+            <div className="flex flex-row justify-center  ">
+              <div
+                className={`social-icon ${isExpanded ? "hidden" : "visible "}`}
               >
-                <img src={navIcon1} alt="LinkedIn" />
-              </a>
-              <a
-                href="https://github.com/pocpat"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href="https://www.linkedin.com/in/elenakroupkin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={navIcon1} alt="LinkedIn" />
+                </a>
+                <a
+                  href="https://github.com/pocpat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={navIcon2} alt="Github" />
+                </a>
+              </div>
+              <Button
+                className={`myresume-btn ${isExpanded ? "hidden" : "visible"}`}
+                onClick={handleOpenPdfModal}
               >
-                <img src={navIcon2} alt="Github" />
-              </a>
+                <span>MY RESUME</span>
+              </Button>
+              {}
+              <div
+                className={`social-icon-toggle-opened ${
+                  isExpanded ? "visible" : "hidden"
+                }`}
+              >
+                <a
+                  className="active navbar-link nav-link"
+                  href="https://www.linkedin.com/in/elenakroupkin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  className="active navbar-link nav-link"
+                  href="https://github.com/pocpat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Github
+                </a>
+                <p className="active navbar-link nav-link">Resume</p>
+              </div>
             </div>
-            <Button className=" myresume-btn" onClick={handleOpenPdfModal}
-            >
-              <span >MY RESUME</span>
-            </Button>
-            {showModal && (
-              <PdfModal
-                show={showModal}
-                onHide={() => setShowModal(false)}
-                file={hardcodedCV}
-              />
-            )}
-          </span>
-         
+          </Nav>
         </Navbar.Collapse>
-        </div>
       </Container>
     </Navbar>
-   
   );
 };
