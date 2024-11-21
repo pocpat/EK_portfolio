@@ -449,6 +449,7 @@ nav.navbar .navbar-toggler:focus {
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
+  text-align: left;
 }
 .banner .tagline {
   font-weight: 700;
@@ -589,24 +590,33 @@ button[type="submit"]:hover {
 
 /* ************************ */
 .title-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items at the start */
-  justify-content: flex-start; /* Center the container vertically */
-  height: auto;
-  margin-bottom: 20px; /* Add space below the title */
+
+  display: block; 
+  text-align: left; 
+  margin-bottom: 20px; 
+  max-width: 100%; 
+  align-self: flex-start; 
+  margin: 0 auto 20px 0; 
+  height: 4em; /* Reserve space for ~2 lines of text (1.5em per line) */
+  overflow: hidden; 
 }
 
 .txt-rotate {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align text at the start */
-  justify-content: flex-start; /* Align text at the start */
-  width: 100%;
+
+  display: block; 
+  text-align: left; 
+  margin-top: 10px;
+  margin-bottom: 20px;
+  max-width: 100%;
+  line-height: 1.5; 
+  height: calc(1.5em * 2); /* Reserve space for 2 lines */
+  overflow: hidden;
 }
 
-
-
+.wrap {
+  display: inline; 
+  white-space: normal;
+}
 
 
 

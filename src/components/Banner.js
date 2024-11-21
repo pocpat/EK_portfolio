@@ -60,11 +60,11 @@ export const Banner = () => {
             <TrackVisibility  >
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-               
+      
               
                 <div className="title-container"> 
                <h1>
-                <span className="txt-rotate items-start justify-center flex" dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1></div>
+                <span className="txt-rotate " dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1></div>
          <div className="banner__p">
                 <p
                 className={`clamped-text ${isExpanded ? 'expanded' : ''}`}
