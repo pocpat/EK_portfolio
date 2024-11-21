@@ -15,7 +15,7 @@ export const Banner = () => {
   const [index, setIndex] = useState(1);
   const toRotate = [ "Web Developer", "Full Stack Developer", "Front End Developer" ];
   const period = 2000;
-
+  const [isExpanded, setIsExpanded] = useState(false);
   useEffect(() => {
     let ticker = setInterval(() => {
       tick();
@@ -55,18 +55,26 @@ export const Banner = () => {
       <Container>
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
-            <TrackVisibility >
+          <span className="tagline">Welcome to my Portfolio</span>
+           <h1 className="aligh-items-center" >{`Hi! I'm Elena`} </h1>
+            <TrackVisibility  >
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-
+               
+              
                 <div className="title-container"> 
-                <h1 >{`Hi! I'm Elena`} <br></br>
-                <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1></div>
-         
-                <p>I'm a passionate web developer with a unique background in VFX compositing, which gives me a keen eye for detail and a love for the visual aspects of web development. Over the past year, I've immersed myself in Full Stack Development, continuously expanding my skills in JavaScript, AWS, and web development. I thrive on creating websites that are not only visually stunning but also functionally smooth. For me, coding isn't just a job; it's a joy and a constant learning journey.</p>
-                <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
-              </div>}
+               <h1>
+                <span className="txt-rotate items-start justify-center flex" dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1></div>
+         <div className="banner__p">
+                <p
+                className={`clamped-text ${isExpanded ? 'expanded' : ''}`}
+                >I'm a passionate web developer with a unique background in VFX compositing, which gives me a keen eye for detail and a love for the visual aspects of web development. Over the past year, I've immersed myself in Full Stack Development, continuously expanding my skills in JavaScript, AWS, and web development. I thrive on creating websites that are not only visually stunning but also functionally smooth. For me, coding isn't just a job; it's a joy and a constant learning journey.</p>
+                               {/* Button to toggle the expansion */}
+                               <button className="banner__read-btn" onClick={() => setIsExpanded(!isExpanded)}>
+                               {isExpanded ? "Show Less " : "Read More"} <ArrowRightCircle size={25} />
+                             </button>
+                             </div>
+                           </div>}
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5} className="image-container">

@@ -77,7 +77,7 @@ imgUrl: projImg4,
   ];
 
   const pdfFiles = [
-    { name: "Migration to AWS", file: "/ekawstechdoc.pdf" },
+    { name: "Migration", file: "/ekawstechdoc.pdf" },
     { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
     { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
     { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
@@ -101,7 +101,7 @@ imgUrl: projImg4,
 
                   <p>Here’s a snapshot of my journey:</p>
                   <div className="projects-container">
-                    <div className="about-tab">
+                    <div className="about-tab d-none d-md-block">
                       <h4>APP</h4>
                       <p>
                         Explore my collection of static and dynamic web apps,
@@ -110,7 +110,7 @@ imgUrl: projImg4,
                       </p>
                     </div>
 
-                    <div className="about-tab">
+                    <div className="about-tab d-none d-md-block">
                       <h4>AWS</h4>
                       <p>
                         Discover my AWS projects and delve into the world of
@@ -118,7 +118,7 @@ imgUrl: projImg4,
                       </p>
                     </div>
 
-                    <div className="about-tab">
+                    <div className="about-tab d-none d-md-block">
                       <h4>Credits</h4>
                       <p>
                         Thanks to all the tools and resources that’ve helped me!
@@ -126,6 +126,7 @@ imgUrl: projImg4,
                     </div>
                   </div>
                   <Tab.Container id="projects-tabs"  activeKey={activeTab}>
+                
                     <Nav
                       variant="pills"
                       className="nav-pills mb-5  justify-center align-items-center 
@@ -143,6 +144,7 @@ imgUrl: projImg4,
                         <Nav.Link eventKey="third">CREDITS</Nav.Link>
                       </Nav.Item>
                     </Nav>
+                   
                     <Tab.Content
                       id="slideInUp"
                       className={

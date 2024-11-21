@@ -549,9 +549,47 @@ button[type="submit"]:hover {
     transform: translateY(-20px);
   }
 }
+
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
+  font-size: 40px;
 }
+
+/* ************************ */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items at the start */
+  justify-content: flex-start; /* Center the container vertically */
+  height: auto;
+  margin-bottom: 20px; /* Add space below the title */
+}
+
+.txt-rotate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text at the start */
+  justify-content: flex-start; /* Align text at the start */
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /************ Skills Css ************/
 .skill {
@@ -1008,10 +1046,95 @@ button[type="submit"]:hover {
   margin-top: 20px;
 }
 
-.title-container {
-  min-height: 26vh;
+
+/* ********************* */ 
+
+.banner {
+  padding: 150px 0;
 }
 
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 24vh;
+  margin-bottom: 20px; /* Add space below the title */
+}
+
+.banner__p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-bottom: 20px; /* Add space below the paragraph */
+}
+
+.clamped-text {
+  max-width: 100%;
+  padding: 10px;
+  text-align: center; /* Center the text */
+}
+
+.banner__read-btn {
+  background: transparent !important;
+  color: #fff !important;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 20px; /* Add space above the button */
+}
+
+.banner__read-btn:hover::before {
+  left: 0 !important;
+}
+
+.banner__read-btn:hover {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.banner__read-btn span {
+  position: relative;
+  z-index: 1; /* Ensure the text is above the background */
+}
+
+.banner__read-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90.21deg,
+    rgba(82, 240, 225, 1) -5.91%,
+    rgba(41, 22, 68, 1) 111.58%
+  ) !important;
+  transition: left 0.3s ease;
+  z-index: 0; /* Ensure the background is behind the text */
+}
+
+@media (max-width: 768px) {
+  .title-container,
+  .banner__p {
+    margin-bottom: 10px; /* Adjust spacing for smaller screens */
+  }
+
+  .banner__read-btn {
+    margin-top: 10px; /* Adjust spacing for smaller screens */
+  }
+}
+
+
+
+
+
+/* ********************* */ 
 /* Flex container to hold buttons and PdfViewer */
 .flex-container {
   display: flex;

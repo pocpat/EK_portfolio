@@ -82,12 +82,44 @@ body {
 }
 .about-tab{
   display: flex;
-
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.1rem;
   width: 100%;}
+
+ /* Initial state for the text */
+.clamped-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 6; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 20px;
+}
+
+/* When the text is expanded, remove the line clamp */
+.clamped-text.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+/* Style for the Read More / Show Less button */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
 
 
 @media (max-width: 767px) {
@@ -405,4 +437,47 @@ body {
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.banner__read-btn{
+  background: transparent !important;
+  color: #fff !important;
+  font-weight: 700;
+  
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.banner__read-btn:hover::before {
+  left: 0 !important;
+}
+
+.banner__read-btn:hover {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+
+.banner__read-btn span {
+  position: relative;
+  z-index: 3;
+}
+
+.banner__read-btn::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+
+
 

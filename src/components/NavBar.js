@@ -147,7 +147,8 @@ export const NavBar = () => {
                 }}
               >
                 Resume
-              </button>      </div>
+              </button>     
+               </div>
             </div>
           </Nav>
           {showModal && (
