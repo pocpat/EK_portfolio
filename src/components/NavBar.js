@@ -89,7 +89,7 @@ export const NavBar = () => {
            
             <div className="flex flex-row justify-center  ">
               <div
-                className={`social-icon ${isExpanded ? "hidden" : "visible "}`}
+                className={`social-icon ${isExpanded ? "hidden " : "visible "}`}
               >
                 <a
                   href="https://www.linkedin.com/in/elenakroupkin/"
@@ -107,12 +107,12 @@ export const NavBar = () => {
                 </a>
               </div>
               <Button
-                className={`myresume-btn ${isExpanded ? "hidden" : "visible"}`}
+                className={`myresume-btn ${isExpanded ? "hidden" : "visible"} text-base max-lg:text-sm`}
                 onClick={handleOpenPdfModal}
               >
                 <span>MY RESUME</span>
               </Button>
-              {}
+             
               <div
                 className={`social-icon-toggle-opened ${
                   isExpanded ? "visible" : "hidden"
@@ -134,10 +134,29 @@ export const NavBar = () => {
                 >
                   Github
                 </a>
-                <p className="active navbar-link nav-link">Resume</p>
-              </div>
+                <button
+                className="active navbar-link nav-link hover:cursor-pointer"
+                style={{
+                  transition: "color 0.3s ease-in-out",
+                }}
+                onMouseEnter={(e) => (e.target.style.color = "rgba(82, 240, 225, 1)")}
+                onMouseLeave={(e) => (e.target.style.color = "")}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent navigation
+                  handleOpenPdfModal();
+                }}
+              >
+                Resume
+              </button>      </div>
             </div>
           </Nav>
+          {showModal && (
+            <PdfModal
+              show={showModal}
+              onHide={() => setShowModal(false)}
+              file={hardcodedCV}
+            />
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
