@@ -115,6 +115,17 @@ nav.navbar.scrolled {
   padding: 0px 0;
   background-color: #121212;
 }
+/* ******************  */
+/* Navbar collapse styles */
+.navbar-collapse {
+  background-color: transparent;
+  transition: background-color 0.32s ease-in-out;
+}
+
+/* Navbar collapse styles when expanded */
+.navbar-collapse.expanded {
+  background-color: #121212; /* Set your desired background color */
+}
 nav.navbar a.navbar-brand {
   width: 9%;
 }
@@ -125,12 +136,15 @@ nav.navbar .navbar-nav .nav-link.navbar-link  {
   padding: 0 25px;
   font-size: 18px;
   opacity: 0.75;
+  background: transparent;
+
 }
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link:active
  {
   opacity: 1;
   color: rgba(82, 240, 225, 1);
+
 
 }
 span.navbar-text {
@@ -351,6 +365,7 @@ nav.navbar .navbar-toggler-icon {
 
 nav.navbar .navbar-toggler-icon:focus {
   border-bottom: 2px solid #fff;
+
 }
 nav.navbar .navbar-toggler-icon::after,
 nav.navbar .navbar-toggler-icon::before {
@@ -397,6 +412,23 @@ nav.navbar .navbar-toggler-icon::after {
 }
 
 
+/* ************************ */
+nav.navbar .navbar-toggler {
+  border: none;
+  background: transparent;
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+nav.navbar .navbar-toggler:hover,
+nav.navbar .navbar-toggler:focus {
+  background: transparent; /* Remove the blue background on hover and focus */
+  outline: none;
+  box-shadow: none;
+}
+/* ************************ */
 
 .navbar__group {
   display: flex;
@@ -438,7 +470,7 @@ nav.navbar .navbar-toggler-icon::after {
   background: transparent !important;
   color: #fff !important;
   font-weight: 700;
-  
+
   padding: 10px 20px;
   border: 2px solid white;
   border-radius: 5px;
@@ -1276,5 +1308,32 @@ button[type="submit"]:hover {
   .blob-right-bottom {
     width: 80px; /* Adjust size for smaller screens */
     height: 80px; /* Adjust size for smaller screens */
+  }
+}
+
+
+/* ================================*/
+/* Hide the mobile navbar by default */
+.mobile-navbar {
+  display: none;
+}
+
+/* Show the mobile navbar on small screens */
+@media (max-width: 768px) {
+  .mobile-navbar {
+    display: block;
+  }
+  .desktop-navbar {
+    display: none;
+  }
+}
+
+/* Show the desktop navbar on larger screens */
+@media (min-width: 769px) {
+  .desktop-navbar {
+    display: block;
+  }
+  .mobile-navbar {
+    display: none;
   }
 }
