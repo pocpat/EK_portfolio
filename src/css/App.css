@@ -123,7 +123,6 @@ nav.navbar.scrolled {
   z-index: 100;
 }
 
-
 /* Navbar collapse styles when expanded */
 .navbar-collapse.expanded {
   background-color: #121212; /* Set your desired background color */
@@ -131,23 +130,19 @@ nav.navbar.scrolled {
 nav.navbar a.navbar-brand {
   width: 9%;
 }
-nav.navbar .navbar-nav .nav-link.navbar-link  {
+nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
-  color: #fff ;
+  color: #fff;
   letter-spacing: 0.8px;
   padding: 0 25px;
   font-size: 18px;
   opacity: 0.75;
   background: transparent;
-
 }
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
-nav.navbar .navbar-nav a.nav-link.navbar-link:active
- {
+nav.navbar .navbar-nav a.nav-link.navbar-link:active {
   opacity: 1;
   color: rgba(82, 240, 225, 1);
-
-
 }
 span.navbar-text {
   display: flex;
@@ -170,7 +165,6 @@ span.navbar-text {
 .myresume-btn {
   display: inline-block;
   vertical-align: middle; /* Align the icons and button vertically */
- 
 }
 
 /* Adjust the space between navbar items and the social icons */
@@ -206,7 +200,6 @@ span.navbar-text {
     justify-content: space-between;
     width: 100%;
   }
-
 }
 /* ================================*/
 .social-icon {
@@ -232,7 +225,7 @@ span.navbar-text {
   width: 42px;
   height: 42px;
   position: absolute;
-  background-color: rgba(82, 240, 225,1);
+  background-color: rgba(82, 240, 225, 1);
   border-radius: 50%;
   transform: scale(0);
   transition: 0.3s ease-in-out;
@@ -247,7 +240,7 @@ span.navbar-text {
 }
 .social-icon a:hover img {
   filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
-    hue-rotate(346deg) brightness(95%) contrast(86%) ;
+    hue-rotate(346deg) brightness(95%) contrast(86%);
 }
 .navbar-text button {
   font-weight: 700;
@@ -292,7 +285,7 @@ span.navbar-text {
 }
 /* ======== to check styles for  " Home/Skills/Proj"   ===*/
 .navbar-text {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: flex-start; /* Ensure it aligns to the left */
   gap: 20px; /* Add space between the links */
@@ -316,28 +309,28 @@ span.navbar-text {
 .social-icon.visible {
   display: flex; /* Show when visible */
 }
-.social-icon.hidden  {
+.social-icon.hidden {
   display: none; /* Hide when collapsed */
 }
 
 .social-icon-toggle-opened {
   display: none; /* Hidden by default */
   flex-direction: column; /* Stack items in a column */
-  color: #fff !important; 
-  gap: 0px; 
+  color: #fff !important;
+  gap: 0px;
 }
 
 .social-icon-toggle-opened.visible {
   display: flex; /* Show when visible */
 }
-.social-icon-toggle-opened.hidden  {
+.social-icon-toggle-opened.hidden {
   display: none; /* Hide when collapsed */
 }
 
 .myresume-btn.visible {
   display: flex; /* Show when visible */
 }
-.myresume-btn.hidden  {
+.myresume-btn.hidden {
   display: none; /* Hide when collapsed */
 }
 .myresume-btn {
@@ -366,12 +359,10 @@ nav.navbar .navbar-toggler-icon {
   display: flex;
   justify-content: center;
   cursor: pointer;
-
 }
 
 nav.navbar .navbar-toggler-icon:focus {
   border-bottom: 2px solid #fff;
-
 }
 nav.navbar .navbar-toggler-icon::after,
 nav.navbar .navbar-toggler-icon::before {
@@ -381,7 +372,7 @@ nav.navbar .navbar-toggler-icon::before {
   background-color: #fff;
   content: "";
   z-index: 2;
-  transition:  all 0.3s ease;
+  transition: all 0.3s ease;
 }
 nav.navbar .navbar-toggler-icon::before {
   top: 0;
@@ -389,7 +380,6 @@ nav.navbar .navbar-toggler-icon::before {
 nav.navbar .navbar-toggler-icon::after {
   bottom: 0;
 }
-
 
 /* Transform the lines into an "X" when expanded */
 .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
@@ -417,7 +407,6 @@ nav.navbar .navbar-toggler-icon::after {
   opacity: 0; /* Hide the middle line */
 }
 
-
 /* ************************ */
 nav.navbar .navbar-toggler {
   border: none;
@@ -443,7 +432,6 @@ nav.navbar .navbar-toggler:focus {
   width: 100%;
   margin-left: auto;
 }
-
 
 /************ Banner Css ************/
 .banner {
@@ -525,12 +513,15 @@ nav.navbar .navbar-toggler:focus {
   margin-bottom: 20px;
   display: block;
 }
-.banner p {
+.banner__p {
   color: #b8b8b8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
   width: 96%;
+  /* justify-content: center; */
+
+  /* text-align: center; */
 }
 
 .banner button {
@@ -596,48 +587,31 @@ button[type="submit"]:hover {
 
 /* ************************ */
 .title-container {
-
-  display: block; 
-  text-align: left; 
-  margin-bottom: 20px; 
-  max-width: 100%; 
-  align-self: flex-start; 
-  margin: 0 auto 20px 0; 
+  display: block;
+  text-align: left;
+  margin-bottom: 20px;
+  max-width: 100%;
+  align-self: flex-start;
+  margin: 0 auto 20px 0;
   height: 4em; /* Reserve space for ~2 lines of text (1.5em per line) */
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .txt-rotate {
-
-  display: block; 
-  text-align: left; 
+  display: block;
+  text-align: left;
   margin-top: 10px;
   margin-bottom: 20px;
   max-width: 100%;
-  line-height: 1.5; 
+  line-height: 1.5;
   height: calc(1.5em * 2); /* Reserve space for 2 lines */
   overflow: hidden;
 }
 
 .wrap {
-  display: inline; 
+  display: inline;
   white-space: normal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /************ Skills Css ************/
 .skill {
@@ -1094,8 +1068,7 @@ button[type="submit"]:hover {
   margin-top: 20px;
 }
 
-
-/* ********************* */ 
+/* ********************* */
 
 .banner {
   padding: 150px 0;
@@ -1148,7 +1121,7 @@ button[type="submit"]:hover {
 
 .banner__read-btn span {
   position: relative;
-  z-index: 2; 
+  z-index: 2;
   color: white;
 }
 
@@ -1171,19 +1144,15 @@ button[type="submit"]:hover {
 @media (max-width: 768px) {
   .title-container,
   .banner__p {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   .banner__read-btn {
-    margin-top: 10px; 
+    margin-top: 10px;
   }
 }
 
-
-
-
-
-/* ********************* */ 
+/* ********************* */
 /* Flex container to hold buttons and PdfViewer */
 .flex-container {
   display: flex;
@@ -1327,7 +1296,6 @@ button[type="submit"]:hover {
     height: 80px; /* Adjust size for smaller screens */
   }
 }
-
 
 /* ================================*/
 /* Hide the mobile navbar by default */

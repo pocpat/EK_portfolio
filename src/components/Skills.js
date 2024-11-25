@@ -5,8 +5,13 @@ import colorSharp from "../assets/img/color-sharp.png";
 import "../css/App.css";
 import "../css/skills.css";
 import ProgressBar from "./progressBar/ProgressBar";
+import { useState } from "react";
+import { ArrowRightCircle } from 'react-bootstrap-icons';
+
 
 export const Skills = (progressBarRef) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -53,9 +58,16 @@ export const Skills = (progressBarRef) => {
       <Container>
         <Row>
           <Col>
-            <div className="skill-bx">
-              <h2>Skills</h2>
-              <p>
+            <div 
+            className="skill-bx"
+           
+            >
+            <h2 className="mt-10">Skills</h2>
+              <div  className={`skill-bx clamped-text ${isExpanded ? 'expanded' : ''}`}>
+              <h2 >Skills</h2>
+              <p 
+             
+              >
                 This is my current skillset, but it's always evolving. While I
                 may be new to the industry, I'm driven to excel and become a
                 top-tier full stack developer.</p>
@@ -66,6 +78,11 @@ export const Skills = (progressBarRef) => {
                 and potential rather than precise measurements. After all, who
                 doesn’t love a bit of flair with their data? 
               </p>
+              </div>
+                {/* Button to toggle the expansion */}
+                <button className="banner__read-btn button" onClick={() => setIsExpanded(!isExpanded)}>
+                <span>{isExpanded ? 'Show Less  ' : 'Read More  '}<ArrowRightCircle size={25} /></span>
+               </button>
               <Carousel
                 responsive={responsive}
                 infinite={true}
