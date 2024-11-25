@@ -70,8 +70,8 @@ export const Banner = () => {
                 className={`clamped-text ${isExpanded ? 'expanded' : ''}`}
                 >I'm a passionate web developer with a unique background in VFX compositing, which gives me a keen eye for detail and a love for the visual aspects of web development. Over the past year, I've immersed myself in Full Stack Development, continuously expanding my skills in JavaScript, AWS, and web development. I thrive on creating websites that are not only visually stunning but also functionally smooth. For me, coding isn't just a job; it's a joy and a constant learning journey.</p>
                                {/* Button to toggle the expansion */}
-                               <button className="banner__read-btn" onClick={() => setIsExpanded(!isExpanded)}>
-                               {isExpanded ? "Show Less " : "Read More"} <ArrowRightCircle size={25} />
+                               <button className="banner__read-btn button" onClick={() => setIsExpanded(!isExpanded)}>
+                              <span>{isExpanded ? 'Show Less' : 'Read More'}<ArrowRightCircle size={25} /></span>
                              </button>
                              </div>
                            </div>}

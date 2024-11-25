@@ -91,18 +91,40 @@ body {
 
  /* Initial state for the text */
 .clamped-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 6; 
-  -webkit-box-orient: vertical;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical; */
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 20px;
+ transition: max-height 2s cubic-bezier(0.4, 0, 0.2, 1); 
+ max-height: 120px;
+ position: relative;
 }
 
 /* When the text is expanded, remove the line clamp */
 .clamped-text.expanded {
-  -webkit-line-clamp: unset;
-  display: block;
+  /* display: block; */
+
+  max-height: 500px;
+}
+
+
+.clamped-text::after {
+  content: '...'; /* Add ellipsis */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: transparent; /* Match the background of your text container */
+  padding-left: 5px; /* Ensure it's legible */
+  display: inline-block;
+  width: 20px; /* Width of the ellipsis to avoid overlap */
+  height: 1em; /* Matches the line height */
+  pointer-events: none; /* Avoid double click issues */
+}
+
+/* Expanded state */
+.clamped-text.expanded::after {
+  content: ''; /* Remove ellipsis in expanded state */
 }
 
 /* Style for the Read More / Show Less button */
@@ -436,46 +458,6 @@ button:hover {
 .pdf-button .icon {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.banner__read-btn{
-  background: transparent !important;
-  color: #fff !important;
-  font-weight: 700;
-  
-  padding: 10px 20px;
-  border: 2px solid white;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.banner__read-btn:hover::before {
-  left: 0 !important;
-}
-
-.banner__read-btn:hover {
-  background-color: transparent !important;
-  color: #fff !important;
-}
-
-
-.banner__read-btn span {
-  position: relative;
-  z-index: 3;
-}
-
-.banner__read-btn::before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  
-  transition: left 0.3s ease;
-  z-index: 0;
 }
 
 
