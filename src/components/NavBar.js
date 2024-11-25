@@ -65,12 +65,14 @@ export const NavBar = () => {
               <img className="my-logo" src={logo} alt="Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
-            <span className="navbar-toggler-icon">
-              <div></div>
-            </span>
-          </Navbar.Toggle>
-            <Navbar.Collapse id="basic-navbar-nav"
-            className={isExpanded ? "expanded" : ""}>
+              <span className="navbar-toggler-icon">
+                <div></div>
+              </span>
+            </Navbar.Toggle>
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className={isExpanded ? "expanded" : ""}
+            >
               <Nav className="me-auto">
                 <Nav.Link
                   href="#home"
@@ -84,7 +86,9 @@ export const NavBar = () => {
                 <Nav.Link
                   href="#skills"
                   className={
-                    activeLink === "skills" ? "active navbar-link" : "navbar-link"
+                    activeLink === "skills"
+                      ? "active navbar-link"
+                      : "navbar-link"
                   }
                   onClick={() => onUpdateActiveLink("skills")}
                 >
@@ -93,50 +97,47 @@ export const NavBar = () => {
                 <Nav.Link
                   href="#projects"
                   className={
-                    activeLink === "projects" ? "active navbar-link" : "navbar-link"
+                    activeLink === "projects"
+                      ? "active navbar-link"
+                      : "navbar-link"
                   }
                   onClick={() => onUpdateActiveLink("projects")}
                 >
                   Projects
                 </Nav.Link>
                 <a
-                className="active navbar-link nav-link"
-                href="https://www.linkedin.com/in/elenakroupkin/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a
-                className="active navbar-link nav-link"
-                href="https://github.com/pocpat"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Github
-              </a>
-              <button
-              className=" active navbar-link nav-link hover:cursor-pointer"
-              style={{
-                transition: "color 0.3s ease-in-out",
-              }}
-              onMouseEnter={(e) => (e.target.style.color = "rgba(82, 240, 225, 1)")}
-              onMouseLeave={(e) => (e.target.style.color = "")}
-              onClick={(e) => {
-                e.preventDefault(); // Prevent navigation
-                handleOpenPdfModal();
-              }}
-            >
-              Resume
-            </button>     
-
-
-
-
-
-
-
-
+                  className="active navbar-link nav-link"
+                  href="https://www.linkedin.com/in/elenakroupkin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  className="active navbar-link nav-link"
+                  href="https://github.com/pocpat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Github
+                </a>
+                <button
+                  className=" active navbar-link nav-link hover:cursor-pointer"
+                  style={{
+                    transition: "color 0.3s ease-in-out",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.target.style.color = "rgba(82, 240, 225, 1)")
+                  }
+                  onMouseLeave={(e) => (e.target.style.color = "")}
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent navigation
+                    handleOpenPdfModal();
+                    handleToggle();
+                  }}
+                >
+                  Resume
+                </button>
               </Nav>
               {showModal && (
                 <PdfModal
@@ -175,7 +176,9 @@ export const NavBar = () => {
                 <Nav.Link
                   href="#skills"
                   className={
-                    activeLink === "skills" ? "active navbar-link" : "navbar-link"
+                    activeLink === "skills"
+                      ? "active navbar-link"
+                      : "navbar-link"
                   }
                   onClick={() => onUpdateActiveLink("skills")}
                 >
@@ -184,7 +187,9 @@ export const NavBar = () => {
                 <Nav.Link
                   href="#projects"
                   className={
-                    activeLink === "projects" ? "active navbar-link" : "navbar-link"
+                    activeLink === "projects"
+                      ? "active navbar-link"
+                      : "navbar-link"
                   }
                   onClick={() => onUpdateActiveLink("projects")}
                 >
@@ -209,11 +214,20 @@ export const NavBar = () => {
                   </a>
                 </div>
                 <Button
-                  className={`myresume-btn ${isExpanded ? "hidden" : "visible"} text-base max-lg:text-sm`}
+                  className={`myresume-btn  ${
+                    isExpanded ? "hidden" : "visible"
+                  } text-base max-lg:text-sm`}
                   onClick={handleOpenPdfModal}
                 >
                   <span>MY RESUME</span>
                 </Button>
+                {showModal && (
+                  <PdfModal
+                    show={showModal}
+                    onHide={() => setShowModal(false)}
+                    file={hardcodedCV}
+                  />
+                )}
               </span>
             </Navbar.Collapse>
           </Container>

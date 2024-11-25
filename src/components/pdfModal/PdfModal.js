@@ -4,7 +4,7 @@ import PdfViewer from '../PdfViewer' // Assuming this is the correct import for 
 
 const PdfModal = ({ show, onHide, file }) => {
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} size="lg" centered >
       <Modal.Header closeButton>
         <Modal.Title>PDF Viewer</Modal.Title>
       </Modal.Header>

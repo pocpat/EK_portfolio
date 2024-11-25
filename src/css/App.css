@@ -120,7 +120,9 @@ nav.navbar.scrolled {
 .navbar-collapse {
   background-color: transparent;
   transition: background-color 0.32s ease-in-out;
+  z-index: 100;
 }
+
 
 /* Navbar collapse styles when expanded */
 .navbar-collapse.expanded {
@@ -346,6 +348,10 @@ span.navbar-text {
   margin: 0;
   padding: 0 20px; /* Ensure similar padding for alignment */
 }
+.navbar-toggler {
+  z-index: 110; /* Ensures the toggle is above other navbar elements but below modal */
+}
+
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
   outline: none;
@@ -1346,5 +1352,44 @@ button[type="submit"]:hover {
   }
   .mobile-navbar {
     display: none;
+  }
+}
+
+// ============= modal =============
+.modal {
+  z-index: 200; /* Ensure this is higher than the hamburger menu */
+  margin-top: 10px; /* Add space at the top */
+  margin-bottom: 10px; /* Add space at the bottom */
+}
+.modal-content {
+  overflow-y: auto; /* Adds a scrollbar for long content */
+}
+
+.custom-modal .modal-dialog {
+  max-width: 90%;
+  margin: auto;
+}
+
+.custom-modal .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .custom-modal .modal-dialog {
+    max-width: 90%; /* Ensure it fits small screens */
+  }
+
+  .custom-modal .modal-content {
+    max-height: 50vh; /* Reduce height further for small screens */
+    padding-bottom: 0; /* Add padding for small screens */
+    margin-bottom: 0; /* Add margin for small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-modal {
+    max-width: 90vw; /* Ensure the modal fits small screens */
+    max-height: 90vh;
   }
 }
