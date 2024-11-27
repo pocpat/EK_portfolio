@@ -49,7 +49,9 @@ export const Banner = () => {
       setIndex(prevIndex => prevIndex + 1);
     }
   }
-
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <section className="banner" id="home">
       <Container>
@@ -64,13 +66,30 @@ export const Banner = () => {
               
                 <div className="title-container"> 
                <h1>
-                <span className="txt-rotate " dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1></div>
-         <div className="banner__p">
-                <p
-                className={`banner__p clamped-text ${isExpanded ? 'expanded' : ''}`}
-                >I'm a passionate web developer with a unique background in VFX compositing, which gives me a keen eye for detail and a love for the visual aspects of web development. Over the past year, I've immersed myself in Full Stack Development, continuously expanding my skills in JavaScript, AWS, and web development. I thrive on creating websites that are not only visually stunning but also functionally smooth. For me, coding isn't just a job; it's a joy and a constant learning journey.</p>
-                               {/* Button to toggle the expansion */}
-                               <button className="banner__read-btn button" onClick={() => setIsExpanded(!isExpanded)}>
+                <span className="txt-rotate " dataperiod="1000" ><span className="wrap">{text}</span></span></h1></div>
+                <div className="banner__p">
+                <p className={`intro__clamped-text ${isExpanded ? 'expanded' : ''}`}>
+                  <span>
+                    I am a passionate web developer with a unique background in VFX compositing, giving me a keen eye for detail and a deep appreciation for the visual aspects of web development.
+                  </span>
+                </p>
+                <p className={`intro__additional-text ${isExpanded ? 'expanded' : ''}`}>
+                  <span>
+                    Over the last two years, I have been honing my skills in Full Stack Development, diving into JavaScript, AWS, and various web technologies to bring creative ideas to life.
+                  </span>
+                </p>
+                <p className={`intro__additional-text ${isExpanded ? 'expanded' : ''}`}>
+                  <span>
+                    I have a "get-things-done" attitude, and I never give up—something that is especially valuable when you are just starting out.
+                  </span>
+                </p>
+                <p className={`intro__additional-text ${isExpanded ? 'expanded' : ''}`}>
+                  <span>
+                    For me, coding is like planting a tree — every commit strengthens my foundation, expands my knowledge, and helps me reach new heights.
+                  </span>
+                </p>
+                {/* Button to toggle the expansion */}
+                               <button className="banner__read-btn button" onClick={toggleExpand}>
                               <span>{isExpanded ? 'Show Less' : 'Read More'}<ArrowRightCircle size={25} /></span>
                              </button>
                              </div>
@@ -90,6 +109,3 @@ export const Banner = () => {
     </section>
   )
 }
-
-
-

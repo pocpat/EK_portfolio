@@ -89,25 +89,31 @@ body {
   gap: 0.1rem;
   width: 100%;}
 
- /* Initial state for the text */
+ /*   ********* clamped text ********* */
+/* For small screens: Show 3 lines */
 .clamped-text {
-  /* display: -webkit-box;
-  -webkit-box-orient: vertical; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 20px;
- transition: max-height 2s cubic-bezier(0.4, 0, 0.2, 1); 
- max-height: 120px;
- position: relative;
+
+  /* -webkit-line-clamp: 3; 
+  line-clamp: 3;  */
+  line-height: 1.5; /* Matches line height */
+  max-height: calc(5 * 1.5em); /* Height for 3 lines */
+  position: relative;
+  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  opacity: 1;
 }
 
-/* When the text is expanded, remove the line clamp */
+/* Expanded state: Show full text */
 .clamped-text.expanded {
-  /* display: block; */
-
-  max-height: 500px;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  max-height: 1000px; /* Large enough to display the full content */
+  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  opacity: 1;
 }
-
 
 .clamped-text::after {
   content: '...'; /* Add ellipsis */
@@ -119,13 +125,77 @@ body {
   display: inline-block;
   width: 20px; /* Width of the ellipsis to avoid overlap */
   height: 1em; /* Matches the line height */
-  pointer-events: none; /* Avoid double click issues */
 }
 
 /* Expanded state */
 .clamped-text.expanded::after {
   content: ''; /* Remove ellipsis in expanded state */
 }
+
+@media (min-width: 768px) {
+  .clamped-text {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+
+
+
+/* ******************************** */
+
+
+/* ********** INTRO clamped text CSS ********** */
+.intro__clamped-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  height: 8em; /* Collapsed height */
+  transition: height 0.6s ease, opacity 0.6s ease;
+}
+
+.intro__clamped-text.expanded {
+  height: auto; /* Let JS handle the dynamic height */
+  opacity: 1;
+}
+
+.intro__additional-text {
+  display: none;
+}
+
+.intro__additional-text.expanded {
+  display: block;
+}
+
+.intro__clamped-text::after {
+  content: '...';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  padding-left: 5px;
+  width: 20px;
+  height: 1em;
+}
+
+.intro__clamped-text.expanded::after {
+  content: ''; /* Remove ellipsis when expanded */
+}
+
+@media (min-width: 768px) {
+  .intro__clamped-text {
+    height: auto; /* No need to limit height on larger screens */
+    overflow: visible;
+  }
+}
+
+
+
+/* ******************************** */
 
 /* Style for the Read More / Show Less button */
 button {
