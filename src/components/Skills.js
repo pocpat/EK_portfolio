@@ -4,8 +4,11 @@ import "react-multi-carousel/lib/styles.css";
 import colorSharp from "../assets/img/color-sharp.png";
 import "../css/App.css";
 import "../css/skills.css";
+import "animate.css";
+import "../css/projects-styles.css";
+
 import ProgressBar from "./progressBar/ProgressBar";
-import { useState } from "react";
+import  React, { useState } from "react";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 
 export const Skills = (progressBarRef) => {

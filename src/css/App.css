@@ -73,6 +73,7 @@ img {
 
 button {
   border: 0;
+  
   background-color: transparent;
 }
 
@@ -509,6 +510,7 @@ nav.navbar .navbar-toggler:focus {
 .myresume-btn:hover {
   background-color: transparent !important;
   color: #fff !important;
+  border-color: #fff !important;
 }
 
 .myresume-btn span {
@@ -1130,7 +1132,8 @@ button[type="submit"]:hover {
 
 
 
-.banner__read-btn {
+.banner__read-btn,
+.skill-button {
   background: transparent !important;
   color: white;
   font-weight: 700;
@@ -1146,26 +1149,31 @@ button[type="submit"]:hover {
 
 /* Show the button on small screens */
 @media (max-width: 767px) {
-  .banner__read-btn {
+  .banner__read-btn,
+  .skill-button {
     display: inline-block;
   }
 }
-.banner__read-btn:hover::before {
+.banner__read-btn:hover::before,
+.skill-button:hover::before {
   left: 0 !important;
 }
 
-.banner__read-btn:hover {
+.banner__read-btn:hover ,
+.skill-button:hover {
   background-color: transparent !important;
   color: white !important;
 }
 
-.banner__read-btn span {
+.banner__read-btn span,
+.skill-button span {
   position: relative;
   z-index: 2; 
   color: white;
 }
 
-.banner__read-btn::before {
+.banner__read-btn::before ,
+.skill-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1187,7 +1195,8 @@ button[type="submit"]:hover {
     margin-bottom: 10px; 
   }
 
-  .banner__read-btn {
+  .banner__read-btn ,
+  .skill-button {
     margin-top: 10px; 
   }
 }
