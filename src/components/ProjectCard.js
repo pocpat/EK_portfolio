@@ -72,7 +72,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Modern Button Styles - 45 CSS Only Buttons
+              Personal-Portfolio
               </a>
               by
               <a

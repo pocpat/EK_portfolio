@@ -61,19 +61,21 @@ imgUrl: projImg4,
     },
     {
       title: "Buttons",
-      description: "This is a description of project 2",
+      description: "Interactive button elements",
       imgUrl: buttons45,
     },
     {
       title: "Project structure",
-      description: "This is a description of project 3",
+      description: "Used a foundational project structure.",
       imgUrl: projref,
     },
     {
       title: "Text-to-img Generation",
-      description: "This is a description of project 4",
+      description: "AI-generated main image.",
       imgUrl: girlref,
     },
+   
+    
   ];
 
   const pdfFiles = [
