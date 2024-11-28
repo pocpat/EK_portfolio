@@ -1,4 +1,4 @@
-/************ Custom Font ************/
+/* *********** Custom Font *********** */
 @font-face {
   font-family: Centra;
   src: url("../assets/font/CentraNo2-Bold.ttf");
@@ -15,7 +15,7 @@
   font-weight: 400;
 }
 
-/************ Default Css ************/
+/* *********** Default Css *********** */
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +37,7 @@ body {
 }
 .project {
   position: relative;
-  overflow: hidden; /* Ensure content does not overflow */
+  overflow: hidden;
 }
 
 h1,
@@ -103,7 +103,7 @@ p.success {
 p.danger {
   color: red;
 }
-/************ Navbar Css ************/
+/* *********** Navbar Css *********** */
 nav.navbar {
   padding: 18px 0;
   position: fixed;
@@ -127,7 +127,7 @@ nav.navbar.scrolled {
 
 /* Navbar collapse styles when expanded */
 .navbar-collapse.expanded {
-  background-color: #121212; /* Set your desired background color */
+  background-color: #121212; 
 }
 nav.navbar a.navbar-brand {
   width: 9%;
@@ -156,44 +156,44 @@ span.navbar-text {
   justify-content: flex-end;
 }
 
-/* ======== to check styles ===*/
+/* ======== to check styles === */
 .navbar-text {
   display: flex;
-  align-items: flex-start; /* Align items vertically */
+  align-items: flex-start; 
   margin-top: 0;
-  margin-left: 16px; /* Add some margin for spacing if needed */
+  margin-left: 16px; 
 }
 .navbar-nav {
-  display: flex; /* Ensure links are aligned in a row */
-  align-items: start; /* Align navbar links vertically */
+  display: flex; 
+  align-items: start; 
 }
 .social-icon,
 .myresume-btn {
   display: inline-block;
-  vertical-align: middle; /* Align the icons and button vertically */
+  vertical-align: middle; 
  
 }
 
 /* Adjust the space between navbar items and the social icons */
 .navbar-nav .nav-link {
-  padding-right: 20px; /* You can adjust this if needed */
+  padding-right: 20px; 
 }
 
 .navbar-text .social-icon,
 .navbar-text .myresume-btn {
-  margin-left: 15px; /* Add spacing if needed between icons and button */
+  margin-left: 15px; 
 }
 
 /* For large screens, keep navbar items aligned */
 @media (min-width: 768px) {
   .navbar-text {
-    margin-left: auto; /* Push it to the right side */
+    margin-left: auto; 
   }
 }
 @media (max-width: 767px) {
   .navbar-text {
-    margin-top: 10px; /* Adjust to ensure it doesn't push below */
-    margin-left: 0; /* Reset margin for smaller screens */
+    margin-top: 10px; 
+    margin-left: 0; 
   }
 
   .navbar-nav {
@@ -209,10 +209,10 @@ span.navbar-text {
   }
 
 }
-/* ================================*/
+/* ================================ */
 .social-icon {
   display: inline-flex;
-  margin-left: 0; /* Align with the nav items */
+  margin-left: 0; 
   margin-right: 10px;
 }
 .social-icon a {
@@ -265,7 +265,7 @@ span.navbar-text {
 /* Media query for screens less than 1000px */
 @media (max-width: 1000px) {
   .navbar-text button {
-    font-size: 10px; /* Adjust the font size for smaller screens */
+    font-size: 10px; 
   }
 }
 .navbar-text button span {
@@ -291,12 +291,12 @@ span.navbar-text {
   height: 100%;
   position: absolute;
 }
-/* ======== to check styles for  " Home/Skills/Proj"   ===*/
+/* ======== to check styles for  " Home Skills Proj"   === */
 .navbar-text {
   display: flex; 
   align-items: center;
-  justify-content: flex-start; /* Ensure it aligns to the left */
-  gap: 20px; /* Add space between the links */
+  justify-content: flex-start; 
+  gap: 20px; 
   font-weight: 400;
   color: #fff !important;
   letter-spacing: 0.8px;
@@ -446,11 +446,10 @@ nav.navbar .navbar-toggler:focus {
 }
 
 
-/************ Banner Css ************/
+/* *********** Banner Css *********** */
 .banner {
   margin-top: 0;
   padding: 260px 0 100px 0;
-  /* background-image: url('./assets/img/banner-bg.png'); */
   background-image: url("../assets/img/banner-bg1.jpg");
   background-position: top center;
   background-size: cover;
@@ -651,7 +650,7 @@ button[type="submit"]:hover {
 
 
 
-/************ Skills Css ************/
+/* *********** Skills Css *********** */
 .skill {
   padding: 0 0 1vh 0;
   position: relative;
@@ -691,7 +690,7 @@ button[type="submit"]:hover {
   z-index: -4;
 }
 
-/************ Projects Css ************/
+/* *********** Projects Css *********** */
 .project {
   padding: 80px 0;
   position: relative;
@@ -887,7 +886,7 @@ button[type="submit"]:hover {
   background-color: #2a1b99; /* Darker shade for hover effect */
 }
 
-/************ Projects Css ************/
+/* *********** Projects Css *********** */
 .contact {
   background: linear-gradient(90.21deg, #aa367c -5.91%, #4a2fbd 111.58%);
   padding: 60px 0 200px 0;
@@ -980,7 +979,7 @@ button[type="submit"]:hover {
   margin-top: 2vh;
 }
 
-/************ Footer Css ************/
+/* *********** Footer Css *********** */
 .footer {
   background-color: black;
   padding: 20px 0 50px 0;
@@ -1148,7 +1147,7 @@ button[type="submit"]:hover {
 }
 
 /* Show the button on small screens */
-@media (max-width: 767px) {
+@media (max-width: 767px){ 
   .banner__read-btn,
   .skill-button {
     display: inline-block;
@@ -1195,10 +1194,7 @@ button[type="submit"]:hover {
     margin-bottom: 10px; 
   }
 
-  /* .banner__read-btn ,
-  .skill-button {
-    margin-top: 10px; 
-  } */
+ 
 }
 
 /* Show the button on big screens */
@@ -1351,8 +1347,8 @@ button[type="submit"]:hover {
 
 @media (max-width: 576px) {
   .blob-right-bottom {
-    width: 80px; /* Adjust size for smaller screens */
-    height: 80px; /* Adjust size for smaller screens */
+    width: 80px; 
+    height: 80px; 
   }
 }
 
@@ -1383,14 +1379,14 @@ button[type="submit"]:hover {
   }
 }
 
-// ============= modal =============
+/*  ============= modal ============= */
 .modal {
-  z-index: 200; /* Ensure this is higher than the hamburger menu */
-  margin-top: 10px; /* Add space at the top */
-  margin-bottom: 10px; /* Add space at the bottom */
+  z-index: 200; 
+  margin-top: 10px; 
+  margin-bottom: 10px; 
 }
 .modal-content {
-  overflow-y: auto; /* Adds a scrollbar for long content */
+  overflow-y: auto; 
 }
 
 .custom-modal .modal-dialog {
@@ -1405,19 +1401,18 @@ button[type="submit"]:hover {
 
 @media (max-width: 768px) {
   .custom-modal .modal-dialog {
-    max-width: 90%; /* Ensure it fits small screens */
+    max-width: 90%; 
   }
 
   .custom-modal .modal-content {
-    max-height: 50vh; /* Reduce height further for small screens */
-    padding-bottom: 0; /* Add padding for small screens */
-    margin-bottom: 0; /* Add margin for small screens */
-  }
-}
+    max-height: 50vh; 
+    padding-bottom: 0; 
+    margin-bottom: 0; 
+}}
 
 @media (max-width: 768px) {
   .custom-modal {
-    max-width: 90vw; /* Ensure the modal fits small screens */
+    max-width: 90vw; 
     max-height: 90vh;
   }
 }

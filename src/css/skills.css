@@ -1,9 +1,6 @@
 /* Container for the Carousel */
 .skill-slider-Skills {
-    /* Set the height of the carousel container */
-    height: 40vh; /* Adjust this value to your needs */
-   /* display: flex;*/
-   /* align-items: center;  Center items vertically */
+    height: 40vh; 
   
 }
 
@@ -15,9 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center content vertically and horizontally */
-     /* Optional: Add padding for better spacing */
-
+    justify-content: center; 
 }
 
 /* Style for ProgressBar and Skill text */
@@ -27,19 +22,18 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: auto; /* Adjust height based on content */
+    height: auto;
 }
 
 /* Adjust height of ProgressBar if needed */
 .skill-slider-Skills .progress-bar-container .progress-bar {
-    height: 60%; /* Adjust as needed, or use a specific value */
+    height: 60%; 
 }
 
-/* Adjust the styling of the skill text */
+
 .skill-slider-Skills .progress-bar-container h5 {
-    margin-top: 10px; /* Space between ProgressBar and skill text */
-    text-align: center; /* Center text horizontally */
-}
+    margin-top: 10px; 
+    text-align: center; }
 
 .skill-slider-Skills .p {
     color: #B8B8B8;

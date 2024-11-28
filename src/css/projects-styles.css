@@ -98,8 +98,8 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.5; /* Matches line height */
-  max-height: calc(4 * 1.5em); /* Height for 4 lines */
+  line-height: 1.5; 
+  max-height: calc(4 * 1.5em); 
   position: relative;
   transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
   opacity: 1;
@@ -109,21 +109,21 @@ body {
 .clamped-text.expanded {
   -webkit-line-clamp: unset;
   line-clamp: unset;
-  max-height: 1000px; /* Large enough to display the full content */
+  max-height: 1000px; 
   transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
   opacity: 1;
 }
 
 .clamped-text::after {
-  content: '...'; /* Add ellipsis */
+  content: '...'; 
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: transparent; /* Match the background of your text container */
-  padding-left: 5px; /* Ensure it's legible */
+  background-color: transparent; 
+  padding-left: 5px; 
   display: inline-block;
-  width: 20px; /* Width of the ellipsis to avoid overlap */
-  height: 1em; /* Matches the line height */
+  width: 20px; 
+  height: 1em; 
 }
 
 /* Expanded state */
@@ -134,7 +134,7 @@ body {
 /* For large screens: Show half of the whole text */
 @media (min-width: 1024px) {
   .clamped-text {
-    max-height: calc(50% * 1.5em); /* Adjust this value to show half of the text */
+    max-height: calc(50% * 1.5em); 
   }
 }
 
@@ -149,7 +149,6 @@ body {
 /* ******************************** */
 
 
-/* ******************************** */
 
 
 /* Style for the Read More / Show Less button */
@@ -404,7 +403,7 @@ button:hover {
     display: flex;
   }
 }
-/*# sourceMappingURL=style.min.css.map */
+/* # sourceMappingURL=style.min.css.map */
 .pdf-container {
   padding: 1rem;
 }

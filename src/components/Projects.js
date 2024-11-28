@@ -16,6 +16,9 @@ import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
+// import Icon from 'react-bootstrap-icons/react/icon';
+import { HandIndexThumb, GearFill } from 'react-bootstrap-icons';
+
 
 export const Projects = ({ title, description }) => {
   const [activeTab, setActiveTab] = useState("first");
@@ -156,6 +159,10 @@ imgUrl: projImg4,
                       {/* ======  1st tab ======  */}
                       <Tab.Pane eventKey="first">
                         <Row>
+                        {/*  hover icon  */} 
+                        <div className="rotate-180">
+                       
+                      </div>
                           {projects.map((project, index) => {
                             return (
                               <ProjectCard
