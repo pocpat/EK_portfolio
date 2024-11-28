@@ -1195,13 +1195,19 @@ button[type="submit"]:hover {
     margin-bottom: 10px; 
   }
 
-  .banner__read-btn ,
+  /* .banner__read-btn ,
   .skill-button {
     margin-top: 10px; 
-  }
+  } */
 }
 
-
+/* Show the button on big screens */
+@media (min-width: 768px) {
+  .banner__read-btn,
+  .skill-button {
+    display: inline-block;
+  }
+}
 
 
 

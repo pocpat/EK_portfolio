@@ -138,9 +138,18 @@ body {
   }
 }
 
+/* text size on small screens */ 
+@media (max-width: 767px) {
+  .clamped-text {
+    font-size: 0.9rem;
+  }
+}
+
 
 /* ******************************** */
 
+
+/* ******************************** */
 
 
 /* Style for the Read More / Show Less button */

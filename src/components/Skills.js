@@ -66,6 +66,7 @@ export const Skills = (progressBarRef) => {
           <Col>
             <div className="skill-bx">
               <h2 className="mt-10">Skills</h2>
+          
               <div className={`clamped-text ${isExpanded ? "expanded" : ""}`}>
                 <p>
                   This is my current skillset, but it's always evolving. While I
@@ -82,7 +83,7 @@ export const Skills = (progressBarRef) => {
               </div>
               {/* Button to toggle the expansion */}
               <button
-                className="banner__read-btn button"
+                className="skill-button button"
                 onClick={toggleExpand}
               >
                 <span>
@@ -90,6 +91,7 @@ export const Skills = (progressBarRef) => {
                   <ArrowRightCircle size={25} />
                 </span>
               </button>
+            
               <Carousel
                 responsive={responsive}
                 infinite={true}
