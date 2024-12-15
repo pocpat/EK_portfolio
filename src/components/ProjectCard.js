@@ -179,6 +179,49 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </Button>
             </div>
           )}
+          {title === "EK-CarShowcase" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://ek-car-showcase.vercel.app/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open
+              </Button>
+              <Button
+                href="https://github.com/pocpat/EK-CarShowcase"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+            </div>
+          )}
+          {title === "Next.js aps structure" && (
+            <div>
+              <a
+                href="https://www.youtube.com/@javascriptmastery"
+                className="text-underline font-size-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              JavaScript Mastery
+
+              </a>
+              by
+              <a
+                href="https://www.jsmastery.pro/"
+                className="text-underline font-size-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              Adrian Hajdin
+
+              </a>
+            </div>
+          )}
         </div>
         </div>
       </div>

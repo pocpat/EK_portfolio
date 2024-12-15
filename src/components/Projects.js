@@ -3,6 +3,8 @@ import projImg2 from "../assets/img/metroje.jpg";
 import projImg3 from "../assets/img/sunsip2.png";
 import projImg4 from "../assets/img/similarCars.png";
 import projImg5 from "../assets/img/summize.png";
+import projImg6 from "../assets/img/carHub.png";
+import jsmastery from "../assets/img/jsMastery.png";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
@@ -33,6 +35,18 @@ export const Projects = ({ title, description }) => {
       imgUrl: projImg1,
     },
     {
+      title: "EK-Summize",
+      description:
+        "React-based portfolio . An open-source article summarization tool powered by GPT-4.",
+      imgUrl: projImg5,
+    },
+    {
+      title: "EK-CarShowcase",
+      description:
+        "Car Showcase uses Next.js and SSR to help users explore cars with easy filters.",
+      imgUrl: projImg6,
+    },
+    {
       title: "MetroGE",
       description:
         "A home rent app that lets users filter properties by location, price, and type, built with a MongoDB database and modern web tools.",
@@ -43,12 +57,7 @@ title: "Similar Car Finder",
 description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
 imgUrl: projImg4,
     },
-    {
-      title: "EK-Summize",
-      description:
-        "React-based portfolio . An open-source article summarization tool powered by GPT-4.",
-      imgUrl: projImg5,
-    },
+
     {
       title: "SunSip",
       description: "WIP",
@@ -77,6 +86,11 @@ imgUrl: projImg4,
       description: "AI-generated main image.",
       imgUrl: girlref,
     },
+    {
+      title: "Next.js aps structure",
+      description: "Master Modern Web Development With a Project Based Approach.",
+      imgUrl: jsmastery,
+    }
    
     
   ];
