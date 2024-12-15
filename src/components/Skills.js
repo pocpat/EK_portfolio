@@ -75,7 +75,7 @@ export const Skills = (progressBarRef) => {
                 </p>
                 <p>
                   Oh, and just a heads-up—the percentages you see on those
-                  progress bars? They're completely random! Think of them as a
+                  progress bars? <span className="skill__random"> They're completely random</span>! Think of them as a
                   fun way to illustrate my enthusiasm and potential rather than
                   precise measurements. After all, who doesn’t love a bit of
                   flair with their data?

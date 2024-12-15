@@ -689,6 +689,9 @@ button[type="submit"]:hover {
   width: 40%;
   z-index: -4;
 }
+.skill__random {
+  color : rgba(82, 240, 225, 1)
+}
 
 /* *********** Projects Css *********** */
 .project {
