@@ -97,8 +97,9 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </a>
             </div>
           )}
+        
           {title === "Cook It Up" && (
-            <div>
+            <div className="proj__buttons-container">
               <Button
                 href="https://cook-it-up-ek.web.app/"
                 className="project-card-button"
@@ -107,8 +108,29 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               >
                 Open
               </Button>
+              <Button
+              href="https://github.com/pocpat/cookitup"
+               className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
             </div>
           )}
+
+
+
+
+
+
+
+
+
+
+
+
+
           {title === "MetroGE" && (
             <div className="proj__buttons-container">
               <Button
@@ -220,6 +242,26 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               Adrian Hajdin
 
               </a>
+            </div>
+          )}
+          {title === "Big O Brain Bender" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://big-o-game.vercel.app/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open
+              </Button>
+              <Button
+                href="https://github.com/pocpat/BigO-game"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
             </div>
           )}
         </div>

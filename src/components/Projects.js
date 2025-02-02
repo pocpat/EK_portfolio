@@ -4,6 +4,7 @@ import projImg3 from "../assets/img/sunsip2.png";
 import projImg4 from "../assets/img/similarCars.png";
 import projImg5 from "../assets/img/summize.png";
 import projImg6 from "../assets/img/carHub.png";
+import projImg7 from "../assets/img/bigo.jpg";
 import jsmastery from "../assets/img/jsMastery.png";
 import ghicon from "../assets/img/ghref.png";
 import buttons45 from "../assets/img/45buttons.png";
@@ -28,6 +29,12 @@ export const Projects = ({ title, description }) => {
   "/ekawstechdoc.pdf"
   );
   const projects = [
+    {
+      title: "Big O Brain Bender",
+      description:
+        "A React-based quiz application for testing knowledge of Big O notation in JS.",
+      imgUrl: projImg7,
+    },
     {
       title: "Cook It Up",
       description:
