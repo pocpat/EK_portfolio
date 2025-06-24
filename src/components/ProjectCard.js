@@ -222,14 +222,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
           )}
           {title === "EK-CarShowcase" && (
             <div className="proj__buttons-container">
-              <Button
-                href="https://ek-car-showcase.vercel.app/"
-                className="project-card-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open
-              </Button>
+
               <Button
                 href="https://github.com/pocpat/EK-CarShowcase"
                 className="project-card-button"
@@ -275,6 +268,46 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </Button>
               <Button
                 href="https://github.com/pocpat/BigO-game"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+            </div>
+          )}
+           {title === "Built with Bolt" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://bolt.new"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open
+              </Button>
+              <Button
+                href="https://github.com/pocpat/EK_portfolio"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+            </div>
+          )}
+           {title === "SunSip" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://sunsip.netlify.app/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open
+              </Button>
+              <Button
+                href="https://github.com/pocpat/sunsip"
                 className="project-card-button"
                 target="_blank"
                 rel="noopener noreferrer"
