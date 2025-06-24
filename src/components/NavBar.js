@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../assets/img/Asset 1.png";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Button } from "react-bootstrap";
 import "../css/App.css";
+import { supabase } from '../supabaseClient';
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -15,6 +16,10 @@ export const NavBar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [hardcodedCV, setHardcodedCV] = useState("/EKResume102024.pdf");
+  
+  // Ref to track the navbar container
+  const navbarRef = useRef(null);
 
   const handleOpenPdfModal = () => {
     setShowModal(true);
@@ -41,13 +46,69 @@ export const NavBar = () => {
     };
   }, []);
 
+  // Handle clicks outside the navbar to close the menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Only handle outside clicks when menu is expanded and on mobile
+      if (isExpanded && isMobile && navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
+    };
+
+    // Add event listener when menu is expanded
+    if (isExpanded && isMobile) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    // Cleanup event listeners
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isExpanded, isMobile]);
+
+  // Fetch resume PDF from Supabase
+  useEffect(() => {
+    const fetchResumeCV = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('pdfs')
+          .select('file_url')
+          .eq('category', 'Resume')
+          .order('title', { ascending: false })
+          .limit(1);
+
+        if (error) {
+          throw error;
+        }
+
+        if (data && data.length > 0) {
+          setHardcodedCV(data[0].file_url);
+        }
+      } catch (error) {
+        console.error('Error fetching resume CV:', error);
+        // Keep the fallback value already set in state
+      }
+    };
+
+    fetchResumeCV();
+  }, []);
+
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
 
-  const hardcodedCV = "/EKResume102024.pdf";
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  // Close menu when nav link is clicked (mobile)
+  const handleNavLinkClick = (value) => {
+    onUpdateActiveLink(value);
+    if (isMobile) {
+      setIsExpanded(false);
+    }
   };
 
   return (
@@ -55,6 +116,7 @@ export const NavBar = () => {
       {isMobile ? (
         /* Mobile Navbar */
         <Navbar
+          ref={navbarRef}
           expand="md"
           className={`mobile-navbar ${scrolled ? "scrolled" : ""}`}
           expanded={isExpanded}
@@ -79,7 +141,7 @@ export const NavBar = () => {
                   className={
                     activeLink === "home" ? "active navbar-link" : "navbar-link"
                   }
-                  onClick={() => onUpdateActiveLink("home")}
+                  onClick={() => handleNavLinkClick("home")}
                 >
                   Home
                 </Nav.Link>
@@ -90,7 +152,7 @@ export const NavBar = () => {
                       ? "active navbar-link"
                       : "navbar-link"
                   }
-                  onClick={() => onUpdateActiveLink("skills")}
+                  onClick={() => handleNavLinkClick("skills")}
                 >
                   Skills
                 </Nav.Link>
@@ -101,7 +163,7 @@ export const NavBar = () => {
                       ? "active navbar-link"
                       : "navbar-link"
                   }
-                  onClick={() => onUpdateActiveLink("projects")}
+                  onClick={() => handleNavLinkClick("projects")}
                 >
                   Projects
                 </Nav.Link>
@@ -110,6 +172,7 @@ export const NavBar = () => {
                   href="https://www.linkedin.com/in/elenakroupkin/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setIsExpanded(false)}
                 >
                   LinkedIn
                 </a>
@@ -118,6 +181,7 @@ export const NavBar = () => {
                   href="https://github.com/pocpat"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setIsExpanded(false)}
                 >
                   Github
                 </a>
@@ -133,7 +197,7 @@ export const NavBar = () => {
                   onClick={(e) => {
                     e.preventDefault(); // Prevent navigation
                     handleOpenPdfModal();
-                    handleToggle();
+                    setIsExpanded(false); // Close menu when resume is clicked
                   }}
                 >
                   Resume
