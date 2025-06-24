@@ -16,18 +16,19 @@ import { ProjectCard } from "./ProjectCard";
 import "animate.css";
 import "../css/App.css";
 import TrackVisibility from "react-on-screen";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
-// import Icon from 'react-bootstrap-icons/react/icon';
 import { HandIndexThumb, GearFill } from 'react-bootstrap-icons';
-
+import { supabase } from '../supabaseClient';
 
 export const Projects = ({ title, description }) => {
   const [activeTab, setActiveTab] = useState("first");
-  const [selectedPdf, setSelectedPdf] = useState(
-  "/ekawstechdoc.pdf"
-  );
+  const [selectedPdf, setSelectedPdf] = useState("/ekawstechdoc.pdf");
+  const [pdfFiles, setPdfFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const projects = [
     {
       title: "Big O Brain Bender",
@@ -60,11 +61,10 @@ export const Projects = ({ title, description }) => {
       imgUrl: projImg2,
     },
     {
-title: "Similar Car Finder",
-description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
-imgUrl: projImg4,
+      title: "Similar Car Finder",
+      description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
+      imgUrl: projImg4,
     },
-
     {
       title: "SunSip",
       description: "WIP",
@@ -98,18 +98,56 @@ imgUrl: projImg4,
       description: "Master Modern Web Development With a Project Based Approach.",
       imgUrl: jsmastery,
     }
-   
-    
   ];
 
-  const pdfFiles = [
-    { name: "Migration", file: "/ekawstechdoc.pdf" },
-    { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
-    { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
-    { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
-    { name: "Amazon IAM", file: "/awsIam.pdf" },
-   
-  ];
+  // Fetch PDF files from Supabase
+  useEffect(() => {
+    const fetchPdfFiles = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('pdfs')
+          .select('*')
+          .eq('category', 'AWS')
+          .order('title', { ascending: true });
+
+        if (error) {
+          throw error;
+        }
+
+        // Transform the data to match the expected format
+        const transformedData = data.map(pdf => ({
+          name: pdf.title.replace('.pdf', ''),
+          file: pdf.file_url
+        }));
+
+        setPdfFiles(transformedData);
+        
+        // Set the first PDF as default if available
+        if (transformedData.length > 0) {
+          setSelectedPdf(transformedData[0].file);
+        }
+      } catch (error) {
+        console.error('Error fetching PDF files:', error);
+        setError('Failed to load PDF files');
+        
+        // Fallback to hardcoded data if Supabase fails
+        const fallbackPdfFiles = [
+          { name: "Migration", file: "/ekawstechdoc.pdf" },
+          { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
+          { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
+          { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
+          { name: "Amazon IAM", file: "/awsIam.pdf" },
+        ];
+        setPdfFiles(fallbackPdfFiles);
+        setSelectedPdf(fallbackPdfFiles[0].file);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPdfFiles();
+  }, []);
 
   return (
     <section className="project" id="projects">
@@ -125,7 +163,7 @@ imgUrl: projImg4,
                 >
                   <h2>Projects</h2>
 
-                  <p>Here’s a snapshot of my journey:</p>
+                  <p>Here's a snapshot of my journey:</p>
                   <div className="projects-container">
                     <div className="about-tab d-none d-md-block">
                       <h4>APP</h4>
@@ -147,11 +185,11 @@ imgUrl: projImg4,
                     <div className="about-tab d-none d-md-block">
                       <h4>Credits</h4>
                       <p>
-                        Thanks to all the tools and resources that’ve helped me!
+                        Thanks to all the tools and resources that've helped me!
                       </p>
                     </div>
                   </div>
-                  <Tab.Container id="projects-tabs"  activeKey={activeTab}>
+                  <Tab.Container id="projects-tabs" activeKey={activeTab}>
                 
                     <Nav
                       variant="pills"
@@ -200,6 +238,16 @@ imgUrl: projImg4,
                       <Tab.Pane eventKey="second">
                         <div className="pdf-container flex-container">
                           <div className="border-container ">
+                            {loading ? (
+                              <div className="text-center">
+                                <p>Loading AWS documents...</p>
+                              </div>
+                            ) : error ? (
+                              <div className="text-center">
+                                <p className="text-warning">{error}</p>
+                                <p className="text-muted">Using fallback data</p>
+                              </div>
+                            ) : null}
                             <div className="pdf-buttons-container">
                               {pdfFiles.map((pdf, index) => (
                                 <a

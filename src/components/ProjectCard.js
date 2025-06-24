@@ -1,17 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
+import { supabase } from '../supabaseClient';
 
 export const ProjectCard = ({ title, description, imgUrl }) => {
   const [showModal, setShowModal] = useState(false);
+  const [hardcodedPdfUrl, setHardcodedPdfUrl] = useState("/metroge_vert.pdf");
+  const [hardcodedPdfUrl2, setHardcodedPdfUrl2] = useState("/SimilarCarsFinder.pdf");
 
   const handleOpenPdfModal = () => {
     setShowModal(true);
   };
 
-  const hardcodedPdfUrl = "/metroge_vert.pdf";
-  const hardcodedPdfUrl2 = "/SimilarCarsFinder.pdf";
+  // Fetch project-specific PDF URLs from Supabase
+  useEffect(() => {
+    const fetchProjectPdfs = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('pdfs')
+          .select('title, file_url')
+          .in('title', ['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
+
+        if (error) {
+          throw error;
+        }
+
+        if (data && data.length > 0) {
+          data.forEach(pdf => {
+            if (pdf.title === 'metroge_vert.pdf') {
+              setHardcodedPdfUrl(pdf.file_url);
+            } else if (pdf.title === 'SimilarCarsFinder.pdf') {
+              setHardcodedPdfUrl2(pdf.file_url);
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching project PDFs:', error);
+        // Keep the fallback values already set in state
+      }
+    };
+
+    fetchProjectPdfs();
+  }, []);
 
   return (
     <Col sm={6} md={4} lg={4}>
@@ -118,18 +149,6 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </Button>
             </div>
           )}
-
-
-
-
-
-
-
-
-
-
-
-
 
           {title === "MetroGE" && (
             <div className="proj__buttons-container">
