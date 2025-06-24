@@ -1,6 +1,6 @@
 import projImg1 from "../assets/img/cookitup.jpg";
 import projImg2 from "../assets/img/metroje.jpg";
-import projImg3 from "../assets/img/sunsip2.png";
+import projImg3 from "../assets/img/ss32.jpg";
 import projImg4 from "../assets/img/similarCars.png";
 import projImg5 from "../assets/img/summize.png";
 import projImg6 from "../assets/img/carHub.png";
@@ -11,6 +11,7 @@ import buttons45 from "../assets/img/45buttons.png";
 import projref from "../assets/img/projref.png";
 import girlref from "../assets/img/girlref.png";
 import bgImg1 from "../assets/img/banner-bg1.jpg";
+import bolt from "../assets/img/boltIMG.jpg";
 import { Col, Button, Container, Row, Nav, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import "animate.css";
@@ -30,6 +31,11 @@ export const Projects = ({ title, description }) => {
   const [error, setError] = useState(null);
 
   const projects = [
+      {
+      title: "SunSip",
+      description: "Weather-based cocktail recommendation app",
+      imgUrl: projImg3,
+    },
     {
       title: "Big O Brain Bender",
       description:
@@ -48,12 +54,7 @@ export const Projects = ({ title, description }) => {
         "React-based portfolio . An open-source article summarization tool powered by GPT-4.",
       imgUrl: projImg5,
     },
-    {
-      title: "EK-CarShowcase",
-      description:
-        "Car Showcase uses Next.js and SSR to help users explore cars with easy filters.",
-      imgUrl: projImg6,
-    },
+    
     {
       title: "MetroGE",
       description:
@@ -64,12 +65,13 @@ export const Projects = ({ title, description }) => {
       title: "Similar Car Finder",
       description: "AI-Powered Vehicle Recommendations. Effortlessly Find and Recommend Similar Vehicles to Users.",
       imgUrl: projImg4,
-    },
-    {
-      title: "SunSip",
-      description: "WIP",
-      imgUrl: projImg3,
-    },
+    },{
+      title: "EK-CarShowcase",
+      description:
+        "Car Showcase uses Next.js and SSR to help users explore cars with easy filters.",
+      imgUrl: projImg6,
+    }
+  
   ];
 
   const refs = [
@@ -97,6 +99,11 @@ export const Projects = ({ title, description }) => {
       title: "Next.js aps structure",
       description: "Master Modern Web Development With a Project Based Approach.",
       imgUrl: jsmastery,
+    },
+    {
+      title: "Built with Bolt",
+      description: "The portfolio was tested and updated with Bolt",
+      imgUrl: bolt,
     }
   ];
 
