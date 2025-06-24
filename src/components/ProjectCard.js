@@ -222,14 +222,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
           )}
           {title === "EK-CarShowcase" && (
             <div className="proj__buttons-container">
-              <Button
-                href="https://ek-car-showcase.vercel.app/"
-                className="project-card-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open
-              </Button>
+
               <Button
                 href="https://github.com/pocpat/EK-CarShowcase"
                 className="project-card-button"

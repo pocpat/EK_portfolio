@@ -175,17 +175,14 @@ export const Projects = ({ title, description }) => {
                     <div className="about-tab d-none d-md-block">
                       <h4>APP</h4>
                       <p>
-                        Explore my collection of static and dynamic web apps,
-                        featuring API integrations and AI projects, with some
-                        still in progress.
+                        Explore my collection of static and dynamic web apps.
                       </p>
                     </div>
 
                     <div className="about-tab d-none d-md-block">
                       <h4>AWS</h4>
                       <p>
-                        Discover my AWS projects and delve into the world of
-                        cloud computing.
+                        Browse the docs of my AWS study projects — the apps are removed after testing.
                       </p>
                     </div>
 
