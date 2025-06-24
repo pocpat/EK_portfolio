@@ -415,7 +415,7 @@ button:hover {
   gap: 1rem;
   justify-content: flex-start;
   align-items: stretch;
-  max-height: 800px;           /* Adjust as needed */
+  max-height: 100%;           /* Adjust as needed */
   overflow-y: auto;            /* Enable vertical scroll */
   overflow-x: hidden;
   padding-right: 5px;         /* Optional: space for scrollbar */
