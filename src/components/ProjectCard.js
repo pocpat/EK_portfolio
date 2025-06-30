@@ -203,7 +203,7 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
           {title === "EK-Summize" && (
             <div className="proj__buttons-container">
               <Button
-                href="https://curious-kelpie-5a8405.netlify.app/"
+                href="https://ek-summize.netlify.app/"
                 className="project-card-button"
                 target="_blank"
                 rel="noopener noreferrer"
