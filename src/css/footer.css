@@ -36,3 +36,23 @@
         width: 150px !important; /* Adjust width for smaller screens if needed */
     }
 }
+
+/* Credits button — subtle, small, matches footer aesthetic */
+.credits-btn {
+    display: block;
+    margin: 12px auto 0;
+    padding: 4px 16px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+}
+
+.credits-btn:hover {
+    color: rgba(82, 240, 225, 0.8);
+}

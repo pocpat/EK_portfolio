@@ -44,16 +44,6 @@ export const Footer = () => {
             <button
               className="credits-btn"
               onClick={handleOpenCreditsModal}
-              style={{
-                marginTop: "10px",
-                fontSize: "0.8rem",
-                padding: "4px 12px",
-                background: "transparent",
-                border: "1px solid rgba(255,255,255,0.3)",
-                borderRadius: "20px",
-                color: "rgba(255,255,255,0.7)",
-                cursor: "pointer",
-              }}
             >
               Credits
             </button>
