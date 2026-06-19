@@ -8,7 +8,7 @@ import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Button } from "react-bootstrap";
 import "../css/App.css";
-import { supabase } from '../supabaseClient';
+import { fetchLatestResume } from '../mongoClient';
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -68,23 +68,14 @@ export const NavBar = () => {
     };
   }, [isExpanded, isMobile]);
 
-  // Fetch resume PDF from Supabase
+  // Fetch resume PDF from MongoDB
   useEffect(() => {
     const fetchResumeCV = async () => {
       try {
-        const { data, error } = await supabase
-          .from('pdfs')
-          .select('file_url')
-          .eq('category', 'Resume')
-          .order('title', { ascending: false })
-          .limit(1);
+        const resume = await fetchLatestResume();
 
-        if (error) {
-          throw error;
-        }
-
-        if (data && data.length > 0) {
-          setHardcodedCV(data[0].file_url);
+        if (resume && resume.file_url) {
+          setHardcodedCV(resume.file_url);
         }
       } catch (error) {
         console.error('Error fetching resume CV:', error);

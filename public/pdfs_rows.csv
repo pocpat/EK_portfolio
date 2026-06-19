@@ -1,0 +1,16 @@
+id,title,file_url,category,created_at,updated_at
+03db19ba-ef37-4ffb-9b10-def1976ab663,Metroge,/metroge_vert.pdf,Project,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+0ddd105a-c891-45d1-b293-d264a151a312,CodeDeploy,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-codedeploy-updated.pdf,AWS,2025-06-19 02:00:45.319717+00,2025-06-19 02:00:45.319717+00
+503b3d63-655e-4bb7-a1c1-6c7a3fc5c79c,CodeArtifact,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-codeartifact-updated%20(1).pdf,AWS,2025-06-19 02:01:56.919418+00,2025-06-19 02:01:56.919418+00
+7bfd7ac0-13d1-4536-88f2-c309443d5bc7,Certificate ES6,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//Certificate_ES6.pdf,AWS,2025-07-07 23:26:55.834133+00,2025-07-07 23:26:55.834133+00
+7e876c90-037e-4691-a12f-b2db6e14d40a,AWS IAM,/awsIam.pdf,AWS,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+9725bbcd-10b1-4531-8ad1-b576f664d204,Migration to AWS,/ekawstechdoc.pdf,AWS,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+975a2565-d502-4897-9807-49cd6107c673,QuickSight,/AmazonQuickSightProject.pdf,AWS,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+9980a46c-8ac0-41c5-a5fc-0abfc4d3221d,VS Code,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-vscode%20(1).pdf,AWS,2025-06-19 01:58:59.646513+00,2025-06-19 01:58:59.646513+00
+9d200b78-44c6-474d-a34e-24623cebc3cd,LexChatbot-2,/AmazonLexChatbotPart2.pdf,AWS,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+aff5cd54-9c52-4110-985f-b9a47f6181d6,LexChatbot-1,/AmazonLexChatbotPart1.pdf,AWS,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+c9eb059b-ca07-4469-b173-43c80033dcba,AWS-GitHub,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-github.pdf,AWS,2025-06-19 01:57:24.10501+00,2025-06-19 01:57:24.10501+00
+cebe9220-f9fa-44d9-91fc-62288dd6b9d2,CodeBuild,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-codebuild-updated.pdf,AWS,2025-06-19 02:01:17.620384+00,2025-06-19 02:01:17.620384+00
+d20e9b11-add8-48c1-952b-a5a433d4e678,Similar-Cars,/SimilarCarsFinder.pdf,Project,2025-06-19 01:31:59.065276+00,2025-06-19 01:31:59.065276+00
+dcc59010-4479-48ab-922b-47b6bc73eee8,My Resume,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//ElenaKroupkin_Resume062025.pdf,Resume,2025-06-19 02:02:51.923351+00,2025-06-19 02:02:51.923351+00
+dd887e16-32ea-445f-99d2-53832c6fb0a7,CodePipeline,https://emhnpriaazezcpgoyayy.supabase.co/storage/v1/object/public/pdfs//legendary-aws-devops-codepipeline-updated.pdf,AWS,2025-06-19 02:00:03.292908+00,2025-06-19 02:00:03.292908+00

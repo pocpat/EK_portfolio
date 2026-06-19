@@ -14,15 +14,15 @@ export const Banner = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const toRotate = [
-    "Web Developer",
-    "Full Stack Developer",
-    "Front End Developer",
-  ];
   const period = 2000;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const tick = useCallback(() => {
+    const toRotate = [
+      "Web Developer",
+      "Full Stack Developer",
+      "Front End Developer",
+    ];
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
     let updatedText = isDeleting
@@ -43,7 +43,7 @@ export const Banner = () => {
       setLoopNum(loopNum + 1);
       setDelta(80);
     }
-  }, [loopNum, isDeleting, text, toRotate, period]);
+  }, [loopNum, isDeleting, text, period]);
 
   useEffect(() => {
     let ticker = setInterval(() => {

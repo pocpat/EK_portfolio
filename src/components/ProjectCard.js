@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
-import { supabase } from '../supabaseClient';
+import { fetchPdfsByTitles } from '../mongoClient';
 
 export const ProjectCard = ({ title, description, imgUrl }) => {
   const [showModal, setShowModal] = useState(false);
@@ -13,18 +13,11 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
     setShowModal(true);
   };
 
-  // Fetch project-specific PDF URLs from Supabase
+  // Fetch project-specific PDF URLs from MongoDB
   useEffect(() => {
     const fetchProjectPdfs = async () => {
       try {
-        const { data, error } = await supabase
-          .from('pdfs')
-          .select('title, file_url')
-          .in('title', ['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
-
-        if (error) {
-          throw error;
-        }
+        const data = await fetchPdfsByTitles(['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
 
         if (data && data.length > 0) {
           data.forEach(pdf => {

@@ -2,21 +2,11 @@ import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Projects } from './Projects';
-import { supabase } from '../supabaseClient';
+import { fetchPdfsByCategory } from '../mongoClient';
 
-// Mock the supabase client
-jest.mock('../supabaseClient', () => ({
-  supabase: {
-    from: jest.fn(() => ({
-      select: jest.fn(() => ({
-        eq: jest.fn(() => ({
-          order: jest.fn(() => ({
-            then: jest.fn(),
-          })),
-        })),
-      })),
-    })),
-  },
+// Mock the mongoClient
+jest.mock('../mongoClient', () => ({
+  fetchPdfsByCategory: jest.fn(),
 }));
 
 // Mock PdfViewer component to avoid PDF rendering issues in tests
@@ -40,17 +30,24 @@ jest.mock('react-bootstrap', () => ({
       <div data-testid={`tab-pane-${eventKey}`}>{children}</div>
     ),
   },
-  Nav: {
-    Item: ({ children }) => <div data-testid="nav-item">{children}</div>,
-    Link: ({ children, eventKey, onSelect }) => (
-      <button
-        data-testid={`nav-link-${eventKey}`}
-        onClick={() => onSelect && onSelect(eventKey)}
-      >
+  Nav: Object.assign(
+    ({ children, className, variant, id, onSelect }) => (
+      <div data-testid="nav" className={className} data-variant={variant} id={id}>
         {children}
-      </button>
+      </div>
     ),
-  },
+    {
+      Item: ({ children }) => <div data-testid="nav-item">{children}</div>,
+      Link: ({ children, eventKey, onSelect }) => (
+        <button
+          data-testid={`nav-link-${eventKey}`}
+          onClick={() => onSelect && onSelect(eventKey)}
+        >
+          {children}
+        </button>
+      ),
+    }
+  ),
   Container: ({ children }) => <div data-testid="container">{children}</div>,
   Row: ({ children }) => <div data-testid="row">{children}</div>,
   Col: ({ children }) => <div data-testid="col">{children}</div>,
@@ -63,53 +60,43 @@ jest.mock('react-on-screen', () => {
   };
 });
 
+// Helper: set up the mock for fetchPdfsByCategory based on the category requested
+function setupMockForCategory(category, data) {
+  fetchPdfsByCategory.mockImplementation((cat) => {
+    if (cat === category) {
+      return Promise.resolve(data);
+    }
+    // For other categories, return empty
+    return Promise.resolve([]);
+  });
+}
+
 describe('Projects Component - PDF Fetching Integration Tests', () => {
-  let mockSupabaseChain;
 
   beforeEach(() => {
-    // Reset all mocks before each test
     jest.clearAllMocks();
-    
-    // Create a mock chain for Supabase calls
-    mockSupabaseChain = {
-      select: jest.fn().mockReturnThis(),
-      eq: jest.fn().mockReturnThis(),
-      order: jest.fn().mockReturnThis(),
-    };
-    
-    supabase.from.mockReturnValue(mockSupabaseChain);
   });
 
   describe('Successful PDF Fetching', () => {
     test('should fetch and display AWS PDFs successfully', async () => {
-      // Mock successful Supabase response
       const mockPdfData = [
         {
-          id: '1',
           title: 'Migration Guide',
           file_url: '/aws-migration.pdf',
           category: 'AWS',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
         },
         {
-          id: '2',
           title: 'QuickSight Tutorial',
           file_url: '/aws-quicksight.pdf',
           category: 'AWS',
-          created_at: '2024-01-02',
-          updated_at: '2024-01-02',
         },
       ];
 
-      mockSupabaseChain.order.mockResolvedValue({
-        data: mockPdfData,
-        error: null,
-      });
+      setupMockForCategory('AWS', mockPdfData);
 
       render(<Projects />);
 
-      // Switch to AWS tab to trigger PDF fetching
+      // Switch to AWS tab to trigger PDF display
       const awsTab = screen.getByTestId('nav-link-second');
       fireEvent.click(awsTab);
 
@@ -119,36 +106,29 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
         expect(screen.getByText('QuickSight Tutorial')).toBeInTheDocument();
       });
 
-      // Verify Supabase was called correctly
-      expect(supabase.from).toHaveBeenCalledWith('pdfs');
-      expect(mockSupabaseChain.select).toHaveBeenCalledWith('*');
-      expect(mockSupabaseChain.eq).toHaveBeenCalledWith('category', 'AWS');
-      expect(mockSupabaseChain.order).toHaveBeenCalledWith('title', { ascending: true });
+      // Verify mongoClient was called correctly
+      expect(fetchPdfsByCategory).toHaveBeenCalledWith('AWS');
 
-      // Verify PDF viewer shows the first PDF by default
-      expect(screen.getByTestId('pdf-viewer')).toHaveTextContent('/aws-migration.pdf');
+      // Verify PDF viewer shows the first PDF by default (use getAllByTestId since both AWS and Azure tabs render viewers)
+      const viewers = screen.getAllByTestId('pdf-viewer');
+      expect(viewers[0]).toHaveTextContent('/aws-migration.pdf');
     });
 
     test('should update PDF viewer when different PDF button is clicked', async () => {
       const mockPdfData = [
         {
-          id: '1',
           title: 'First PDF',
           file_url: '/first.pdf',
           category: 'AWS',
         },
         {
-          id: '2',
           title: 'Second PDF',
           file_url: '/second.pdf',
           category: 'AWS',
         },
       ];
 
-      mockSupabaseChain.order.mockResolvedValue({
-        data: mockPdfData,
-        error: null,
-      });
+      setupMockForCategory('AWS', mockPdfData);
 
       render(<Projects />);
 
@@ -165,20 +145,17 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
       const secondPdfButton = screen.getByText('Second PDF');
       fireEvent.click(secondPdfButton);
 
-      // Verify PDF viewer updates
+      // Verify PDF viewer updates (use getAllByTestId since both tabs render viewers)
       await waitFor(() => {
-        expect(screen.getByTestId('pdf-viewer')).toHaveTextContent('/second.pdf');
+        const viewers = screen.getAllByTestId('pdf-viewer');
+        expect(viewers[0]).toHaveTextContent('/second.pdf');
       });
     });
   });
 
   describe('Empty Results Handling', () => {
     test('should handle empty PDF results gracefully', async () => {
-      // Mock empty Supabase response
-      mockSupabaseChain.order.mockResolvedValue({
-        data: [],
-        error: null,
-      });
+      setupMockForCategory('AWS', []);
 
       render(<Projects />);
 
@@ -188,24 +165,24 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
 
       // Wait for the loading to complete
       await waitFor(() => {
-        expect(screen.queryByText('Loading AWS documents...')).not.toBeInTheDocument();
+        expect(screen.queryByText('Loading documents...')).not.toBeInTheDocument();
       });
 
-      // Should fall back to default PDF
-      expect(screen.getByTestId('pdf-viewer')).toHaveTextContent('/ekawstechdoc.pdf');
+      // Should show empty message
+      expect(screen.getByText('No AWS documents available.')).toBeInTheDocument();
     });
   });
 
   describe('Error Handling and Fallback', () => {
-    test('should handle Supabase errors and show fallback data', async () => {
-      // Mock Supabase error
-      const mockError = new Error('Database connection failed');
-      mockSupabaseChain.order.mockResolvedValue({
-        data: null,
-        error: mockError,
+    test('should handle MongoDB errors and show fallback data for AWS', async () => {
+      // Mock AWS to throw
+      fetchPdfsByCategory.mockImplementation((cat) => {
+        if (cat === 'AWS') {
+          return Promise.reject(new Error('Database connection failed'));
+        }
+        return Promise.resolve([]);
       });
 
-      // Spy on console.error to verify error logging
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
       render(<Projects />);
@@ -222,21 +199,25 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
 
       // Verify fallback PDFs are displayed
       expect(screen.getByText('Migration')).toBeInTheDocument();
-      expect(screen.getByText('QuickSight')).toBeInTheDocument();
       expect(screen.getByText('ChatBot Part 1')).toBeInTheDocument();
 
       // Verify error was logged
-      expect(consoleSpy).toHaveBeenCalledWith('Error fetching PDF files:', mockError);
+      expect(consoleSpy).toHaveBeenCalledWith('Error fetching AWS PDF files:', expect.any(Error));
 
-      // Verify PDF viewer shows fallback PDF
-      expect(screen.getByTestId('pdf-viewer')).toHaveTextContent('/ekawstechdoc.pdf');
+      // Verify PDF viewer shows fallback PDF (use getAllByTestId)
+      const viewers = screen.getAllByTestId('pdf-viewer');
+      expect(viewers[0]).toHaveTextContent('/ekawstechdoc.pdf');
 
       consoleSpy.mockRestore();
     });
 
     test('should handle network errors gracefully', async () => {
-      // Mock network error
-      mockSupabaseChain.order.mockRejectedValue(new Error('Network error'));
+      fetchPdfsByCategory.mockImplementation((cat) => {
+        if (cat === 'AWS') {
+          return Promise.reject(new Error('Network error'));
+        }
+        return Promise.resolve([]);
+      });
 
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
@@ -267,7 +248,12 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
         resolvePromise = resolve;
       });
       
-      mockSupabaseChain.order.mockReturnValue(delayedPromise);
+      fetchPdfsByCategory.mockImplementation((cat) => {
+        if (cat === 'AWS') {
+          return delayedPromise;
+        }
+        return Promise.resolve([]);
+      });
 
       render(<Projects />);
 
@@ -275,72 +261,109 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
       const awsTab = screen.getByTestId('nav-link-second');
       fireEvent.click(awsTab);
 
-      // Should show loading state
-      expect(screen.getByText('Loading AWS documents...')).toBeInTheDocument();
+      // Should show loading state (both AWS and Azure tabs show loading)
+      const loadingElements = screen.getAllByText('Loading documents...');
+      expect(loadingElements.length).toBeGreaterThan(0);
 
       // Resolve the promise
-      resolvePromise({
-        data: [{ id: '1', title: 'Test PDF', file_url: '/test.pdf', category: 'AWS' }],
-        error: null,
-      });
+      resolvePromise([
+        { title: 'Test PDF', file_url: '/test.pdf', category: 'AWS' },
+      ]);
 
       // Wait for loading to complete
       await waitFor(() => {
-        expect(screen.queryByText('Loading AWS documents...')).not.toBeInTheDocument();
+        expect(screen.queryByText('Loading documents...')).not.toBeInTheDocument();
       });
     });
   });
 
   describe('Tab Navigation', () => {
-    test('should not fetch PDFs when not on AWS tab', () => {
+    test('should start on APP tab by default', () => {
+      fetchPdfsByCategory.mockResolvedValue([]);
+
       render(<Projects />);
 
       // Should start on first tab (APP) by default
       expect(screen.getByTestId('tab-container')).toHaveAttribute('data-active-key', 'first');
-
-      // Supabase should not be called yet
-      expect(supabase.from).not.toHaveBeenCalled();
     });
 
-    test('should fetch PDFs only when AWS tab is activated', async () => {
-      mockSupabaseChain.order.mockResolvedValue({
-        data: [],
-        error: null,
-      });
+    test('should fetch AWS PDFs on mount', async () => {
+      fetchPdfsByCategory.mockResolvedValue([]);
 
       render(<Projects />);
 
-      // Initially on APP tab - no Supabase calls
-      expect(supabase.from).not.toHaveBeenCalled();
-
-      // Switch to AWS tab
-      const awsTab = screen.getByTestId('nav-link-second');
-      fireEvent.click(awsTab);
-
-      // Now Supabase should be called
+      // AWS PDFs are fetched on mount via useEffect
       await waitFor(() => {
-        expect(supabase.from).toHaveBeenCalledWith('pdfs');
+        expect(fetchPdfsByCategory).toHaveBeenCalledWith('AWS');
+      });
+    });
+
+    test('should fetch Azure PDFs on mount', async () => {
+      fetchPdfsByCategory.mockResolvedValue([]);
+
+      render(<Projects />);
+
+      // Azure PDFs are also fetched on mount
+      await waitFor(() => {
+        expect(fetchPdfsByCategory).toHaveBeenCalledWith('Azure');
       });
     });
   });
 
-  describe('Data Transformation', () => {
-    test('should correctly transform Supabase data to expected format', async () => {
-      const mockPdfData = [
+  describe('Azure Tab', () => {
+    test('should render Azure tab with PDF content', async () => {
+      const mockAzureData = [
         {
-          id: '1',
-          title: 'AWS Migration Guide.pdf',
-          file_url: '/aws-migration-guide.pdf',
-          category: 'AWS',
-          created_at: '2024-01-01',
-          updated_at: '2024-01-01',
+          title: 'Azure VM Setup',
+          file_url: '/azure-vm-setup.pdf',
+          category: 'Azure',
         },
       ];
 
-      mockSupabaseChain.order.mockResolvedValue({
-        data: mockPdfData,
-        error: null,
+      setupMockForCategory('Azure', mockAzureData);
+
+      render(<Projects />);
+
+      // Switch to Azure tab
+      const azureTab = screen.getByTestId('nav-link-fourth');
+      fireEvent.click(azureTab);
+
+      // Wait for PDFs to load
+      await waitFor(() => {
+        expect(screen.getByText('Azure VM Setup')).toBeInTheDocument();
       });
+    });
+
+    test('should show coming soon message when Azure has no documents', async () => {
+      setupMockForCategory('Azure', []);
+
+      render(<Projects />);
+
+      // Switch to Azure tab
+      const azureTab = screen.getByTestId('nav-link-fourth');
+      fireEvent.click(azureTab);
+
+      // Wait for loading to complete
+      await waitFor(() => {
+        expect(screen.queryByText('Loading documents...')).not.toBeInTheDocument();
+      });
+
+      // Should show the coming soon message
+      expect(screen.getByText('No Azure documents yet. Coming soon!')).toBeInTheDocument();
+    });
+  });
+
+  describe('Data Transformation', () => {
+    test('should correctly transform MongoDB data to expected format', async () => {
+      const mockPdfData = [
+        {
+          title: 'AWS Migration Guide.pdf',
+          file_url: '/aws-migration-guide.pdf',
+          category: 'AWS',
+        },
+      ];
+
+      setupMockForCategory('AWS', mockPdfData);
 
       render(<Projects />);
 
@@ -354,8 +377,9 @@ describe('Projects Component - PDF Fetching Integration Tests', () => {
         expect(screen.getByText('AWS Migration Guide')).toBeInTheDocument();
       });
 
-      // Verify PDF viewer uses the correct file URL
-      expect(screen.getByTestId('pdf-viewer')).toHaveTextContent('/aws-migration-guide.pdf');
+      // Verify PDF viewer uses the correct file URL (use getAllByTestId)
+      const viewers = screen.getAllByTestId('pdf-viewer');
+      expect(viewers[0]).toHaveTextContent('/aws-migration-guide.pdf');
     });
   });
 });

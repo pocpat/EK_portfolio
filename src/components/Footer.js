@@ -1,34 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { MailChimpForm } from "./MailChimpForm";
 import logo from "../assets/img/Asset 1.png";
 import Navbar from "react-bootstrap/Navbar";
-import { ContactForm } from "./ContactForm";
 import "../css/App.css";
 import "../css/footer.css";
-import ContactModal from "./contactModal/ContactModal"; 
+import ContactModal from "./contactModal/ContactModal";
+import CreditsModal from "./creditsModal/CreditsModal";
 
 export const Footer = () => {
-  const [activeLink, setActiveLink] = useState("home");
   const [showContactModal, setShowContactModal] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [showCreditsModal, setShowCreditsModal] = useState(false);
   const handleOpenContactModal = () => {
     setShowContactModal(true);
   };
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
+  const handleOpenCreditsModal = () => {
+    setShowCreditsModal(true);
   };
   useEffect(() => {
     const yearElement = document.querySelector("#currentYear");
@@ -52,14 +38,35 @@ export const Footer = () => {
             </Col>
 
             <Col width={4}>
-           {/*  <button className="pdf-button" onClick={() => window.scrollTo(0, 0)}>UP △</button> */}
             <button className="vvd" onClick={handleOpenContactModal}>
               <span><h3>Get In Touch </h3></span>
+            </button>
+            <button
+              className="credits-btn"
+              onClick={handleOpenCreditsModal}
+              style={{
+                marginTop: "10px",
+                fontSize: "0.8rem",
+                padding: "4px 12px",
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.3)",
+                borderRadius: "20px",
+                color: "rgba(255,255,255,0.7)",
+                cursor: "pointer",
+              }}
+            >
+              Credits
             </button>
             {showContactModal && (
               <ContactModal
                 show={showContactModal}
                 onHide={() => setShowContactModal(false)}
+              />
+            )}
+            {showCreditsModal && (
+              <CreditsModal
+                show={showCreditsModal}
+                onHide={() => setShowCreditsModal(false)}
               />
             )}
             </Col>
