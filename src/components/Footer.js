@@ -33,19 +33,11 @@ export const Footer = () => {
             <Navbar.Brand href="/">
               <img className="f-my-logo" src={logo} alt="Logo" />
             </Navbar.Brand>
+          </Col>
 
-         
-            </Col>
-
-            <Col width={4}>
+          <Col width={4} className="f-col-center">
             <button className="vvd" onClick={handleOpenContactModal}>
               <span><h3>Get In Touch </h3></span>
-            </button>
-            <button
-              className="credits-btn"
-              onClick={handleOpenCreditsModal}
-            >
-              Credits
             </button>
             {showContactModal && (
               <ContactModal
@@ -53,17 +45,24 @@ export const Footer = () => {
                 onHide={() => setShowContactModal(false)}
               />
             )}
+          </Col>
+
+          <Col width={4} className="f-col-right">
+            <button
+              className="credits-btn"
+              onClick={handleOpenCreditsModal}
+            >
+              Credits
+            </button>
+            <p> © 2024 | Elena Kroupkin</p>
+            <p> Made with 💖 </p>
             {showCreditsModal && (
               <CreditsModal
                 show={showCreditsModal}
                 onHide={() => setShowCreditsModal(false)}
               />
             )}
-            </Col>
-            <Col width={4}>
-            <p> © 2024 | Elena Kroupkin</p>
-            <p> Made with 💖 </p>
-            </Col>
+          </Col>
         </Row>
       </Container>
     </footer>
