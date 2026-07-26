@@ -36,12 +36,12 @@ const azurePdfs = [
     category: "Azure",
   },
   {
-    title: "Hybrid Cloud Deployment & Security",
+    title: "Hybrid Cloud Security",
     file_url: "/AZ-Hybrid_Cloud_Deployment_and_Security.pdf",
     category: "Azure",
   },
   {
-    title: "ML Applications & Cloud Resource Allocation",
+    title: "ML & Cloud Resources",
     file_url: "/AZ-ML_Applications_Cloud_Resource_Allocation.pdf",
     category: "Azure",
   },
