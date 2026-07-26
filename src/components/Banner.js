@@ -22,6 +22,7 @@ export const Banner = () => {
       "Web Developer",
       "Full Stack Developer",
       "Front End Developer",
+      "CloudOps Engineer",
     ];
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
