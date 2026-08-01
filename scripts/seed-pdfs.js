@@ -52,6 +52,17 @@ const azurePdfs = [
   },
 ];
 
+// ── Resume (CV) ────────────────────────────────────────────────────────────
+// The button label is DB-driven — update the title here to change the live
+// label instantly without redeploying. file_url points to the static PDF in public/.
+const resumePdfs = [
+  {
+    title: "My Resume",
+    file_url: "/ElenaKroupkin_CV-08-2026.pdf",
+    category: "Resume",
+  },
+];
+
 // ── New AWS PDFs ────────────────────────────────────────────────────────────
 const awsPdfs = [
   {
@@ -97,7 +108,7 @@ async function main() {
       { unique: true }
     );
 
-    const allPdfs = [...azurePdfs, ...awsPdfs];
+    const allPdfs = [...azurePdfs, ...resumePdfs, ...awsPdfs];
 
     let inserted = 0;
     let updated = 0;

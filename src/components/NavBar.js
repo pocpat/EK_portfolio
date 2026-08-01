@@ -16,7 +16,7 @@ export const NavBar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [hardcodedCV, setHardcodedCV] = useState("/EKResume102024.pdf");
+  const [hardcodedCV, setHardcodedCV] = useState("/ElenaKroupkin_CV-08-2026.pdf");
   
   // Ref to track the navbar container
   const navbarRef = useRef(null);
