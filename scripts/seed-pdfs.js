@@ -58,7 +58,7 @@ const azurePdfs = [
 const resumePdfs = [
   {
     title: "My Resume",
-    file_url: "/ElenaKroupkin_CV-08-2026.pdf",
+    file_url: "/ElenaKroupkin_CV_09-2026.pdf",
     category: "Resume",
   },
 ];
