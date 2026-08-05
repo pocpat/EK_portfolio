@@ -15,6 +15,7 @@ import React, { useState, useEffect } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
 import { fetchPdfsByCategory } from '../mongoClient';
+import projImg8 from "../assets/img/dipsy.jpg"
 
 export const Projects = ({ title, description }) => {
   const [activeTab, setActiveTab] = useState("first");
@@ -31,6 +32,11 @@ export const Projects = ({ title, description }) => {
       title: "SunSip",
       description: "Weather-based cocktail recommendation app",
       imgUrl: projImg3,
+    },
+     {
+      title: "DiPSY",
+      description: "AI-powered nail art design studio with React, Firebase,and ImageRouter",
+      imgUrl: projImg8,
     },
     {
       title: "Big O Brain Bender",
