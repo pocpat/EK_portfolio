@@ -11,20 +11,14 @@ import { ProjectCard } from "./ProjectCard";
 import "animate.css";
 import "../css/App.css";
 import TrackVisibility from "react-on-screen";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
-import { fetchPdfsByCategory } from '../mongoClient';
+import { getPdfsByCategory } from "../data/pdfs";
 
 export const Projects = ({ title, description }) => {
   const [activeTab, setActiveTab] = useState("first");
   const [selectedPdf, setSelectedPdf] = useState("/ekawstechdoc.pdf");
-  const [awsPdfFiles, setAwsPdfFiles] = useState([]);
-  const [azurePdfFiles, setAzurePdfFiles] = useState([]);
-  const [awsLoading, setAwsLoading] = useState(true);
-  const [azureLoading, setAzureLoading] = useState(true);
-  const [awsError, setAwsError] = useState(null);
-  const [azureError, setAzureError] = useState(null);
 
   const projects = [
       {
@@ -70,89 +64,33 @@ export const Projects = ({ title, description }) => {
   
   ];
 
-  // Fetch AWS PDF files from MongoDB
-  useEffect(() => {
-    const fetchAwsPdfs = async () => {
-      try {
-        setAwsLoading(true);
-        const data = await fetchPdfsByCategory('AWS');
+  // Static PDF data — no API call needed
+  const awsPdfFiles = getPdfsByCategory("AWS").map((pdf) => ({
+    name: pdf.title.replace(".pdf", ""),
+    file: pdf.file_url,
+  }));
 
-        const transformedData = data.map(pdf => ({
-          name: pdf.title.replace('.pdf', ''),
-          file: pdf.file_url
-        }));
-
-        setAwsPdfFiles(transformedData);
-        
-        if (transformedData.length > 0) {
-          setSelectedPdf(transformedData[0].file);
-        }
-      } catch (error) {
-        console.error('Error fetching AWS PDF files:', error);
-        setAwsError('Failed to load PDF files');
-        
-        // Fallback to hardcoded data if MongoDB fails
-        const fallbackPdfFiles = [
-          { name: "Migration", file: "/ekawstechdoc.pdf" },
-          { name: " QuickSight", file: "/AmazonQuickSightProject.pdf" },
-          { name: "ChatBot Part 1", file: "/AmazonLexChatbotPart1.pdf" },
-          { name: "ChatBot Part 2", file: "/AmazonLexChatbotPart2.pdf" },
-          { name: "Amazon IAM", file: "/awsIam.pdf" },
-        ];
-        setAwsPdfFiles(fallbackPdfFiles);
-        setSelectedPdf(fallbackPdfFiles[0].file);
-      } finally {
-        setAwsLoading(false);
-      }
-    };
-
-    fetchAwsPdfs();
-  }, []);
-
-  // Fetch Azure PDF files from MongoDB
-  useEffect(() => {
-    const fetchAzurePdfs = async () => {
-      try {
-        setAzureLoading(true);
-        const data = await fetchPdfsByCategory('Azure');
-
-        const transformedData = data.map(pdf => ({
-          name: pdf.title.replace('.pdf', ''),
-          file: pdf.file_url
-        }));
-
-        setAzurePdfFiles(transformedData);
-      } catch (error) {
-        console.error('Error fetching Azure PDF files:', error);
-        setAzureError('Failed to load Azure PDF files');
-        setAzurePdfFiles([]);
-      } finally {
-        setAzureLoading(false);
-      }
-    };
-
-    fetchAzurePdfs();
-  }, []);
+  const azurePdfFiles = getPdfsByCategory("Azure").map((pdf) => ({
+    name: pdf.title.replace(".pdf", ""),
+    file: pdf.file_url,
+  }));
 
   // Render PDF buttons + viewer for a category tab
-  const renderPdfTab = (pdfFiles, loading, error, emptyMessage) => {
-    return (
-      <div className="pdf-container flex-container">
-        <div className="border-container ">
-          {loading ? (
-            <div className="text-center">
-              <p>Loading documents...</p>
-            </div>
-          ) : error ? (
-            <div className="text-center">
-              <p className="text-warning">{error}</p>
-              <p className="text-muted">Using fallback data</p>
-            </div>
-          ) : pdfFiles.length === 0 ? (
+  const renderPdfTab = (pdfFiles, emptyMessage) => {
+    if (pdfFiles.length === 0) {
+      return (
+        <div className="pdf-container flex-container">
+          <div className="border-container ">
             <div className="text-center">
               <p>{emptyMessage}</p>
             </div>
-          ) : null}
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="pdf-container flex-container">
+        <div className="border-container ">
           <div className="pdf-buttons-container">
             {pdfFiles.map((pdf, index) => (
               <a
@@ -279,11 +217,11 @@ export const Projects = ({ title, description }) => {
                       </Tab.Pane>
                       {/* ======  2nd tab: AWS  ======  */}
                       <Tab.Pane eventKey="second">
-                        {renderPdfTab(awsPdfFiles, awsLoading, awsError, "No AWS documents available.")}
+                        {renderPdfTab(awsPdfFiles, "No AWS documents available.")}
                       </Tab.Pane>
                       {/* ======  3rd tab: AZURE  ======  */}
                       <Tab.Pane eventKey="fourth">
-                        {renderPdfTab(azurePdfFiles, azureLoading, azureError, "No Azure documents yet. Coming soon!")}
+                        {renderPdfTab(azurePdfFiles, "No Azure documents yet. Coming soon!")}
                       </Tab.Pane>
                     </Tab.Content>
                   </Tab.Container>

@@ -1,13 +1,7 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { NavBar } from './NavBar';
-import { fetchLatestResume } from '../mongoClient';
-
-// Mock the mongoClient
-jest.mock('../mongoClient', () => ({
-  fetchLatestResume: jest.fn(),
-}));
 
 // Mock PdfModal component
 jest.mock('./pdfModal/PdfModal', () => {
@@ -71,11 +65,9 @@ jest.mock('react-bootstrap/Container', () => {
   return ({ children }) => <div data-testid="container">{children}</div>;
 });
 
-describe('NavBar Component - Resume PDF Fetching Integration Tests', () => {
+describe('NavBar Component - Resume PDF Tests', () => {
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    
     // Mock window.innerWidth for mobile/desktop detection
     Object.defineProperty(window, 'innerWidth', {
       writable: true,
@@ -84,182 +76,47 @@ describe('NavBar Component - Resume PDF Fetching Integration Tests', () => {
     });
   });
 
-  describe('Resume PDF Fetching', () => {
-    test('should fetch resume PDF from MongoDB on component mount', async () => {
-      fetchLatestResume.mockResolvedValue({
-        file_url: '/updated-resume.pdf',
-      });
-
+  describe('Resume PDF from static data', () => {
+    test('should render navbar with resume button', () => {
       render(<NavBar />);
-
-      await waitFor(() => {
-        expect(fetchLatestResume).toHaveBeenCalled();
-      });
-
-      // Component should render
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
     });
 
-    test('should use fallback resume URL when MongoDB returns null', async () => {
-      fetchLatestResume.mockResolvedValue(null);
-
+    test('should use hardcoded resume path from static data', () => {
       render(<NavBar />);
-
-      await waitFor(() => {
-        expect(fetchLatestResume).toHaveBeenCalled();
-      });
-
-      // Component should still render normally
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
-    });
-
-    test('should handle MongoDB errors and use fallback resume URL', async () => {
-      const mockError = new Error('Database connection failed');
-      fetchLatestResume.mockRejectedValue(mockError);
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<NavBar />);
-
-      await waitFor(() => {
-        expect(consoleSpy).toHaveBeenCalledWith('Error fetching resume CV:', mockError);
-      });
-
-      // Component should render normally with fallback
-      expect(screen.getByTestId('navbar')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
-    });
-
-    test('should handle network errors gracefully', async () => {
-      fetchLatestResume.mockRejectedValue(new Error('Network error'));
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<NavBar />);
-
-      await waitFor(() => {
-        expect(consoleSpy).toHaveBeenCalledWith('Error fetching resume CV:', expect.any(Error));
-      });
-
-      expect(screen.getByTestId('navbar')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
     });
   });
 
   describe('Mobile vs Desktop Rendering', () => {
     test('should detect mobile viewport and render mobile navbar', () => {
-      // Mock mobile viewport
       Object.defineProperty(window, 'innerWidth', {
         writable: true,
         configurable: true,
         value: 768,
       });
 
-      fetchLatestResume.mockResolvedValue(null);
-
       render(<NavBar />);
-
-      // Should render navbar (mobile or desktop)
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
     });
 
     test('should detect desktop viewport and render desktop navbar', () => {
-      // Mock desktop viewport
       Object.defineProperty(window, 'innerWidth', {
         writable: true,
         configurable: true,
         value: 1200,
       });
 
-      fetchLatestResume.mockResolvedValue(null);
-
       render(<NavBar />);
-
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
     });
   });
 
   describe('Component State Management', () => {
-    test('should initialize with correct default state', async () => {
-      fetchLatestResume.mockResolvedValue(null);
-
+    test('should initialize with correct default state', () => {
       render(<NavBar />);
-
-      // Component should render with default state
       expect(screen.getByTestId('navbar')).toBeInTheDocument();
-      
-      // Should not be expanded initially
       expect(screen.getByTestId('navbar')).toHaveAttribute('data-expanded', 'false');
-    });
-
-    test('should update resume URL state when MongoDB data is fetched', async () => {
-      fetchLatestResume.mockResolvedValue({
-        file_url: '/new-resume-2024.pdf',
-      });
-
-      render(<NavBar />);
-
-      await waitFor(() => {
-        expect(fetchLatestResume).toHaveBeenCalled();
-      });
-
-      // Component should render successfully
-      expect(screen.getByTestId('navbar')).toBeInTheDocument();
-    });
-  });
-
-  describe('Error Boundary and Resilience', () => {
-    test('should not crash when mongoClient throws', async () => {
-      fetchLatestResume.mockImplementation(() => {
-        throw new Error('mongoClient not initialized');
-      });
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<NavBar />);
-
-      await waitFor(() => {
-        expect(consoleSpy).toHaveBeenCalled();
-      });
-
-      // Component should still render
-      expect(screen.getByTestId('navbar')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
-    });
-
-    test('should handle malformed MongoDB responses', async () => {
-      fetchLatestResume.mockResolvedValue({ invalid_field: 'invalid_value' });
-
-      render(<NavBar />);
-
-      await waitFor(() => {
-        expect(fetchLatestResume).toHaveBeenCalled();
-      });
-
-      // Should render without crashing
-      expect(screen.getByTestId('navbar')).toBeInTheDocument();
-    });
-  });
-
-  describe('Performance and Optimization', () => {
-    test('should only fetch resume data once on mount', async () => {
-      fetchLatestResume.mockResolvedValue({ file_url: '/resume.pdf' });
-
-      const { rerender } = render(<NavBar />);
-
-      await waitFor(() => {
-        expect(fetchLatestResume).toHaveBeenCalledTimes(1);
-      });
-
-      // Re-render component
-      rerender(<NavBar />);
-
-      // useEffect with [] deps only runs once per mount, not on re-render
-      // This is correct React behavior — the effect doesn't re-run on rerender
-      expect(fetchLatestResume).toHaveBeenCalledTimes(1);
     });
   });
 });

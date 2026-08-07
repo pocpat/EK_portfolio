@@ -8,7 +8,7 @@ import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Button } from "react-bootstrap";
 import "../css/App.css";
-import { fetchLatestResume } from '../mongoClient';
+import { getLatestResume } from "../data/pdfs";
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -16,7 +16,8 @@ export const NavBar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [hardcodedCV, setHardcodedCV] = useState("/ElenaKroupkin_CV-08-2026.pdf");
+  // Static PDF data — resume path from hardcoded data (no API call needed)
+  const resumePdf = getLatestResume()?.file_url || "/ElenaKroupkin_CV_09-2026.pdf";
   
   // Ref to track the navbar container
   const navbarRef = useRef(null);
@@ -67,24 +68,6 @@ export const NavBar = () => {
       document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isExpanded, isMobile]);
-
-  // Fetch resume PDF from MongoDB
-  useEffect(() => {
-    const fetchResumeCV = async () => {
-      try {
-        const resume = await fetchLatestResume();
-
-        if (resume && resume.file_url) {
-          setHardcodedCV(resume.file_url);
-        }
-      } catch (error) {
-        console.error('Error fetching resume CV:', error);
-        // Keep the fallback value already set in state
-      }
-    };
-
-    fetchResumeCV();
-  }, []);
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
@@ -198,7 +181,7 @@ export const NavBar = () => {
                 <PdfModal
                   show={showModal}
                   onHide={() => setShowModal(false)}
-                  file={hardcodedCV}
+                  file={resumePdf}
                 />
               )}
             </Navbar.Collapse>
@@ -280,7 +263,7 @@ export const NavBar = () => {
                   <PdfModal
                     show={showModal}
                     onHide={() => setShowModal(false)}
-                    file={hardcodedCV}
+                    file={resumePdf}
                   />
                 )}
               </span>

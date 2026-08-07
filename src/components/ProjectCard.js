@@ -1,41 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
-import { fetchPdfsByTitles } from '../mongoClient';
+import { getPdfsByTitles } from "../data/pdfs";
 
 export const ProjectCard = ({ title, description, imgUrl }) => {
   const [showModal, setShowModal] = useState(false);
-  const [hardcodedPdfUrl, setHardcodedPdfUrl] = useState("/metroge_vert.pdf");
-  const [hardcodedPdfUrl2, setHardcodedPdfUrl2] = useState("/SimilarCarsFinder.pdf");
+
+  // Static PDF data — no API call needed
+  const projectPdfs = getPdfsByTitles(["metroge_vert.pdf", "SimilarCarsFinder.pdf"]);
+  const metrogePdf = projectPdfs.find((p) => p.title === "metroge_vert.pdf");
+  const similarCarsPdf = projectPdfs.find((p) => p.title === "SimilarCarsFinder.pdf");
+  const hardcodedPdfUrl = metrogePdf ? metrogePdf.file_url : "/metroge_vert.pdf";
+  const hardcodedPdfUrl2 = similarCarsPdf ? similarCarsPdf.file_url : "/SimilarCarsFinder.pdf";
 
   const handleOpenPdfModal = () => {
     setShowModal(true);
   };
-
-  // Fetch project-specific PDF URLs from MongoDB
-  useEffect(() => {
-    const fetchProjectPdfs = async () => {
-      try {
-        const data = await fetchPdfsByTitles(['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
-
-        if (data && data.length > 0) {
-          data.forEach(pdf => {
-            if (pdf.title === 'metroge_vert.pdf') {
-              setHardcodedPdfUrl(pdf.file_url);
-            } else if (pdf.title === 'SimilarCarsFinder.pdf') {
-              setHardcodedPdfUrl2(pdf.file_url);
-            }
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching project PDFs:', error);
-        // Keep the fallback values already set in state
-      }
-    };
-
-    fetchProjectPdfs();
-  }, []);
 
   return (
     <Col sm={6} md={4} lg={4}>

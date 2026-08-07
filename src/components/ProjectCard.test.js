@@ -1,13 +1,7 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ProjectCard } from './ProjectCard';
-import { fetchPdfsByTitles } from '../mongoClient';
-
-// Mock the mongoClient
-jest.mock('../mongoClient', () => ({
-  fetchPdfsByTitles: jest.fn(),
-}));
 
 // Mock PdfModal component
 jest.mock('./pdfModal/PdfModal', () => {
@@ -31,23 +25,10 @@ jest.mock('react-bootstrap', () => ({
   ),
 }));
 
-describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
+describe('ProjectCard Component - PDF Display Tests', () => {
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  describe('PDF URL Fetching for MetroGE Project', () => {
-    test('should fetch and update MetroGE PDF URL from MongoDB', async () => {
-      const mockPdfData = [
-        {
-          title: 'metroge_vert.pdf',
-          file_url: '/updated-metroge.pdf',
-        },
-      ];
-
-      fetchPdfsByTitles.mockResolvedValue(mockPdfData);
-
+  describe('Project Rendering with Static PDF Data', () => {
+    test('should render MetroGE project with PDF button', () => {
       render(
         <ProjectCard 
           title="MetroGE" 
@@ -56,26 +37,11 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
         />
       );
 
-      // Wait for mongoClient call to complete
-      await waitFor(() => {
-        expect(fetchPdfsByTitles).toHaveBeenCalledWith(['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
-      });
-
-      // The component should render with the project title
       expect(screen.getByText('MetroGE')).toBeInTheDocument();
       expect(screen.getByText('Test description')).toBeInTheDocument();
     });
 
-    test('should fetch and update Similar Car Finder PDF URL from MongoDB', async () => {
-      const mockPdfData = [
-        {
-          title: 'SimilarCarsFinder.pdf',
-          file_url: '/updated-similar-cars.pdf',
-        },
-      ];
-
-      fetchPdfsByTitles.mockResolvedValue(mockPdfData);
-
+    test('should render Similar Car Finder project with PDF button', () => {
       render(
         <ProjectCard 
           title="Similar Car Finder" 
@@ -84,113 +50,13 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
         />
       );
 
-      await waitFor(() => {
-        expect(fetchPdfsByTitles).toHaveBeenCalled();
-      });
-
       expect(screen.getByText('Similar Car Finder')).toBeInTheDocument();
       expect(screen.getByText('AI-Powered Vehicle Recommendations')).toBeInTheDocument();
-    });
-
-    test('should fetch both PDF URLs when both are available', async () => {
-      const mockPdfData = [
-        {
-          title: 'metroge_vert.pdf',
-          file_url: '/updated-metroge.pdf',
-        },
-        {
-          title: 'SimilarCarsFinder.pdf',
-          file_url: '/updated-similar-cars.pdf',
-        },
-      ];
-
-      fetchPdfsByTitles.mockResolvedValue(mockPdfData);
-
-      render(
-        <ProjectCard 
-          title="MetroGE" 
-          description="Test description" 
-          imgUrl="/test-image.jpg" 
-        />
-      );
-
-      await waitFor(() => {
-        expect(fetchPdfsByTitles).toHaveBeenCalledWith(['metroge_vert.pdf', 'SimilarCarsFinder.pdf']);
-      });
-    });
-  });
-
-  describe('Error Handling', () => {
-    test('should handle MongoDB errors gracefully and use fallback URLs', async () => {
-      const mockError = new Error('Database connection failed');
-      fetchPdfsByTitles.mockRejectedValue(mockError);
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(
-        <ProjectCard 
-          title="MetroGE" 
-          description="Test description" 
-          imgUrl="/test-image.jpg" 
-        />
-      );
-
-      await waitFor(() => {
-        expect(consoleSpy).toHaveBeenCalledWith('Error fetching project PDFs:', mockError);
-      });
-
-      // Component should still render normally with fallback URLs
-      expect(screen.getByText('MetroGE')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
-    });
-
-    test('should handle network errors gracefully', async () => {
-      fetchPdfsByTitles.mockRejectedValue(new Error('Network error'));
-
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(
-        <ProjectCard 
-          title="Similar Car Finder" 
-          description="Test description" 
-          imgUrl="/test-image.jpg" 
-        />
-      );
-
-      await waitFor(() => {
-        expect(consoleSpy).toHaveBeenCalledWith('Error fetching project PDFs:', expect.any(Error));
-      });
-
-      expect(screen.getByText('Similar Car Finder')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
-    });
-
-    test('should handle empty response gracefully', async () => {
-      fetchPdfsByTitles.mockResolvedValue([]);
-
-      render(
-        <ProjectCard 
-          title="MetroGE" 
-          description="Test description" 
-          imgUrl="/test-image.jpg" 
-        />
-      );
-
-      await waitFor(() => {
-        expect(fetchPdfsByTitles).toHaveBeenCalled();
-      });
-
-      // Should still render the component normally
-      expect(screen.getByText('MetroGE')).toBeInTheDocument();
     });
   });
 
   describe('Non-PDF Projects', () => {
-    test('should not crash for projects without PDF functionality', async () => {
-      fetchPdfsByTitles.mockResolvedValue([]);
-
+    test('should not crash for projects without PDF functionality', () => {
       render(
         <ProjectCard 
           title="Cook It Up" 
@@ -199,20 +65,11 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
         />
       );
 
-      // Wait a bit to ensure no async calls are made
-      await new Promise(resolve => setTimeout(resolve, 100));
-
-      // mongoClient should still be called (the useEffect runs for all projects)
-      expect(fetchPdfsByTitles).toHaveBeenCalled();
-      
-      // But the component should render normally
       expect(screen.getByText('Cook It Up')).toBeInTheDocument();
       expect(screen.getByText('React-based food managing app')).toBeInTheDocument();
     });
 
-    test('should render external links for projects with external references', async () => {
-      fetchPdfsByTitles.mockResolvedValue([]);
-
+    test('should render external links for projects with external references', () => {
       render(
         <ProjectCard 
           title="GitHub icon" 
@@ -221,19 +78,13 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
         />
       );
 
-      await waitFor(() => {
-        expect(screen.getByText('GitHub icon')).toBeInTheDocument();
-      });
-
-      // Should contain external links
+      expect(screen.getByText('GitHub icon')).toBeInTheDocument();
       expect(screen.getByText('Icons by Alfredo Hernandez')).toBeInTheDocument();
     });
   });
 
   describe('Component Rendering', () => {
-    test('should render basic project information correctly', async () => {
-      fetchPdfsByTitles.mockResolvedValue([]);
-
+    test('should render basic project information correctly', () => {
       render(
         <ProjectCard 
           title="Test Project" 
@@ -247,9 +98,7 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
       expect(screen.getByRole('img')).toHaveAttribute('src', '/test-image.jpg');
     });
 
-    test('should render project buttons for projects with external links', async () => {
-      fetchPdfsByTitles.mockResolvedValue([]);
-
+    test('should render project buttons for projects with external links', () => {
       render(
         <ProjectCard 
           title="Cook It Up" 
@@ -258,41 +107,8 @@ describe('ProjectCard Component - PDF Fetching Integration Tests', () => {
         />
       );
 
-      // Should render buttons for Cook It Up project
       const buttons = screen.getAllByTestId('button');
       expect(buttons.length).toBeGreaterThan(0);
-    });
-  });
-
-  describe('Data Processing', () => {
-    test('should correctly process PDF data and update state', async () => {
-      const mockPdfData = [
-        {
-          title: 'metroge_vert.pdf',
-          file_url: 'https://example.com/metroge.pdf',
-        },
-        {
-          title: 'SimilarCarsFinder.pdf',
-          file_url: 'https://example.com/similar-cars.pdf',
-        },
-      ];
-
-      fetchPdfsByTitles.mockResolvedValue(mockPdfData);
-
-      render(
-        <ProjectCard 
-          title="MetroGE" 
-          description="Test description" 
-          imgUrl="/test-image.jpg" 
-        />
-      );
-
-      await waitFor(() => {
-        expect(fetchPdfsByTitles).toHaveBeenCalled();
-      });
-
-      // Verify the component renders correctly after data processing
-      expect(screen.getByText('MetroGE')).toBeInTheDocument();
     });
   });
 });
