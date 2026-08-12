@@ -75,12 +75,12 @@ export const Projects = ({ title, description }) => {
   const awsPdfFiles = documents
     .filter((d) => d.category === "AWS")
     .sort((a, b) => a.title.localeCompare(b.title))
-    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.pdfUrl }));
+    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.file_url }));
 
   const azurePdfFiles = documents
     .filter((d) => d.category === "Azure")
     .sort((a, b) => a.title.localeCompare(b.title))
-    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.pdfUrl }));
+    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.file_url }));
 
   // Render PDF buttons + viewer for a category tab
   const renderPdfTab = (pdfFiles, emptyMessage) => {

@@ -2,7 +2,7 @@
  * Vercel serverless function — returns PDF document metadata from MongoDB.
  * Route: GET /api/pdfs
  *
- * Returns an array of { title, category, fileName, pdfUrl, createdAt }.
+ * Returns an array of { title, category, fileName, file_url, createdAt }.
  * If MongoDB is unreachable, returns 500 (the React app falls back to static data).
  */
 let cachedClient = null;
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     const client = await getClient(MONGODB_URI);
     const db = client.db("portfolio");
     const documents = await db
-      .collection("documents")
+      .collection("pdfs")
       .find({}, { projection: { _id: 0 } })
       .toArray();
 

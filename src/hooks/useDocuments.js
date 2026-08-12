@@ -10,7 +10,7 @@ let cache = null;
  * or returns an empty array.
  *
  * Returns { documents, loading } where documents is an array of
- * { title, category, fileName, pdfUrl }.
+ * { title, category, fileName, file_url }.
  */
 export function useDocuments() {
   const [documents, setDocuments] = useState(cache || STATIC_PDFS);

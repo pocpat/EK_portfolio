@@ -11,8 +11,8 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
   // PDFs from MongoDB (falls back to static data if API is down)
   const metrogePdf = documents.find((d) => d.fileName === "metroge_vert.pdf");
   const similarCarsPdf = documents.find((d) => d.fileName === "SimilarCarsFinder.pdf");
-  const hardcodedPdfUrl = metrogePdf ? metrogePdf.pdfUrl : "/metroge_vert.pdf";
-  const hardcodedPdfUrl2 = similarCarsPdf ? similarCarsPdf.pdfUrl : "/SimilarCarsFinder.pdf";
+  const hardcodedPdfUrl = metrogePdf ? metrogePdf.file_url : "https://ek-my-portfolio-pdf-docs-sydney.s3.ap-southeast-2.amazonaws.com/apps/metroge_vert.pdf";
+  const hardcodedPdfUrl2 = similarCarsPdf ? similarCarsPdf.file_url : "https://ek-my-portfolio-pdf-docs-sydney.s3.ap-southeast-2.amazonaws.com/apps/SimilarCarsFinder.pdf";
 
   const handleOpenPdfModal = () => {
     setShowModal(true);

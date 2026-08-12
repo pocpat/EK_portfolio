@@ -18,7 +18,7 @@ export const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   // Resume PDF from MongoDB (falls back to static data if API is down)
-  const resumePdf = documents.find((d) => d.category === "Resume")?.pdfUrl || "/ElenaKroupkin_CV_09-2026.pdf";
+  const resumePdf = documents.find((d) => d.category === "Resume")?.file_url || "https://ek-my-portfolio-pdf-docs-sydney.s3.ap-southeast-2.amazonaws.com/CV/ElenaKroupkin_CV_09-2026.pdf";
   
   // Ref to track the navbar container
   const navbarRef = useRef(null);

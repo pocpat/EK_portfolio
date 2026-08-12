@@ -4,11 +4,11 @@
  * Reads src/data/pdfs-metadata.json (single source of truth) and upserts
  * each entry into MongoDB with a constructed S3 URL.
  *
- * S3 bucket folder structure:
+ * S3 bucket folder structure (MUST match actual S3 folders):
  *   aws/   — AWS PDFs
- *   azure/ — Azure PDFs
- *   cv/    — Resume PDFs
- *   apps/  — Project PDFs
+ *   az/    — Azure PDFs
+ *   CV/    — Resume PDFs (capital CV!)
+ *   apps/  — Project + misc PDFs
  *
  * Usage: npm run sync:pdfs
  * Requires: MONGODB_URI in .env
@@ -28,13 +28,13 @@ const BUCKET_NAME = "ek-my-portfolio-pdf-docs-sydney";
 const REGION = "ap-southeast-2";
 const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = "portfolio";
-const COLLECTION_NAME = "documents";
+const COLLECTION_NAME = "pdfs";
 
-// Map app categories to S3 folder names
+// Map app categories to ACTUAL S3 folder names (case-sensitive!)
 const CATEGORY_TO_S3_FOLDER = {
   AWS: "aws",
-  Azure: "azure",
-  Resume: "cv",
+  Azure: "az",
+  Resume: "CV",
   Project: "apps",
 };
 
@@ -44,7 +44,7 @@ async function syncPdfsToMongoDB() {
     process.exit(1);
   }
 
-  // Read metadata from JSON (single source of truth — same file the React app uses)
+  // Read metadata from JSON (single source of truth)
   const metadataPath = path.join(__dirname, "..", "src", "data", "pdfs-metadata.json");
   const metadata = JSON.parse(fs.readFileSync(metadataPath, "utf-8"));
 
@@ -58,7 +58,7 @@ async function syncPdfsToMongoDB() {
       title: p.title,
       category: p.category,
       fileName: p.fileName,
-      pdfUrl: s3Url,
+      file_url: s3Url,
       createdAt: new Date(),
     };
   });
@@ -72,10 +72,16 @@ async function syncPdfsToMongoDB() {
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
 
-    // Bulk upsert by pdfUrl (avoids duplicates)
+    // Ensure unique index for idempotent upserts
+    await collection.createIndex(
+      { title: 1, category: 1 },
+      { unique: true }
+    );
+
+    // Bulk upsert by title + category (matches seed-pdfs.js approach)
     const operations = documentsToInsert.map((doc) => ({
       updateOne: {
-        filter: { pdfUrl: doc.pdfUrl },
+        filter: { title: doc.title, category: doc.category },
         update: { $set: doc },
         upsert: true,
       },
@@ -89,7 +95,7 @@ async function syncPdfsToMongoDB() {
     // Show what was synced
     console.log("\nSynced documents:");
     documentsToInsert.forEach((doc) => {
-      console.log(`  [${doc.category}] ${doc.title} → ${doc.pdfUrl}`);
+      console.log(`  [${doc.category}] ${doc.title} → ${doc.file_url}`);
     });
   } catch (error) {
     console.error("Error syncing to MongoDB:", error.message);

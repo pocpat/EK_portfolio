@@ -6,12 +6,27 @@
  */
 import metadata from "./pdfs-metadata.json";
 
-export const pdfs = metadata.map((p) => ({
-  title: p.title,
-  category: p.category,
-  fileName: p.fileName,
-  pdfUrl: `/${p.fileName}`, // local path for static fallback
-}));
+// S3 folder mapping (must match scripts/sync-pdfs.mjs)
+const CATEGORY_TO_S3_FOLDER = {
+  AWS: "aws",
+  Azure: "az",
+  Resume: "CV",
+  Project: "apps",
+};
+
+const BUCKET_NAME = "ek-my-portfolio-pdf-docs-sydney";
+const REGION = "ap-southeast-2";
+
+export const pdfs = metadata.map((p) => {
+  const s3Folder = CATEGORY_TO_S3_FOLDER[p.category] || p.category.toLowerCase();
+  const s3Url = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${s3Folder}/${encodeURIComponent(p.fileName)}`;
+  return {
+    title: p.title,
+    category: p.category,
+    fileName: p.fileName,
+    file_url: s3Url,
+  };
+});
 
 /** Return PDFs for a given category, sorted by title ascending. */
 export function getPdfsByCategory(category) {
