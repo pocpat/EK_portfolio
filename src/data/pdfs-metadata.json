@@ -1,0 +1,23 @@
+[
+  { "title": "S3 Multi-Part Upload",         "fileName": "AWS-multi-part-upload.pdf",                      "category": "AWS" },
+  { "title": "Network Security & Analysis",   "fileName": "AWS-network_security_and_analysis.pdf",         "category": "AWS" },
+  { "title": "S3 MFA Delete",                  "fileName": "AWS-multi-part-upload-S3-MFA-Delete.pdf",        "category": "AWS" },
+  { "title": "Migration",                      "fileName": "ekawstechdoc.pdf",                              "category": "AWS" },
+  { "title": "QuickSight",                     "fileName": "AmazonQuickSightProject.pdf",                   "category": "AWS" },
+  { "title": "ChatBot Part 1",                 "fileName": "AmazonLexChatbotPart1.pdf",                     "category": "AWS" },
+  { "title": "ChatBot Part 2",                 "fileName": "AmazonLexChatbotPart2.pdf",                     "category": "AWS" },
+  { "title": "Amazon IAM",                     "fileName": "awsIam.pdf",                                    "category": "AWS" },
+
+  { "title": "Cloud Network Security",         "fileName": "AZ-Cloud_Network_Security.pdf",                "category": "Azure" },
+  { "title": "Create ML Pipeline",             "fileName": "AZ-Create_ML_Pipeline.pdf",                     "category": "Azure" },
+  { "title": "MS Fabric",                      "fileName": "AZ-FABRIC.pdf",                                  "category": "Azure" },
+  { "title": "Generative AI",                  "fileName": "AZ-Generative_AI.pdf",                           "category": "Azure" },
+  { "title": "Hybrid Cloud Security",          "fileName": "AZ-Hybrid_Cloud_Deployment_and_Security.pdf",  "category": "Azure" },
+  { "title": "ML & Cloud Resources",           "fileName": "AZ-ML_Applications_Cloud_Resource_Allocation.pdf", "category": "Azure" },
+  { "title": "MS Entra ID",                    "fileName": "AZ-MS_EntraID.pdf",                              "category": "Azure" },
+
+  { "title": "My Resume",                      "fileName": "ElenaKroupkin_CV_09-2026.pdf",                  "category": "Resume" },
+
+  { "title": "metroge_vert.pdf",               "fileName": "metroge_vert.pdf",                              "category": "Project" },
+  { "title": "SimilarCarsFinder.pdf",          "fileName": "SimilarCarsFinder.pdf",                        "category": "Project" }
+]

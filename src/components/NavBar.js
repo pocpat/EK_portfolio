@@ -8,16 +8,17 @@ import navIcon2 from "../assets/img/github.svg";
 import PdfModal from "./pdfModal/PdfModal";
 import { Button } from "react-bootstrap";
 import "../css/App.css";
-import { getLatestResume } from "../data/pdfs";
+import { useDocuments } from "../hooks/useDocuments";
 
 export const NavBar = () => {
+  const { documents } = useDocuments();
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  // Static PDF data — resume path from hardcoded data (no API call needed)
-  const resumePdf = getLatestResume()?.file_url || "/ElenaKroupkin_CV_09-2026.pdf";
+  // Resume PDF from MongoDB (falls back to static data if API is down)
+  const resumePdf = documents.find((d) => d.category === "Resume")?.pdfUrl || "/ElenaKroupkin_CV_09-2026.pdf";
   
   // Ref to track the navbar container
   const navbarRef = useRef(null);

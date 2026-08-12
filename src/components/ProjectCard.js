@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "../css/App.css";
 import PdfModal from "./pdfModal/PdfModal";
 import { Col, Button } from "react-bootstrap";
-import { getPdfsByTitles } from "../data/pdfs";
+import { useDocuments } from "../hooks/useDocuments";
 
 export const ProjectCard = ({ title, description, imgUrl }) => {
   const [showModal, setShowModal] = useState(false);
+  const { documents } = useDocuments();
 
-  // Static PDF data — no API call needed
-  const projectPdfs = getPdfsByTitles(["metroge_vert.pdf", "SimilarCarsFinder.pdf"]);
-  const metrogePdf = projectPdfs.find((p) => p.title === "metroge_vert.pdf");
-  const similarCarsPdf = projectPdfs.find((p) => p.title === "SimilarCarsFinder.pdf");
-  const hardcodedPdfUrl = metrogePdf ? metrogePdf.file_url : "/metroge_vert.pdf";
-  const hardcodedPdfUrl2 = similarCarsPdf ? similarCarsPdf.file_url : "/SimilarCarsFinder.pdf";
+  // PDFs from MongoDB (falls back to static data if API is down)
+  const metrogePdf = documents.find((d) => d.fileName === "metroge_vert.pdf");
+  const similarCarsPdf = documents.find((d) => d.fileName === "SimilarCarsFinder.pdf");
+  const hardcodedPdfUrl = metrogePdf ? metrogePdf.pdfUrl : "/metroge_vert.pdf";
+  const hardcodedPdfUrl2 = similarCarsPdf ? similarCarsPdf.pdfUrl : "/SimilarCarsFinder.pdf";
 
   const handleOpenPdfModal = () => {
     setShowModal(true);

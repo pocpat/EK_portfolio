@@ -14,12 +14,13 @@ import TrackVisibility from "react-on-screen";
 import React, { useState } from "react";
 import PdfViewer from "./PdfViewer";
 import "../css/projects-styles.css";
-import { getPdfsByCategory } from "../data/pdfs";
+import { useDocuments } from "../hooks/useDocuments";
 import projImg8 from "../assets/img/dipsy.jpg"
 
 export const Projects = ({ title, description }) => {
+  const { documents } = useDocuments();
   const [activeTab, setActiveTab] = useState("first");
-  const [selectedPdf, setSelectedPdf] = useState("/ekawstechdoc.pdf");
+  const [selectedPdf, setSelectedPdf] = useState(null);
 
   const projects = [
       {
@@ -70,16 +71,16 @@ export const Projects = ({ title, description }) => {
   
   ];
 
-  // Static PDF data — no API call needed
-  const awsPdfFiles = getPdfsByCategory("AWS").map((pdf) => ({
-    name: pdf.title.replace(".pdf", ""),
-    file: pdf.file_url,
-  }));
+  // PDF data from MongoDB via useDocuments hook (falls back to static)
+  const awsPdfFiles = documents
+    .filter((d) => d.category === "AWS")
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.pdfUrl }));
 
-  const azurePdfFiles = getPdfsByCategory("Azure").map((pdf) => ({
-    name: pdf.title.replace(".pdf", ""),
-    file: pdf.file_url,
-  }));
+  const azurePdfFiles = documents
+    .filter((d) => d.category === "Azure")
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .map((d) => ({ name: d.title.replace(".pdf", ""), file: d.pdfUrl }));
 
   // Render PDF buttons + viewer for a category tab
   const renderPdfTab = (pdfFiles, emptyMessage) => {
