@@ -290,7 +290,27 @@ export const ProjectCard = ({ title, description, imgUrl }) => {
               </Button>
             </div>
           )}
-           {title === "DiPSY" && (
+           {title === "Rueda Club" && (
+            <div className="proj__buttons-container">
+              <Button
+                href="https://rueda-club-ui-refresh.vercel.app/"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open
+              </Button>
+              <Button
+                href="https://github.com/pocpat/Rueda-Club-UI-Refresh"
+                className="project-card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </Button>
+            </div>
+          )}
+          {title === "DiPSY" && (
             <div className="proj__buttons-container">
               <Button
                 href="https://newnails-web-fe.vercel.app"

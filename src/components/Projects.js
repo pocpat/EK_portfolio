@@ -5,6 +5,7 @@ import projImg4 from "../assets/img/similarCars.png";
 import projImg5 from "../assets/img/summize.png";
 import projImg6 from "../assets/img/carHub.png";
 import projImg7 from "../assets/img/bigo.jpg";
+import projImg9 from "../assets/img/ruedaclub.jpg";
 import bgImg1 from "../assets/img/banner-bg1.jpg";
 import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
@@ -23,6 +24,11 @@ export const Projects = ({ title, description }) => {
   const [selectedPdf, setSelectedPdf] = useState(null);
 
   const projects = [
+      {
+      title: "Rueda Club",
+      description: "Cuban dance learning platform — daily move, class-by-class video lessons, levels browser and community hub. React + Vite on Vercel.",
+      imgUrl: projImg9,
+    },
       {
       title: "SunSip",
       description: "Weather-based cocktail recommendation app",
